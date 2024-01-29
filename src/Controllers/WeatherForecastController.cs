@@ -7,9 +7,9 @@ namespace PortfolioAPI.Controllers;
 [Route("api/weather-forecast")]
 public class WeatherForecastController : ControllerBase
 {
-  [HttpGet]
-  public IActionResult Get()
-  {
-    return Ok();
-  }
+    [HttpGet]
+    public IActionResult Get()
+    {
+        return Ok();
+    }
 }
