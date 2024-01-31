@@ -11,34 +11,14 @@ public class UserSeed : IEntityTypeConfiguration<User>
     {
         var user1 = new User
         (
-            "name1",
-            "Full Name 1",
-            "Position 1",
-            "Description 1",
-            "https://example.com/avatar1.jpg",
-            "username1"
+            "Rian Oliveira",
+            "Rian Dias de Oliveira",
+            "Desenvolvedor Web",
+            "Olá, me chamo Rian, e é um prazer ver você por aqui! Desde pequeno, sempre fui fascinado por ciência e tecnologia, e hoje tenho a oportunidade de exercer minha criatividade fazendo o que tanto amo. Nos últimos 2 anos, venho desenvolvendo e aprimorando minhas habilidades em programação. Possuo uma ótima experiência com tecnologias tanto da parte de front-end quanto de back-end, algumas delas são: NodeJS; ExpressJS; React; NextJS; TypeScript; entre outras. Apesar do meu foco estar concentrado em front-end, estou sempre aberto a novas oportunidades para continuar aprendendo cada vez mais.",
+            "https://i.imgur.com/4K3bKDa.png",
+            "riandias2016"
         );
 
-        var user2 = new User
-        (
-            "name2",
-            "Full Name 2",
-            "Position 2",
-            "Description 2",
-            "https://example.com/avatar2.jpg",
-            "username2"
-        );
-
-        var user3 = new User
-        (
-            "name3",
-            "Full Name 3",
-            "Position 3",
-            "Description 3",
-            "https://example.com/avatar3.jpg",
-            "username3"
-        );
-
-        builder.HasData(user1, user2, user3);
+        builder.HasData(user1);
     }
 }
