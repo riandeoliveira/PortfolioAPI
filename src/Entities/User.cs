@@ -5,47 +5,40 @@ using System.Diagnostics.CodeAnalysis;
 namespace PortfolioAPI.Entities;
 
 [Table("users")]
-public sealed class User(
-    string name,
-    string fullName,
-    string position,
-    string description,
-    string avatarUrl,
-    string? spotifyAccountName = null
-) : BaseEntity
+public sealed class User : BaseEntity
 {
     [Column("name")]
     [DataType(DataType.Text)]
     [NotNull]
     [Required]
-    public string Name { get; private set; } = name;
+    public required string Name { get; set; }
 
     [Column("full_name")]
     [DataType(DataType.Text)]
     [NotNull]
     [Required]
-    public string FullName { get; private set; } = fullName;
+    public required string FullName { get; set; }
 
     [Column("position")]
     [DataType(DataType.Text)]
     [NotNull]
     [Required]
-    public string Position { get; private set; } = position;
+    public required string Position { get; set; }
 
     [Column("description")]
     [DataType(DataType.MultilineText)]
     [NotNull]
     [Required]
-    public string Description { get; private set; } = description;
+    public required string Description { get; set; }
 
     [Column("avatar_url")]
     [DataType(DataType.ImageUrl)]
     [NotNull]
     [Required]
-    public string AvatarUrl { get; private set; } = avatarUrl;
+    public required string AvatarUrl { get; set; }
 
     [Column("spotify_account_name")]
     [DataType(DataType.Text)]
     [Key]
-    public string? SpotifyAccountName { get; private set; } = spotifyAccountName;
+    public string? SpotifyAccountName { get; set; }
 }
