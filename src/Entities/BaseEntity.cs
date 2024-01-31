@@ -20,9 +20,9 @@ public abstract class BaseEntity
 
     [Column("updated_at")]
     [DataType(DataType.DateTime)]
-    public DateTime? UpdatedAt { get; private set; } = null;
+    public DateTime? UpdatedAt { get; set; } = null;
 
     [Column("excluded_at")]
     [DataType(DataType.DateTime)]
-    public DateTime? ExcludedAt { get; private set; } = null;
+    public DateTime? ExcludedAt { get; set; } = null;
 }
