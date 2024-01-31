@@ -12,10 +12,6 @@ public sealed class UserMap : IEntityTypeConfiguration<User>
         builder.ConfigureAuditProperties("users");
 
         builder
-            .HasIndex(u => u.SpotifyAccountName)
-            .IsUnique();
-
-        builder
             .Property(x => x.Name)
             .HasColumnName("name")
             .HasMaxLength(50)
