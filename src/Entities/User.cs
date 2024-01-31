@@ -11,7 +11,7 @@ public sealed class User(
     string position,
     string description,
     string avatarUrl,
-    string spotifyAccountName
+    string? spotifyAccountName = null
 ) : BaseEntity
 {
     [Column("name")]
