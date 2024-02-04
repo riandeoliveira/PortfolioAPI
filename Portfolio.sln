@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.API", "src/Portfolio.API/Portfolio.API.csproj", "{5A6AAC9E-C3F8-46F6-A903-16F3FC3D25AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Api", "src/Portfolio.Api/Portfolio.Api.csproj", "{5A6AAC9E-C3F8-46F6-A903-16F3FC3D25AB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Authors", "src/Portfolio.Authors/Portfolio.Authors.csproj", "{926843F4-3E36-4DFB-A8EC-57F7C19531CD}"
 EndProject

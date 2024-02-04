@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ENTITIES_PROJECT_PATH="src/Portfolio.Entities"
-STARTUP_PROJECT_PATH="src/Portfolio.API"
+STARTUP_PROJECT_PATH="src/Portfolio.Api"
 
 dotnet ef migrations remove -s "$STARTUP_PROJECT_PATH" -p "$ENTITIES_PROJECT_PATH"
 
