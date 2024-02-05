@@ -6,7 +6,7 @@ namespace Portfolio.Users.Interfaces;
 
 public interface IUserService : IBaseService
 {
-    Task<TokenResponse?> LoginAsync(LoginUserRequest request);
+    Task<TokenResponse> LoginAsync(LoginUserRequest request);
 
     Task<TokenResponse> SignInAsync(SignInUserRequest request);
 }

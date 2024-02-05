@@ -1,7 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -9,22 +5,28 @@ using Portfolio.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;
+using Portfolio.Utils.Extensions;
+
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Authentication;
+using System.Security.Claims;
+using System.Text;
 
 namespace Portfolio.Users.Services;
 
 public sealed class UserService(IConfiguration configuration, IUserRepository repository) : IUserService
 {
     private readonly IConfiguration _configuration = configuration;
+
     private readonly IUserRepository _repository = repository;
 
-    public async Task<TokenResponse?> LoginAsync(LoginUserRequest request)
+    public async Task<TokenResponse> LoginAsync(LoginUserRequest request)
     {
         var user = await _repository.FindAsync(x =>
-            x.Email == request.Email &&
-            x.Password == request.Password
+            x.Email == request.Email
         );
 
-        if (user is not null)
+        if (user is not null && PasswordExtension.VerifyPassword(request.Password, user.Password))
         {
             var token = GenerateToken(user);
 
@@ -35,22 +37,24 @@ public sealed class UserService(IConfiguration configuration, IUserRepository re
             };
         }
 
-        return null;
+        throw new InvalidCredentialException("Invalid email or password");
     }
 
     public async Task<TokenResponse> SignInAsync(SignInUserRequest request)
     {
-        var userAlreadyExists = await _repository.FindAsync(x => x.Email == request.Email);
+        var userFound = await _repository.FindAsync(x => x.Email == request.Email);
 
-        if (userAlreadyExists is not null)
+        if (userFound is not null)
         {
-            throw new InvalidOperationException("Email already exists");
+            throw new Exception("Email already exists");
         }
+
+        var hashedPassword = PasswordExtension.HashPassword(request.Password);
 
         var user = new User
         {
             Email = request.Email,
-            Password = request.Password
+            Password = hashedPassword
         };
 
         var createdUser = await _repository.CreateAsync(user);
