@@ -1,6 +1,6 @@
 namespace Portfolio.Users.Responses;
 
-public record TokenResponse
+public sealed record TokenResponse
 {
     public required string Token { get; set; }
 

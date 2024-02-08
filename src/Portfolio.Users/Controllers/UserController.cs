@@ -1,15 +1,17 @@
+using MediatR;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Utils.Controllers;
 
 namespace Portfolio.Users.Controllers;
 
 [Route("api/user")]
-public sealed class UserController(IUserService service) : BaseController
+public sealed class UserController(IMediator mediator) : BaseController
 {
-    private readonly IUserService _service = service;
+    private readonly IMediator _mediator = mediator;
 
     // LoginAsync -> entrar
     // LogoutAsync -> sair
@@ -17,11 +19,15 @@ public sealed class UserController(IUserService service) : BaseController
     // SignOutAsync -> excluir conta
 
     [HttpPost("login")]
-    public async Task<IActionResult> LoginAsync([FromBody] LoginUserRequest request)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> LoginAsync([FromBody] LoginUserRequest request, CancellationToken cancellationToken)
     {
         try
         {
-            var user = await _service.LoginAsync(request);
+            var user = await _mediator.Send(request, cancellationToken);
 
             return Ok(user);
         }
@@ -32,11 +38,15 @@ public sealed class UserController(IUserService service) : BaseController
     }
 
     [HttpPost("sign-in")]
-    public async Task<IActionResult> SignInAsync([FromBody] SignInUserRequest request)
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> SignInAsync([FromBody] SignInUserRequest request, CancellationToken cancellationToken)
     {
         try
         {
-            var user = await _service.SignInAsync(request);
+            var user = await _mediator.Send(request, cancellationToken);
 
             return Ok(user);
         }
