@@ -1,14 +1,16 @@
 using Portfolio.Authors.Interfaces;
 using Portfolio.Authors.Requests;
 using Portfolio.Entities;
+using Portfolio.Utils.Interfaces;
+using Portfolio.Utils.Messaging;
 
-namespace Portfolio.Authors.Services;
+namespace Portfolio.Authors.Handlers;
 
-public sealed class AuthorService(IAuthorRepository repository) : IAuthorService
+public sealed class CreateAuthorHandler(IAuthorRepository repository) : IRequestHandler<CreateAuthorRequest, Author>
 {
     private readonly IAuthorRepository _repository = repository;
 
-    public async Task<Author> CreateAsync(CreateAuthorRequest request)
+    public async Task<Author> Handle(CreateAuthorRequest request, CancellationToken cancellationToken)
     {
         var author = new Author
         {
@@ -25,19 +27,5 @@ public sealed class AuthorService(IAuthorRepository repository) : IAuthorService
         await _repository.SaveChangesAsync();
 
         return createdAuthor;
-    }
-
-    public async Task DeleteAsync(Guid id)
-    {
-        var author = await _repository.GetAsync();
-        var authorToDelete = author.Where(x => x.Id == id).First();
-
-        await _repository.DeleteAsync(authorToDelete);
-        await _repository.SaveChangesAsync();
-    }
-
-    public async Task<IEnumerable<Author>> GetAsync()
-    {
-        return await _repository.GetAsync();
     }
 }

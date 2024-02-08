@@ -1,7 +1,9 @@
+using MediatR;
+
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using Portfolio.Authors.Interfaces;
 using Portfolio.Authors.Requests;
 using Portfolio.Utils.Controllers;
 
@@ -9,31 +11,45 @@ namespace Portfolio.Authors.Controllers;
 
 [Authorize]
 [Route("api/author")]
-public sealed class AuthorController(IAuthorService service) : BaseController
+public sealed class AuthorController(IMediator mediator) : BaseController
 {
-    private readonly IAuthorService _service = service;
+    private readonly IMediator _mediator = mediator;
 
     [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateAuthorRequest request)
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> CreateAsync([FromBody] CreateAuthorRequest request, CancellationToken cancellationToken)
     {
-        var author = await _service.CreateAsync(request);
+        try
+        {
+            var author = await _mediator.Send(request, cancellationToken);
 
-        return Ok(author);
+            return Ok(author);
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception);
+        }
     }
 
-    [HttpDelete("{id:guid}")]
-    public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
+    [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> DeleteAsync([FromRoute] DeleteAuthorRequest request, CancellationToken cancellationToken)
     {
-        await _service.DeleteAsync(id);
+        try
+        {
+            await _mediator.Send(request, cancellationToken);
 
-        return Ok();
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> GetAsync()
-    {
-        var authors = await _service.GetAsync();
-
-        return Ok(authors);
+            return Ok();
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception);
+        }
     }
 }

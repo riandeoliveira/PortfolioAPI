@@ -1,6 +1,9 @@
+using Portfolio.Entities;
+using Portfolio.Utils.Messaging;
+
 namespace Portfolio.Authors.Requests;
 
-public record CreateAuthorRequest
+public sealed record CreateAuthorRequest
 (
     string Name,
     string FullName,
@@ -8,4 +11,4 @@ public record CreateAuthorRequest
     string Description,
     string AvatarUrl,
     string? SpotifyAccountName
-);
+) : IRequest<Author>;
