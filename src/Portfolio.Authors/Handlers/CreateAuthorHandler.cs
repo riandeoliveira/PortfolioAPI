@@ -1,16 +1,15 @@
 using Portfolio.Authors.Interfaces;
 using Portfolio.Authors.Requests;
 using Portfolio.Entities;
-using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Authors.Handlers;
 
-public sealed class CreateAuthorHandler(IAuthorRepository repository) : IRequestHandler<CreateAuthorRequest, Author>
+public sealed class CreateAuthorHandler(IAuthorRepository authorRepository) : IRequestHandler<CreateAuthorRequest, Author>
 {
-    private readonly IAuthorRepository _repository = repository;
+    private readonly IAuthorRepository _authorRepository = authorRepository;
 
-    public async Task<Author> Handle(CreateAuthorRequest request, CancellationToken cancellationToken)
+    public async Task<Author> Handle(CreateAuthorRequest request, CancellationToken cancellationToken = default)
     {
         var author = new Author
         {
@@ -22,9 +21,9 @@ public sealed class CreateAuthorHandler(IAuthorRepository repository) : IRequest
             SpotifyAccountName = request.SpotifyAccountName
         };
 
-        var createdAuthor = await _repository.CreateAsync(author);
+        var createdAuthor = await _authorRepository.CreateAsync(author, cancellationToken);
 
-        await _repository.SaveChangesAsync();
+        await _authorRepository.SaveChangesAsync();
 
         return createdAuthor;
     }

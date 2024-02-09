@@ -15,10 +15,11 @@ public sealed class LoginUserHandler(IAuthService authService, IUserRepository r
 
     private readonly IUserRepository _repository = repository;
 
-    public async Task<TokenResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
+    public async Task<TokenResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken = default)
     {
-        var user = await _repository.FindAsync(x =>
-            x.Email == request.Email
+        var user = await _repository.FindAsync(user =>
+            user.Email == request.Email,
+            cancellationToken
         );
 
         if (user is not null && PasswordExtension.VerifyPassword(request.Password, user.Password))

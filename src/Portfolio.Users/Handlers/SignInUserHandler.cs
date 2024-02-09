@@ -18,9 +18,12 @@ public sealed class SignInUserHandler(IAuthService authService, IUserRepository 
 
     private readonly IConfiguration _configuration = configuration;
 
-    public async Task<TokenResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken)
+    public async Task<TokenResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken = default)
     {
-        var userFound = await _repository.FindAsync(x => x.Email == request.Email);
+        var userFound = await _repository.FindAsync(user =>
+            user.Email == request.Email,
+            cancellationToken
+        );
 
         if (userFound is not null)
         {
@@ -35,7 +38,7 @@ public sealed class SignInUserHandler(IAuthService authService, IUserRepository 
             Password = hashedPassword
         };
 
-        var createdUser = await _repository.CreateAsync(user);
+        var createdUser = await _repository.CreateAsync(user, cancellationToken);
 
         await _repository.SaveChangesAsync();
 

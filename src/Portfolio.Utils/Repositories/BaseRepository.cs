@@ -12,30 +12,36 @@ public class BaseRepository<T>(ApplicationDbContext context) : IBaseRepository<T
 {
     private readonly ApplicationDbContext _context = context;
 
-    public async Task<T> CreateAsync(T entity)
+    public async Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(entity);
 
-        await _context.Set<T>().AddAsync(entity);
+        await _context.Set<T>().AddAsync(entity, cancellationToken);
 
         return entity;
     }
 
-    public async Task<T?> FindAsync(Expression<Func<T, bool>> predicate)
+    // NOTE: IMPLEMENT
+    // public async Task ExistAsync(Guid id, CancellationToken cancellationToken = default)
+    // {
+
+    // }
+
+    public async Task<T?> FindAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        return await _context.Set<T>().Where(predicate).FirstOrDefaultAsync();
+        return await _context.Set<T>().FirstOrDefaultAsync(predicate, cancellationToken);
     }
 
-    public async Task DeleteAsync(T entity)
+    public async Task<T?> FindAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        return await _context.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
+    }
+
+    public void Remove(T entity)
     {
         ArgumentNullException.ThrowIfNull(entity);
 
-        await Task.Run(() => _context.Set<T>().Remove(entity));
-    }
-
-    public async Task<IEnumerable<T>> GetAsync()
-    {
-        return await _context.Set<T>().ToListAsync();
+        _context.Set<T>().Remove(entity);
     }
 
     public async Task SaveChangesAsync()

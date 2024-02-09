@@ -6,13 +6,13 @@ namespace Portfolio.Utils.Interfaces;
 
 public interface IBaseRepository<T> where T : BaseEntity
 {
-    Task<T> CreateAsync(T entity);
+    Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default);
 
-    Task DeleteAsync(T entity);
+    Task<T?> FindAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
 
-    Task<T?> FindAsync(Expression<Func<T, bool>> predicate);
+    Task<T?> FindAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<T>> GetAsync();
+    void Remove(T entity);
 
     Task SaveChangesAsync();
 }

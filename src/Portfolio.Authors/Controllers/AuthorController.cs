@@ -20,7 +20,7 @@ public sealed class AuthorController(IMediator mediator) : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateAuthorRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateAsync([FromBody] CreateAuthorRequest request, CancellationToken cancellationToken = default)
     {
         try
         {
@@ -30,26 +30,26 @@ public sealed class AuthorController(IMediator mediator) : BaseController
         }
         catch (Exception exception)
         {
-            return BadRequest(exception);
+            return BadRequest(exception.Message);
         }
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> DeleteAsync([FromRoute] DeleteAuthorRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteAsync([FromRoute] Guid id, CancellationToken cancellationToken = default)
     {
         try
         {
-            await _mediator.Send(request, cancellationToken);
+            await _mediator.Send(new DeleteAuthorRequest(id), cancellationToken);
 
             return Ok();
         }
         catch (Exception exception)
         {
-            return BadRequest(exception);
+            return BadRequest(exception.Message);
         }
     }
 }

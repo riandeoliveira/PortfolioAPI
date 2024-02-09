@@ -1,19 +1,25 @@
+using System.ComponentModel.DataAnnotations;
+
+using MediatR;
+
 using Portfolio.Authors.Interfaces;
 using Portfolio.Authors.Requests;
-using Portfolio.Utils.Messaging;
+using Portfolio.Authors.Validators;
 
 namespace Portfolio.Authors.Handlers;
 
-public sealed class DeleteAuthorHandler(IAuthorRepository repository) : IRequestHandler<DeleteAuthorRequest>
+public sealed class DeleteAuthorHandler(IAuthorRepository authorRepository) : IRequestHandler<DeleteAuthorRequest>
 {
-    private readonly IAuthorRepository _repository = repository;
+    private readonly IAuthorRepository _authorRepository = authorRepository;
 
-    public async Task Handle(DeleteAuthorRequest request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        var author = await _repository.GetAsync();
-        var authorToDelete = author.Where(x => x.Id == request.Id).First();
+        var validator = new DeleteAuthorValidator(_authorRepository);
+        var result = await validator.ValidateAsync(request, cancellationToken);
 
-        await _repository.DeleteAsync(authorToDelete);
-        await _repository.SaveChangesAsync();
+        if (!result.IsValid)
+        {
+            throw new ValidationException(result.Errors.First().ErrorMessage);
+        }
     }
 }

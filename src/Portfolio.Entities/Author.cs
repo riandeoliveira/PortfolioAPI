@@ -46,4 +46,13 @@ public sealed class Author : BaseEntity
     [DataType(DataType.Text)]
     [MaxLength(50)]
     public string? SpotifyAccountName { get; set; }
+
+    /*[Column("user_id")]
+    [ForeignKey("User")]
+    [Key]
+    [NotNull]
+    [Required]
+    public required Guid UserId { get; set; }
+
+    public User? User { get; set; }*/
 }

@@ -1,8 +1,8 @@
+using Portfolio.Authors.Handlers;
+using Portfolio.Users.Handlers;
+
 using System.Reflection;
 using System.Text.Json;
-
-using Portfolio.Users.Handlers;
-using Portfolio.Authors.Handlers;
 
 namespace Portfolio.Api.Configurations;
 
@@ -11,12 +11,12 @@ public static class ControllerConfiguration
     public static IServiceCollection ConfigureControllers(this IServiceCollection services)
     {
         services
-            .AddMediatR(cfg => 
+            .AddMediatR(configuration =>
             {
-                cfg.RegisterServicesFromAssemblies(typeof(CreateAuthorHandler).GetTypeInfo().Assembly);
-                cfg.RegisterServicesFromAssemblies(typeof(DeleteAuthorHandler).GetTypeInfo().Assembly);
-                cfg.RegisterServicesFromAssemblies(typeof(LoginUserHandler).GetTypeInfo().Assembly);
-                cfg.RegisterServicesFromAssemblies(typeof(SignInUserHandler).GetTypeInfo().Assembly);
+                configuration.RegisterServicesFromAssemblies(typeof(CreateAuthorHandler).GetTypeInfo().Assembly);
+                configuration.RegisterServicesFromAssemblies(typeof(DeleteAuthorHandler).GetTypeInfo().Assembly);
+                configuration.RegisterServicesFromAssemblies(typeof(LoginUserHandler).GetTypeInfo().Assembly);
+                configuration.RegisterServicesFromAssemblies(typeof(SignInUserHandler).GetTypeInfo().Assembly);
             })
             .AddControllers()
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower);
