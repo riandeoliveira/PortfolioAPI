@@ -5,7 +5,7 @@ namespace Portfolio.Entities.Extensions;
 
 public static class EntityMappingExtension
 {
-    public static void ConfigureAuditProperties<T>(this EntityTypeBuilder<T> builder, string table) where T : BaseEntity
+    public static void ConfigureAuditProperties<TEntity>(this EntityTypeBuilder<TEntity> builder, string table) where TEntity : BaseEntity
     {
         builder
             .ToTable(table)

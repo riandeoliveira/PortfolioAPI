@@ -8,43 +8,43 @@ using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Utils.Repositories;
 
-public class BaseRepository<T>(ApplicationDbContext context) : IBaseRepository<T> where T : BaseEntity
+public class BaseRepository<TEntity>(ApplicationDbContext context) : IBaseRepository<TEntity> where TEntity : BaseEntity
 {
     private readonly ApplicationDbContext _context = context;
 
-    public async Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default)
+    public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(entity);
 
-        await _context.Set<T>().AddAsync(entity, cancellationToken);
+        await _context.Set<TEntity>().AddAsync(entity, cancellationToken);
 
         return entity;
     }
 
     public async Task<bool> ExistAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var entity = await _context.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
+        var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
 
         return entity is not null;
     }
 
-    public async Task<T?> FindAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        return await _context.Set<T>().FirstOrDefaultAsync(predicate, cancellationToken);
+        return await _context.Set<TEntity>().FirstOrDefaultAsync(predicate, cancellationToken);
     }
 
-    public async Task<T?> FindAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TEntity?> FindAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _context.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
+        return await _context.Set<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
     }
 
-    public async Task Remove(T? entity, CancellationToken cancellationToken = default)
+    public async Task Remove(TEntity? entity, CancellationToken cancellationToken = default)
     {
         await Task.Run(() =>
         {
             ArgumentNullException.ThrowIfNull(entity);
 
-            _context.Set<T>().Remove(entity);
+            _context.Set<TEntity>().Remove(entity);
         }, cancellationToken);
 
     }

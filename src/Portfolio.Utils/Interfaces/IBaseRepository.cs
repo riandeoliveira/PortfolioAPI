@@ -4,17 +4,17 @@ using Portfolio.Entities;
 
 namespace Portfolio.Utils.Interfaces;
 
-public interface IBaseRepository<T> where T : BaseEntity
+public interface IBaseRepository<TEntity> where TEntity : BaseEntity
 {
-    Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default);
+    Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
     Task<bool> ExistAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<T?> FindAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default);
+    Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
-    Task<T?> FindAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<TEntity?> FindAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task Remove(T? entity, CancellationToken cancellationToken = default);
+    Task Remove(TEntity? entity, CancellationToken cancellationToken = default);
 
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }
