@@ -21,11 +21,12 @@ public class BaseRepository<T>(ApplicationDbContext context) : IBaseRepository<T
         return entity;
     }
 
-    // NOTE: IMPLEMENT
-    // public async Task ExistAsync(Guid id, CancellationToken cancellationToken = default)
-    // {
+    public async Task<bool> ExistAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        var entity = await _context.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
 
-    // }
+        return entity is not null;
+    }
 
     public async Task<T?> FindAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
     {
@@ -37,15 +38,19 @@ public class BaseRepository<T>(ApplicationDbContext context) : IBaseRepository<T
         return await _context.Set<T>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
     }
 
-    public void Remove(T entity)
+    public async Task Remove(T? entity, CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(entity);
+        await Task.Run(() =>
+        {
+            ArgumentNullException.ThrowIfNull(entity);
 
-        _context.Set<T>().Remove(entity);
+            _context.Set<T>().Remove(entity);
+        }, cancellationToken);
+
     }
 
-    public async Task SaveChangesAsync()
+    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }

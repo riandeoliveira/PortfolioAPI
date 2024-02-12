@@ -21,8 +21,6 @@ public sealed class DeleteAuthorValidator : AbstractValidator<DeleteAuthorReques
 
     private async Task<bool> AuthorMustExist(Guid id, CancellationToken cancellationToken = default)
     {
-        var author = await _authorRepository.FindAsync(id, cancellationToken);
-
-        return author != null;
+        return await _authorRepository.ExistAsync(id, cancellationToken);
     }
 }

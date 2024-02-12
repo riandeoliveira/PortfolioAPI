@@ -9,15 +9,15 @@ using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Users.Handlers;
 
-public sealed class LoginUserHandler(IAuthService authService, IUserRepository repository) : IRequestHandler<LoginUserRequest, TokenResponse>
+public sealed class LoginUserHandler(IAuthService authService, IUserRepository userRepository) : IRequestHandler<LoginUserRequest, TokenResponse>
 {
     private readonly IAuthService _authService = authService;
 
-    private readonly IUserRepository _repository = repository;
+    private readonly IUserRepository _userRepository = userRepository;
 
     public async Task<TokenResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken = default)
     {
-        var user = await _repository.FindAsync(user =>
+        var user = await _userRepository.FindAsync(user =>
             user.Email == request.Email,
             cancellationToken
         );

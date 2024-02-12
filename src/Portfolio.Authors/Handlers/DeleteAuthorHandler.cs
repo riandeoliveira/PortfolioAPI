@@ -21,5 +21,10 @@ public sealed class DeleteAuthorHandler(IAuthorRepository authorRepository) : IR
         {
             throw new ValidationException(result.Errors.First().ErrorMessage);
         }
+
+        var author = await _authorRepository.FindAsync(request.Id, cancellationToken);
+
+        await _authorRepository.Remove(author, cancellationToken);
+        await _authorRepository.SaveChangesAsync(cancellationToken);
     }
 }

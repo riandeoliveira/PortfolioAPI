@@ -31,9 +31,9 @@ public sealed class UserController(IMediator mediator) : BaseController
 
             return Ok(user);
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(exception.Message);
         }
     }
 
@@ -50,9 +50,9 @@ public sealed class UserController(IMediator mediator) : BaseController
 
             return Ok(user);
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            return BadRequest(ex.Message);
+            return BadRequest(exception.Message);
         }
     }
 }

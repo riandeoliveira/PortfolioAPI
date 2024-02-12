@@ -23,7 +23,7 @@ public sealed class CreateAuthorHandler(IAuthorRepository authorRepository) : IR
 
         var createdAuthor = await _authorRepository.CreateAsync(author, cancellationToken);
 
-        await _authorRepository.SaveChangesAsync();
+        await _authorRepository.SaveChangesAsync(cancellationToken);
 
         return createdAuthor;
     }
