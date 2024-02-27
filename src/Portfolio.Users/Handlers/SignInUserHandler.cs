@@ -1,6 +1,5 @@
-using Microsoft.Extensions.Configuration;
+using System.Security.Authentication;
 
-using Portfolio.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;
@@ -23,29 +22,17 @@ public sealed class SignInUserHandler(IAuthService authService, IUserRepository 
             cancellationToken
         );
 
-        if (user is not null)
+        if (user is not null && PasswordExtension.VerifyPassword(request.Password, user.Password))
         {
-            throw new Exception("Email already exists");
+            var token = _authService.GenerateToken(user);
+
+            return new TokenResponse
+            {
+                Token = token,
+                UserId = user.Id
+            };
         }
 
-        var hashedPassword = PasswordExtension.HashPassword(request.Password);
-
-        var newUser = new User
-        {
-            Email = request.Email,
-            Password = hashedPassword
-        };
-
-        var createdUser = await _userRepository.CreateAsync(newUser, cancellationToken);
-
-        await _userRepository.SaveChangesAsync(cancellationToken);
-
-        var token = _authService.GenerateToken(createdUser);
-
-        return new TokenResponse
-        {
-            Token = token,
-            UserId = createdUser.Id
-        };
+        throw new InvalidCredentialException("Invalid email or password");
     }
 }

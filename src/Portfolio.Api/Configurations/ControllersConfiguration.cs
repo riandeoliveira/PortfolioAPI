@@ -15,8 +15,8 @@ public static class ControllerConfiguration
             {
                 configuration.RegisterServicesFromAssemblies(typeof(CreateAuthorHandler).GetTypeInfo().Assembly);
                 configuration.RegisterServicesFromAssemblies(typeof(RemoveAuthorHandler).GetTypeInfo().Assembly);
-                configuration.RegisterServicesFromAssemblies(typeof(LoginUserHandler).GetTypeInfo().Assembly);
                 configuration.RegisterServicesFromAssemblies(typeof(SignInUserHandler).GetTypeInfo().Assembly);
+                configuration.RegisterServicesFromAssemblies(typeof(SignUpUserHandler).GetTypeInfo().Assembly);
             })
             .AddControllers()
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower);

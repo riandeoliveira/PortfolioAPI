@@ -1,5 +1,6 @@
+using MediatR;
+
 using Portfolio.Users.Responses;
-using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Users.Requests;
 
