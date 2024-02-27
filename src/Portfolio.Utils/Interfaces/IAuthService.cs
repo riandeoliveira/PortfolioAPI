@@ -1,4 +1,4 @@
-using Portfolio.Entities;
+using Portfolio.Domain.Entities;
 
 namespace Portfolio.Utils.Interfaces;
 

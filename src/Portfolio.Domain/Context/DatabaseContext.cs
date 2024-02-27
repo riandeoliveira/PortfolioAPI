@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 
-using Portfolio.Entities.Mapping;
+using Portfolio.Domain.Mapping;
+using Portfolio.Domain.Entities;
 
-namespace Portfolio.Entities.Context;
+namespace Portfolio.Domain.Context;
 
 public class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbContext(options)
 {

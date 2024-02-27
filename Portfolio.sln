@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Api", "src/Portfo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Authors", "src/Portfolio.Authors/Portfolio.Authors.csproj", "{926843F4-3E36-4DFB-A8EC-57F7C19531CD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Entities", "src/Portfolio.Entities/Portfolio.Entities.csproj", "{8F90A0C9-92F1-4B45-B46F-3D630BFA9C09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Domain", "src/Portfolio.Domain/Portfolio.Domain.csproj", "{8F90A0C9-92F1-4B45-B46F-3D630BFA9C09}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Users", "src/Portfolio.Users/Portfolio.Users.csproj", "{D9F141D8-3E1E-4753-AD02-531E95725A05}"
 EndProject

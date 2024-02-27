@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using Portfolio.Entities.Extensions;
+using Portfolio.Domain.Entities;
 
-namespace Portfolio.Entities.Mapping;
+namespace Portfolio.Domain.Mapping;
 
 public sealed class UserMap : IEntityTypeConfiguration<User>
 {

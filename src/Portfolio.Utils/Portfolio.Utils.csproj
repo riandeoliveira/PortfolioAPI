@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Portfolio.Entities/Portfolio.Entities.csproj" />
+    <ProjectReference Include="../Portfolio.Domain/Portfolio.Domain.csproj" />
   </ItemGroup>
 
 </Project>

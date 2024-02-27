@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Portfolio.Entities;
+namespace Portfolio.Domain.Entities;
 
 [Table("users")]
 public sealed class User : BaseEntity

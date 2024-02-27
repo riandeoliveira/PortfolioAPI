@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Portfolio.Entities.Extensions;
+namespace Portfolio.Domain.Entities;
 
 public static class EntityMappingExtension
 {

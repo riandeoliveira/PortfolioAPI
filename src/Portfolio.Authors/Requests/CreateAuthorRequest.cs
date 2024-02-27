@@ -1,4 +1,4 @@
-using Portfolio.Entities;
+using Portfolio.Domain.Entities;
 using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Authors.Requests;

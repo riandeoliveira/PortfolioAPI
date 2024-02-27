@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Portfolio.Entities.Context;
+using Portfolio.Domain.Context;
 
 #nullable disable
 
-namespace Portfolio.Entities.Migrations
+namespace Portfolio.Domain.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     [Migration("20240208000209_CreateTest")]
@@ -20,7 +20,7 @@ namespace Portfolio.Entities.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
 
-            modelBuilder.Entity("Portfolio.Entities.Author", b =>
+            modelBuilder.Entity("Portfolio.Domain.Author", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,7 +79,7 @@ namespace Portfolio.Entities.Migrations
                     b.ToTable("authors", (string)null);
                 });
 
-            modelBuilder.Entity("Portfolio.Entities.User", b =>
+            modelBuilder.Entity("Portfolio.Domain.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

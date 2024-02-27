@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-using Portfolio.Entities;
+using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;

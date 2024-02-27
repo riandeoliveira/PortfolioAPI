@@ -1,5 +1,5 @@
 using Serilog;
-using Portfolio.Entities.Context;
+using Portfolio.Domain.Context;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.Api.Configurations;
 using Microsoft.OpenApi.Models;

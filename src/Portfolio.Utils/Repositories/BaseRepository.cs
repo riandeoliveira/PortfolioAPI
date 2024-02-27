@@ -2,8 +2,8 @@ using System.Linq.Expressions;
 
 using Microsoft.EntityFrameworkCore;
 
-using Portfolio.Entities;
-using Portfolio.Entities.Context;
+using Portfolio.Domain.Entities;
+using Portfolio.Domain.Context;
 using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Utils.Repositories;

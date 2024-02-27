@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-using Portfolio.Entities;
+using Portfolio.Domain.Entities;
 using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Utils.Services;

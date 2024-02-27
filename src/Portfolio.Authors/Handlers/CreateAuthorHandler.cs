@@ -1,6 +1,6 @@
 using Portfolio.Authors.Interfaces;
 using Portfolio.Authors.Requests;
-using Portfolio.Entities;
+using Portfolio.Domain.Entities;
 using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Authors.Handlers;
