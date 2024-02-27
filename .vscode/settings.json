@@ -1,0 +1,104 @@
+{
+  //
+  // Code Spell Checker
+  //
+  "cSpell.language": "en,pt",
+  //
+  // Diff Editor
+  //
+  "diffEditor.ignoreTrimWhitespace": true,
+  //
+  // Editor
+  //
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.fontFamily": "JetBrains Mono, Consolas",
+  "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.inlineSuggest.enabled": true,
+  "editor.insertSpaces": true,
+  "editor.quickSuggestions": {
+    "comments": true,
+    "other": true,
+    "strings": true
+  },
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.smoothScrolling": true,
+  "editor.suggestSelection": "first",
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "explorer.compactFolders": false,
+  //
+  // Files
+  //
+  "files.autoGuessEncoding": true,
+  "files.autoSave": "afterDelay",
+  "files.exclude": {
+    "**/.git": false
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": false,
+  //
+  // Languages
+  //
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  //
+  // TODO Highlight
+  //
+  "todohighlight.keywords": [
+    {
+      "backgroundColor": "#FF6D00",
+      "borderRadius": "4px",
+      "color": "#fff",
+      "text": "BUG:",
+    },
+    {
+      "backgroundColor": "#00C853",
+      "borderRadius": "4px",
+      "color": "#fff",
+      "text": "FEAT:",
+    },
+    {
+      "borderRadius": "4px",
+      "text": "FIXME:",
+    },
+    {
+      "backgroundColor": "#D50000",
+      "borderRadius": "4px",
+      "color": "#fff",
+      "text": "HOTFIX:",
+    },
+    {
+      "backgroundColor": "#2962FF",
+      "borderRadius": "4px",
+      "color": "#fff",
+      "text": "NOTE:",
+    },
+    {
+      "backgroundColor": "#00BFA5",
+      "borderRadius": "4px",
+      "color": "#fff",
+      "text": "REFACT:",
+    },
+    {
+      "borderRadius": "4px",
+      "text": "TODO:",
+    },
+  ],
+}

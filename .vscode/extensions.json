@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "eamodio.gitlens",
+    "EditorConfig.EditorConfig",
+    "logerfo.sln-support",
+    "mikestead.dotenv",
+    "MS-CEINTL.vscode-language-pack-pt-BR",
+    "ms-dotnettools.csdevkit",
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.vscodeintellicode-csharp",
+    "streetsidesoftware.code-spell-checker",
+    "visualstudioexptteam.vscodeintellicode",
+    "wayou.vscode-todo-highlight",
+    "wix.vscode-import-cost",
+  ]
+}
