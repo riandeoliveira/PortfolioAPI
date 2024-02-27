@@ -8,9 +8,9 @@ using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Utils.Repositories;
 
-public class BaseRepository<TEntity>(ApplicationDbContext context) : IBaseRepository<TEntity> where TEntity : BaseEntity
+public class BaseRepository<TEntity>(DatabaseContext context) : IBaseRepository<TEntity> where TEntity : BaseEntity
 {
-    private readonly ApplicationDbContext _context = context;
+    private readonly DatabaseContext _context = context;
 
     public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {

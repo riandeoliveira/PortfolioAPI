@@ -4,7 +4,7 @@ using Portfolio.Entities.Mapping;
 
 namespace Portfolio.Entities.Context;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+public class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbContext(options)
 {
     public DbSet<Author> Authors => Set<Author>();
 

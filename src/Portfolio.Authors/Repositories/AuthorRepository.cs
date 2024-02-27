@@ -5,7 +5,7 @@ using Portfolio.Utils.Repositories;
 
 namespace Portfolio.Authors.Repositories;
 
-public class AuthorRepository(ApplicationDbContext context) : BaseRepository<Author>(context), IAuthorRepository
+public class AuthorRepository(DatabaseContext context) : BaseRepository<Author>(context), IAuthorRepository
 {
 
 }
