@@ -14,7 +14,7 @@ public static class ControllerConfiguration
             .AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssemblies(typeof(CreateAuthorHandler).GetTypeInfo().Assembly);
-                configuration.RegisterServicesFromAssemblies(typeof(DeleteAuthorHandler).GetTypeInfo().Assembly);
+                configuration.RegisterServicesFromAssemblies(typeof(RemoveAuthorHandler).GetTypeInfo().Assembly);
                 configuration.RegisterServicesFromAssemblies(typeof(LoginUserHandler).GetTypeInfo().Assembly);
                 configuration.RegisterServicesFromAssemblies(typeof(SignInUserHandler).GetTypeInfo().Assembly);
             })

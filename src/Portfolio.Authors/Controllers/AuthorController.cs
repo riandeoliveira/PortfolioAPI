@@ -39,11 +39,11 @@ public sealed class AuthorController(IMediator mediator) : BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> DeleteAsync([FromRoute] Guid id, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> RemoveAsync([FromRoute] Guid id, CancellationToken cancellationToken = default)
     {
         try
         {
-            await _mediator.Send(new DeleteAuthorRequest(id), cancellationToken);
+            await _mediator.Send(new RemoveAuthorRequest(id), cancellationToken);
 
             return Ok();
         }

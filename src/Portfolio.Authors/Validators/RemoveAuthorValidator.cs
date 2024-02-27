@@ -5,11 +5,11 @@ using Portfolio.Authors.Requests;
 
 namespace Portfolio.Authors.Validators;
 
-public sealed class DeleteAuthorValidator : AbstractValidator<DeleteAuthorRequest>
+public sealed class RemoveAuthorValidator : AbstractValidator<RemoveAuthorRequest>
 {
     private readonly IAuthorRepository _authorRepository;
 
-    public DeleteAuthorValidator(IAuthorRepository authorRepository)
+    public RemoveAuthorValidator(IAuthorRepository authorRepository)
     {
         _authorRepository = authorRepository;
 

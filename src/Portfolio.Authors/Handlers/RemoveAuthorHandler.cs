@@ -8,13 +8,13 @@ using Portfolio.Authors.Validators;
 
 namespace Portfolio.Authors.Handlers;
 
-public sealed class DeleteAuthorHandler(IAuthorRepository authorRepository) : IRequestHandler<DeleteAuthorRequest>
+public sealed class RemoveAuthorHandler(IAuthorRepository authorRepository) : IRequestHandler<RemoveAuthorRequest>
 {
     private readonly IAuthorRepository _authorRepository = authorRepository;
 
-    public async Task Handle(DeleteAuthorRequest request, CancellationToken cancellationToken = default)
+    public async Task Handle(RemoveAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        var validator = new DeleteAuthorValidator(_authorRepository);
+        var validator = new RemoveAuthorValidator(_authorRepository);
         var result = await validator.ValidateAsync(request, cancellationToken);
 
         if (!result.IsValid)
