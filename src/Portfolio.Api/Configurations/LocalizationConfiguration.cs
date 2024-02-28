@@ -6,22 +6,23 @@ namespace Portfolio.Api.Configurations;
 
 public static class LocalizationConfiguration
 {
-    public static IServiceCollection ConfigureLocalization(this IServiceCollection services)
+    public static WebApplicationBuilder ConfigureLocalization(this WebApplicationBuilder builder)
     {
-        services.AddLocalization(options => options.ResourcesPath = "Resources");
-        services.Configure<RequestLocalizationOptions>(options =>
-        {
-            var supportedCultures = new List<CultureInfo>
+        builder.Services
+            .AddLocalization(options => options.ResourcesPath = "Resources")
+            .Configure<RequestLocalizationOptions>(options =>
             {
-                new("pt-BR"),
-                new("en-US")
-            };
+                var supportedCultures = new List<CultureInfo>
+                {
+                    new("pt-BR"),
+                    new("en-US")
+                };
 
-            options.DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR");
-            options.SupportedCultures = supportedCultures;
-            options.SupportedUICultures = supportedCultures;
-        });
+                options.DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
 
-        return services;
+        return builder;
     }
 }

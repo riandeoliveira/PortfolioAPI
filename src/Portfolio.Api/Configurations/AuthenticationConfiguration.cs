@@ -7,9 +7,9 @@ namespace Portfolio.Api.Configurations;
 
 public static class AuthenticationConfiguration
 {
-    public static IServiceCollection ConfigureAuthentication(this IServiceCollection services, ConfigurationManager configuration)
+    public static WebApplicationBuilder ConfigureAuthentication(this WebApplicationBuilder builder)
     {
-        services
+        builder.Services
             .AddAuthorization()
             .AddAuthentication(options =>
             {
@@ -19,15 +19,15 @@ public static class AuthenticationConfiguration
             })
             .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
             {
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtSettings:Secret"] ?? "")),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Secret"] ?? "")),
                 ValidateAudience = false,
                 ValidateIssuer = false,
                 ValidateIssuerSigningKey = true,
                 ValidateLifetime = true,
-                ValidAudience = configuration["JwtSettings:Audience"],
-                ValidIssuer = configuration["JwtSettings:Issuer"],
+                ValidAudience = builder.Configuration["JwtSettings:Audience"],
+                ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
             });
 
-        return services;
+        return builder;
     }
 }

@@ -9,15 +9,15 @@ namespace Portfolio.Api.Configurations;
 
 public static class DependenciesConfiguration
 {
-    public static IServiceCollection ConfigureDependencies(this IServiceCollection services)
+    public static WebApplicationBuilder ConfigureDependencies(this WebApplicationBuilder builder)
     {
-        services
+        builder.Services
             .AddScoped<IAuthorRepository, AuthorRepository>()
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<ILocalizationService, LocalizationService>()
             .AddScoped<IUserRepository, UserRepository>()
             .AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-        return services;
+        return builder;
     }
 }
