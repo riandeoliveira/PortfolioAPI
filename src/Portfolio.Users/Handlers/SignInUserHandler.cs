@@ -3,16 +3,22 @@ using System.Security.Authentication;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;
+using Portfolio.Utils.Enums;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Users.Handlers;
 
-public sealed class SignInUserHandler(IAuthService authService, IUserRepository userRepository) : IRequestHandler<SignInUserRequest, TokenResponse>
+public sealed class SignInUserHandler
+(
+    IAuthService authService,
+    ILocalizationService localizationService,
+    IUserRepository userRepository
+) : IRequestHandler<SignInUserRequest, TokenResponse>
 {
     private readonly IAuthService _authService = authService;
-
+    private readonly ILocalizationService _localizationService = localizationService;
     private readonly IUserRepository _userRepository = userRepository;
 
     public async Task<TokenResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken = default)
@@ -33,6 +39,6 @@ public sealed class SignInUserHandler(IAuthService authService, IUserRepository 
             };
         }
 
-        throw new InvalidCredentialException("Invalid email or password");
+        throw new InvalidCredentialException(_localizationService.GetKey(LocalizationKeys.InvalidCredentialsMessage));
     }
 }

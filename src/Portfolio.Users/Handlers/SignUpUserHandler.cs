@@ -1,19 +1,23 @@
-using Microsoft.Extensions.Configuration;
-
 using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;
+using Portfolio.Utils.Enums;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Users.Handlers;
 
-public sealed class SignUpUserHandler(IAuthService authService, IUserRepository userRepository) : IRequestHandler<SignUpUserRequest, TokenResponse>
+public sealed class SignUpUserHandler
+(
+    IAuthService authService,
+    ILocalizationService localizationService,
+    IUserRepository userRepository
+) : IRequestHandler<SignUpUserRequest, TokenResponse>
 {
     private readonly IAuthService _authService = authService;
-
+    private readonly ILocalizationService _localizationService = localizationService;
     private readonly IUserRepository _userRepository = userRepository;
 
     public async Task<TokenResponse> Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
@@ -25,7 +29,7 @@ public sealed class SignUpUserHandler(IAuthService authService, IUserRepository 
 
         if (user is not null)
         {
-            throw new Exception("Email already exists");
+            throw new Exception(_localizationService.GetKey(LocalizationKeys.ExistingEmailMessage));
         }
 
         var hashedPassword = PasswordExtension.HashPassword(request.Password);

@@ -7,5 +7,4 @@ namespace Portfolio.Users.Repositories;
 
 public class UserRepository(DatabaseContext context) : BaseRepository<User>(context), IUserRepository
 {
-
 }

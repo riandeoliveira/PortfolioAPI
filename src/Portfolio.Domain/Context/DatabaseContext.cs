@@ -8,7 +8,6 @@ namespace Portfolio.Domain.Context;
 public class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbContext(options)
 {
     public DbSet<Author> Authors => Set<Author>();
-
     public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

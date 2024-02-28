@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+
 using Serilog;
 
 namespace Portfolio.Api.Configurations;
@@ -12,6 +14,7 @@ public static class ApplicationConfiguration
             application.UseSwaggerUI();
         }
 
+        application.UseRequestLocalization(application.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
         application.UseStatusCodePages();
         application.UseExceptionHandler();
         application.UseSerilogRequestLogging();

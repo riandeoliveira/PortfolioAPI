@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <data name="ExistingEmailMessage" xml:space="preserve">
+    <value>Este e-mail já está sendo usado</value>
+  </data>
+  <data name="InvalidCredentialsMessage" xml:space="preserve">
+    <value>O e-mail ou senha são inválidos</value>
+  </data>
+</root>

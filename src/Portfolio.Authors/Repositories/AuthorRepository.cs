@@ -7,5 +7,4 @@ namespace Portfolio.Authors.Repositories;
 
 public class AuthorRepository(DatabaseContext context) : BaseRepository<Author>(context), IAuthorRepository
 {
-
 }

@@ -10,7 +10,8 @@ builder.Services
     .ConfigureAuthentication(builder.Configuration)
     .ConfigureControllers()
     .ConfigureDependencies()
-    .ConfigureDocumentation();
+    .ConfigureDocumentation()
+    .ConfigureLocalization();
 
 builder.Services.AddSwaggerGen(option =>
 {

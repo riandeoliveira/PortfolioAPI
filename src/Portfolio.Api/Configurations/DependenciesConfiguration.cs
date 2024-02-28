@@ -14,6 +14,7 @@ public static class DependenciesConfiguration
         services
             .AddScoped<IAuthorRepository, AuthorRepository>()
             .AddScoped<IAuthService, AuthService>()
+            .AddScoped<ILocalizationService, LocalizationService>()
             .AddScoped<IUserRepository, UserRepository>()
             .AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

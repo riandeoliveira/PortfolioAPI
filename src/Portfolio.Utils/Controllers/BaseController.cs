@@ -6,5 +6,4 @@ namespace Portfolio.Utils.Controllers;
 [Produces("application/json")]
 public abstract class BaseController : ControllerBase
 {
-
 }

@@ -14,22 +14,16 @@ namespace Portfolio.Utils.Services;
 public sealed class AuthService : IAuthService
 {
     private readonly IConfiguration _configuration;
-
     private readonly IHttpContextAccessor _httpContextAccessor;
-
     private readonly JwtSecurityTokenHandler _tokenHandler;
-
     private readonly SymmetricSecurityKey _securityKey;
 
     public AuthService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
     {
         _configuration = configuration;
-
         _httpContextAccessor = httpContextAccessor;
-
-        _tokenHandler = new JwtSecurityTokenHandler();
-
         _securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JwtSettings:Secret"] ?? ""));
+        _tokenHandler = new JwtSecurityTokenHandler();
     }
 
     public string GenerateToken(User user)
