@@ -7,7 +7,7 @@ using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Utils.Services;
 
-public sealed record LocalizationResource();
+public sealed record LocalizationResource;
 
 public sealed class LocalizationService : ILocalizationService
 {

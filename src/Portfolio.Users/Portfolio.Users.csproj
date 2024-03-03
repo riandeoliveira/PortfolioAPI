@@ -8,6 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Portfolio.Utils/Portfolio.Utils.csproj" />
+    <ProjectReference Include="..\Portfolio.Utils\Portfolio.Utils.csproj" />
   </ItemGroup>
 </Project>

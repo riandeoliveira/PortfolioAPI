@@ -18,10 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Portfolio.Authors/Portfolio.Authors.csproj" />
-    <ProjectReference Include="../Portfolio.Domain/Portfolio.Domain.csproj" />
-    <ProjectReference Include="../Portfolio.Users/Portfolio.Users.csproj" />
-    <ProjectReference Include="../Portfolio.Utils/Portfolio.Utils.csproj" />
+    <ProjectReference Include="..\Portfolio.Authors\Portfolio.Authors.csproj" />
+    <ProjectReference Include="..\Portfolio.Domain\Portfolio.Domain.csproj" />
+    <ProjectReference Include="..\Portfolio.Users\Portfolio.Users.csproj" />
+    <ProjectReference Include="..\Portfolio.Utils\Portfolio.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\.env" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>
