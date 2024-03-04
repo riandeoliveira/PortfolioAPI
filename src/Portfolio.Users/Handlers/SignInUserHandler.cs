@@ -33,11 +33,7 @@ public sealed class SignInUserHandler
         {
             string token = _authService.GenerateToken(user);
 
-            return new TokenResponse
-            {
-                Token = token,
-                UserId = user.Id
-            };
+            return new TokenResponse(token, user.Id);
         }
 
         throw new InvalidCredentialException(_localizationService.GetKey(LocalizationMessages.InvalidLoginCredentials));

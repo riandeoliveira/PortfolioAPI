@@ -14,13 +14,13 @@ public sealed class UserMap : IEntityTypeConfiguration<User>
         builder
             .Property(x => x.Email)
             .HasColumnName("email")
-            .HasMaxLength(250)
+            .HasMaxLength(64)
             .IsRequired();
 
         builder
             .Property(x => x.Password)
             .HasColumnName("password")
-            .HasMaxLength(250)
+            .HasMaxLength(64)
             .IsRequired();
     }
 }

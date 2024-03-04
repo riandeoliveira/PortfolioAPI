@@ -14,10 +14,10 @@ public sealed class UserController(IMediator mediator) : BaseController
 {
     private readonly IMediator _mediator = mediator;
 
-    // RemoveAsync -> excluir conta
-    // SignInAsync -> iniciar sessão
-    // SignOutAsync -> encerrar sessão
-    // SignUpAsync -> cadastrar usuário
+    // NOTE: RemoveAsync -> excluir conta
+    // NOTE: SignInAsync -> iniciar sessão
+    // NOTE: SignOutAsync -> encerrar sessão
+    // NOTE: SignUpAsync -> cadastrar usuário
 
     [HttpPost("sign-in")]
     [ProducesResponseType(StatusCodes.Status200OK)]

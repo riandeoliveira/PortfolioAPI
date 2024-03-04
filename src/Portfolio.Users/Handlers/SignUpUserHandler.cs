@@ -47,10 +47,6 @@ public sealed class SignUpUserHandler
 
         string token = _authService.GenerateToken(createdUser);
 
-        return new TokenResponse
-        {
-            Token = token,
-            UserId = createdUser.Id
-        };
+        return new TokenResponse(token, createdUser.Id);
     }
 }
