@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <data name="ExistingEmailMessage" xml:space="preserve">
-    <value>This email is already being used</value>
-  </data>
-  <data name="InvalidCredentialsMessage" xml:space="preserve">
-    <value>The email or password is invalid</value>
-  </data>
+  <!-- Email -->
+  <data name="EmailAlreadyExists" xml:space="preserve"><value>This 'email' is already being used.</value></data>
+  <data name="EmailIsRequired" xml:space="preserve"><value>The 'email' must be provided.</value></data>
+  <data name="InvalidEmail" xml:space="preserve"><value>The 'email' must be valid.</value></data>
+  <data name="MaximumEmailLength" xml:space="preserve"><value>The 'email' must have a maximum of 64 characters.</value></data>
+  <data name="MinimumEmailLength" xml:space="preserve"><value>The 'email' must have a minimum of 8 characters.</value></data>
+
+  <!-- Login -->
+  <data name="InvalidLoginCredentials" xml:space="preserve"><value>The 'email' or 'password' is invalid.</value></data>
+
+  <!-- Password -->
+  <data name="MaximumPasswordLength" xml:space="preserve"><value>The 'password' must have a maximum of 64 characters.</value></data>
+  <data name="MinimumPasswordLength" xml:space="preserve"><value>The 'password' must have a minimum of 8 characters.</value></data>
+  <data name="PasswordIsRequired" xml:space="preserve"><value>The 'password' must be provided.</value></data>
+  <data name="StrongPassword" xml:space="preserve"><value>The 'password' must have at least: one capital letter and one number.</value></data>
 </root>

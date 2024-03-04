@@ -39,6 +39,6 @@ public sealed class SignInUserHandler
             };
         }
 
-        throw new InvalidCredentialException(_localizationService.GetKey(LocalizationKeys.InvalidCredentialsMessage));
+        throw new InvalidCredentialException(_localizationService.GetKey(LocalizationMessages.InvalidLoginCredentials));
     }
 }

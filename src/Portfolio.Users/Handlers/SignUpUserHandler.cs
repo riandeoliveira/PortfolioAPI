@@ -1,8 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;
-using Portfolio.Utils.Enums;
+using Portfolio.Users.Validators;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
@@ -22,14 +24,12 @@ public sealed class SignUpUserHandler
 
     public async Task<TokenResponse> Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
-        var user = await _userRepository.FindAsync(user =>
-            user.Email == request.Email,
-            cancellationToken
-        );
+        var validator = new SignUpUserValidator(_localizationService, _userRepository);
+        var result = await validator.ValidateAsync(request, cancellationToken);
 
-        if (user is not null)
+        if (!result.IsValid)
         {
-            throw new Exception(_localizationService.GetKey(LocalizationKeys.ExistingEmailMessage));
+            throw new ValidationException(result.Errors.First().ErrorMessage);
         }
 
         var hashedPassword = PasswordExtension.HashPassword(request.Password);

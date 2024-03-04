@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <data name="ExistingEmailMessage" xml:space="preserve">
-    <value>Este e-mail já está sendo usado</value>
-  </data>
-  <data name="InvalidCredentialsMessage" xml:space="preserve">
-    <value>O e-mail ou senha são inválidos</value>
-  </data>
+  <!-- Email -->
+  <data name="EmailAlreadyExists" xml:space="preserve"><value>Este 'e-mail' já está sendo usado.</value></data>
+  <data name="EmailIsRequired" xml:space="preserve"><value>O 'e-mail' deve ser informado.</value></data>
+  <data name="InvalidEmail" xml:space="preserve"><value>O 'e-mail' deve ser válido.</value></data>
+  <data name="MaximumEmailLength" xml:space="preserve"><value>O 'e-mail' deve possuir no máximo 64 carateres.</value></data>
+  <data name="MinimumEmailLength" xml:space="preserve"><value>O 'e-mail' deve possuir no mínimo 8 carateres.</value></data>
+
+  <!-- Login -->
+  <data name="InvalidLoginCredentials" xml:space="preserve"><value>O 'e-mail' ou 'senha' são inválidos.</value></data>
+
+  <!-- Password -->
+  <data name="MaximumPasswordLength" xml:space="preserve"><value>A 'senha' deve possuir no máximo 64 carateres.</value></data>
+  <data name="MinimumPasswordLength" xml:space="preserve"><value>A 'senha' deve possuir no mínimo 8 carateres.</value></data>
+  <data name="PasswordIsRequired" xml:space="preserve"><value>A 'senha' deve ser informada.</value></data>
+  <data name="StrongPassword" xml:space="preserve"><value>A 'senha' deve possuir pelo menos: uma letra maiúscula e um número.</value></data>
 </root>
