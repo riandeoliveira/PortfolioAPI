@@ -1,6 +1,29 @@
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
+using Swashbuckle.AspNetCore.SwaggerGen;
+
 namespace Portfolio.Api.Configurations;
+
+public sealed class AddHeaderParameter : IOperationFilter
+{
+    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    {
+        operation.Parameters ??= [];
+
+        operation.Parameters.Add(new OpenApiParameter
+        {
+            Name = "Accept-Language",
+            Description = "The natural language and locale that the client prefers.",
+            In = ParameterLocation.Header,
+            Schema = new OpenApiSchema
+            {
+                Type = "String",
+                Enum = { new OpenApiString("en-US"), new OpenApiString("pt-BR") }
+            }
+        });
+    }
+}
 
 public static class DocumentationConfiguration
 {
@@ -9,7 +32,7 @@ public static class DocumentationConfiguration
         var openApiSecurityScheme = new OpenApiSecurityScheme
         {
             In = ParameterLocation.Header,
-            Description = "Please enter a valid token",
+            Description = "Please enter a valid token.",
             Name = "Authorization",
             Type = SecuritySchemeType.Http,
             BearerFormat = "JWT",
@@ -34,9 +57,10 @@ public static class DocumentationConfiguration
             .AddEndpointsApiExplorer()
             .AddSwaggerGen(option =>
             {
-                option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
                 option.AddSecurityDefinition("Bearer", openApiSecurityScheme);
                 option.AddSecurityRequirement(openApiSecurityRequirement);
+                option.OperationFilter<AddHeaderParameter>();
+                option.SwaggerDoc("v1", new OpenApiInfo { Title = "Portfolio API", Version = "v1" });
             });
 
         return builder;
