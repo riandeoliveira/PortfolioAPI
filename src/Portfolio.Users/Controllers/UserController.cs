@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Portfolio.Users.Requests;
+using Portfolio.Users.Responses;
 using Portfolio.Utils.Controllers;
 
 namespace Portfolio.Users.Controllers;
@@ -27,7 +28,7 @@ public sealed class UserController(IMediator mediator) : BaseController
     {
         try
         {
-            var user = await _mediator.Send(request, cancellationToken);
+            TokenResponse user = await _mediator.Send(request, cancellationToken);
 
             return Ok(user);
         }
@@ -46,7 +47,7 @@ public sealed class UserController(IMediator mediator) : BaseController
     {
         try
         {
-            var user = await _mediator.Send(request, cancellationToken);
+            TokenResponse user = await _mediator.Send(request, cancellationToken);
 
             return Ok(user);
         }

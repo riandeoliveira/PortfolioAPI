@@ -1,4 +1,5 @@
-using System.ComponentModel.DataAnnotations;
+using FluentValidation;
+using FluentValidation.Results;
 
 using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
@@ -24,27 +25,27 @@ public sealed class SignUpUserHandler
 
     public async Task<TokenResponse> Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
-        var validator = new SignUpUserValidator(_localizationService, _userRepository);
-        var result = await validator.ValidateAsync(request, cancellationToken);
+        SignUpUserValidator validator = new(_localizationService, _userRepository);
+        ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
 
         if (!result.IsValid)
         {
             throw new ValidationException(result.Errors.First().ErrorMessage);
         }
 
-        var hashedPassword = PasswordExtension.HashPassword(request.Password);
+        string hashedPassword = PasswordExtension.HashPassword(request.Password);
 
-        var newUser = new User
+        User newUser = new()
         {
             Email = request.Email,
             Password = hashedPassword
         };
 
-        var createdUser = await _userRepository.CreateAsync(newUser, cancellationToken);
+        User createdUser = await _userRepository.CreateAsync(newUser, cancellationToken);
 
         await _userRepository.SaveChangesAsync(cancellationToken);
 
-        var token = _authService.GenerateToken(createdUser);
+        string token = _authService.GenerateToken(createdUser);
 
         return new TokenResponse
         {

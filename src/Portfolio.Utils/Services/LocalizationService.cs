@@ -15,9 +15,9 @@ public sealed class LocalizationService : ILocalizationService
 
     public LocalizationService(IStringLocalizerFactory factory)
     {
-        var type = typeof(LocalizationResource);
-        var assemblyFullName = type.GetTypeInfo().Assembly.FullName;
-        var assemblyName = new AssemblyName(assemblyFullName ?? "");
+        Type type = typeof(LocalizationResource);
+        string? assemblyFullName = type.GetTypeInfo().Assembly.FullName;
+        AssemblyName assemblyName = new(assemblyFullName ?? "");
 
         _localizer = factory.Create("LocalizationResource", assemblyName.Name ?? "");
     }

@@ -23,14 +23,14 @@ public class BaseRepository<TEntity>(DatabaseContext context) : IBaseRepository<
 
     public async Task<bool> ExistAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
+        TEntity? entity = await _context.Set<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
 
         return entity is not null;
     }
 
     public async Task<bool> ExistAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate, cancellationToken);
+        TEntity? entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate, cancellationToken);
 
         return entity is not null;
     }

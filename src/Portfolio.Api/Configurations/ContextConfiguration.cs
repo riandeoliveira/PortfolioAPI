@@ -17,7 +17,7 @@ public static class ContextConfiguration
             user = Environment.GetEnvironmentVariable("DATABASE_USER")
         };
 
-        var connectionString = $"Server={database.host};Port={database.port};Database={database.name};User Id={database.user};Password={database.password}";
+        string connectionString = $"Server={database.host};Port={database.port};Database={database.name};User Id={database.user};Password={database.password}";
 
         builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(connectionString));
 

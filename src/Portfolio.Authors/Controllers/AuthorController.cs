@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Portfolio.Authors.Requests;
+using Portfolio.Domain.Entities;
 using Portfolio.Utils.Controllers;
 
 namespace Portfolio.Authors.Controllers;
@@ -24,7 +25,7 @@ public sealed class AuthorController(IMediator mediator) : BaseController
     {
         try
         {
-            var author = await _mediator.Send(request, cancellationToken);
+            Author author = await _mediator.Send(request, cancellationToken);
 
             return Ok(author);
         }

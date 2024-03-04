@@ -4,8 +4,8 @@ public static class DotEnv
 {
     public static void Load()
     {
-        var appRoot = Directory.GetCurrentDirectory();
-        var filePath = Path.Combine(appRoot, "..", "..", ".env");
+        string appRoot = Directory.GetCurrentDirectory();
+        string filePath = Path.Combine(appRoot, "..", "..", ".env");
 
         Save(filePath);
     }
@@ -14,9 +14,9 @@ public static class DotEnv
     {
         if (!File.Exists(filePath)) return;
 
-        foreach (var line in File.ReadAllLines(filePath))
+        foreach (string line in File.ReadAllLines(filePath))
         {
-            var parts = line.Split("=", StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = line.Split("=", StringSplitOptions.RemoveEmptyEntries);
 
             if (parts.Length != 2) continue;
 

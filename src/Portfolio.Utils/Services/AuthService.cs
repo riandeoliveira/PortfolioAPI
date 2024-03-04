@@ -28,36 +28,33 @@ public sealed class AuthService : IAuthService
 
     public string GenerateToken(User user)
     {
-        var claims = new Claim[]
-        {
+        Claim[] claims =
+        [
             new("id", user.Id.ToString()),
             new("email", user.Email)
-        };
+        ];
 
-        var credentials = new SigningCredentials(_securityKey, SecurityAlgorithms.HmacSha256Signature);
+        SigningCredentials credentials = new(_securityKey, SecurityAlgorithms.HmacSha256Signature);
 
-        var tokenDescriptor = new SecurityTokenDescriptor
+        SecurityTokenDescriptor tokenDescriptor = new()
         {
             Subject = new ClaimsIdentity(claims),
             SigningCredentials = credentials
         };
 
-        var token = _tokenHandler.CreateToken(tokenDescriptor);
-        var result = _tokenHandler.WriteToken(token);
+        SecurityToken token = _tokenHandler.CreateToken(tokenDescriptor);
+        string result = _tokenHandler.WriteToken(token);
 
         return $"Bearer {result}";
     }
 
-    public string GetToken()
+    public string? GetToken()
     {
-        var authorizationHeader = _httpContextAccessor.HttpContext?.Request.Headers.Authorization.ToString();
+        string? authorizationHeader = _httpContextAccessor.HttpContext?.Request.Headers.Authorization.ToString();
 
-        if (string.IsNullOrWhiteSpace(authorizationHeader))
-        {
-            return null;
-        }
+        if (string.IsNullOrWhiteSpace(authorizationHeader)) return null;
 
-        var token = authorizationHeader.Split(" ").LastOrDefault();
+        string? token = authorizationHeader.Split(" ").LastOrDefault();
 
         return token;
     }

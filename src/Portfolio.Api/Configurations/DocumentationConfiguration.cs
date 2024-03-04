@@ -19,7 +19,7 @@ public sealed class AddHeaderParameter : IOperationFilter
             Schema = new OpenApiSchema
             {
                 Type = "String",
-                Enum = { new OpenApiString("en-US"), new OpenApiString("pt-BR") }
+                Enum = { new OpenApiString("pt-BR"), new OpenApiString("en-US") }
             }
         });
     }
@@ -29,7 +29,7 @@ public static class DocumentationConfiguration
 {
     public static WebApplicationBuilder ConfigureDocumentation(this WebApplicationBuilder builder)
     {
-        var openApiSecurityScheme = new OpenApiSecurityScheme
+        OpenApiSecurityScheme openApiSecurityScheme = new()
         {
             In = ParameterLocation.Header,
             Description = "Please enter a valid token.",
@@ -39,13 +39,13 @@ public static class DocumentationConfiguration
             Scheme = "Bearer"
         };
 
-        var openApiReference = new OpenApiReference
+        OpenApiReference openApiReference = new()
         {
             Type = ReferenceType.SecurityScheme,
             Id = "Bearer"
         };
 
-        var openApiSecurityRequirement = new OpenApiSecurityRequirement
+        OpenApiSecurityRequirement openApiSecurityRequirement = new()
         {
             {
                 new OpenApiSecurityScheme { Reference = openApiReference },

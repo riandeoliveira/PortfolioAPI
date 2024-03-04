@@ -1,5 +1,6 @@
 using System.Security.Authentication;
 
+using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;
@@ -23,14 +24,14 @@ public sealed class SignInUserHandler
 
     public async Task<TokenResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken = default)
     {
-        var user = await _userRepository.FindAsync(user =>
+        User? user = await _userRepository.FindAsync(user =>
             user.Email == request.Email,
             cancellationToken
         );
 
         if (user is not null && PasswordExtension.VerifyPassword(request.Password, user.Password))
         {
-            var token = _authService.GenerateToken(user);
+            string token = _authService.GenerateToken(user);
 
             return new TokenResponse
             {

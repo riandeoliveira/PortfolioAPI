@@ -12,13 +12,9 @@ public static class LocalizationConfiguration
             .AddLocalization(options => options.ResourcesPath = "Resources")
             .Configure<RequestLocalizationOptions>(options =>
             {
-                var supportedCultures = new List<CultureInfo>
-                {
-                    new("pt-BR"),
-                    new("en-US")
-                };
+                List<CultureInfo> supportedCultures = [new("pt-BR"), new("en-US")];
 
-                options.DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR");
+                options.DefaultRequestCulture = new RequestCulture("pt-BR", "pt-BR");
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
             });

@@ -6,5 +6,5 @@ public interface IAuthService
 {
     string GenerateToken(User user);
 
-    string GetToken();
+    string? GetToken();
 }
