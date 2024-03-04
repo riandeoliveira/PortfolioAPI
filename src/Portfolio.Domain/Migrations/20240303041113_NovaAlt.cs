@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -26,10 +27,7 @@ namespace Portfolio.Domain.Migrations
                     updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     excluded_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_authors", x => x.id);
-                });
+                constraints: table => table.PrimaryKey("PK_authors", x => x.id));
 
             migrationBuilder.CreateTable(
                 name: "users",
@@ -42,10 +40,7 @@ namespace Portfolio.Domain.Migrations
                     updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     excluded_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_users", x => x.id);
-                });
+                constraints: table => table.PrimaryKey("PK_users", x => x.id));
         }
 
         /// <inheritdoc />

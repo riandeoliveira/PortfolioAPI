@@ -1,10 +1,10 @@
+using System.Reflection;
+using System.Text.Json;
+
 using Portfolio.Authors.Handlers;
 using Portfolio.Users.Handlers;
 
 using Serilog;
-
-using System.Reflection;
-using System.Text.Json;
 
 namespace Portfolio.Api.Configurations;
 

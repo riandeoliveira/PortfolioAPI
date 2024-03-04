@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
-using Portfolio.Domain.Mapping;
 using Portfolio.Domain.Entities;
+using Portfolio.Domain.Mapping;
 
 namespace Portfolio.Domain.Context;
 

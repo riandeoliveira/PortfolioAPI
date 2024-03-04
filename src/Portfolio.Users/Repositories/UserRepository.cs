@@ -1,5 +1,5 @@
-using Portfolio.Domain.Entities;
 using Portfolio.Domain.Context;
+using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Utils.Repositories;
 
