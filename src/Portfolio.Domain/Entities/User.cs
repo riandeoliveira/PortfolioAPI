@@ -10,14 +10,16 @@ public sealed class User : BaseEntity
     [Column("email")]
     [DataType(DataType.EmailAddress)]
     [EmailAddress]
-    [MaxLength(250)]
+    [MaxLength(64)]
+    [MinLength(8)]
     [NotNull]
     [Required]
     public required string Email { get; set; }
 
     [Column("password")]
     [DataType(DataType.Password)]
-    [MaxLength(250)]
+    [MaxLength(64)]
+    [MinLength(8)]
     [NotNull]
     [Required]
     public required string Password { get; set; }
