@@ -22,7 +22,7 @@ public sealed class LocalizationService : ILocalizationService
         _localizer = factory.Create("LocalizationResource", assemblyName.Name ?? "");
     }
 
-    public LocalizedString GetKey(LocalizationKeys key)
+    public LocalizedString GetKey(LocalizationMessages key)
     {
         return _localizer[key.ToString()];
     }

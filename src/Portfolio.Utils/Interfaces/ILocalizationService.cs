@@ -6,5 +6,5 @@ namespace Portfolio.Utils.Interfaces;
 
 public interface ILocalizationService
 {
-    LocalizedString GetKey(LocalizationKeys key);
+    LocalizedString GetKey(LocalizationMessages key);
 }
