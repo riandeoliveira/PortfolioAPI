@@ -1,3 +1,5 @@
+using System.Net;
+
 using MediatR;
 
 using Microsoft.AspNetCore.Http;
@@ -22,15 +24,14 @@ public sealed class UserController(IMediator mediator) : BaseController
     [HttpPost("sign-in")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> SignInAsync([FromBody] SignInUserRequest request, CancellationToken cancellationToken = default)
     {
         try
         {
-            TokenResponse user = await _mediator.Send(request, cancellationToken);
+            TokenResponse response = await _mediator.Send(request, cancellationToken);
 
-            return Ok(user);
+            return StatusCode((int) HttpStatusCode.OK, response);
         }
         catch (Exception exception)
         {
@@ -39,17 +40,16 @@ public sealed class UserController(IMediator mediator) : BaseController
     }
 
     [HttpPost("sign-up")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> SignUpAsync([FromBody] SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
         try
         {
-            TokenResponse user = await _mediator.Send(request, cancellationToken);
+            TokenResponse response = await _mediator.Send(request, cancellationToken);
 
-            return Ok(user);
+            return StatusCode((int) HttpStatusCode.Created, response);
         }
         catch (Exception exception)
         {
