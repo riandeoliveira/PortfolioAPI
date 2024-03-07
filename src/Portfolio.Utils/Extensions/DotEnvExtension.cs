@@ -1,6 +1,6 @@
 namespace Portfolio.Users.Environments;
 
-public static class DotEnv
+public static class DotEnvExtension
 {
     public static void Load()
     {
