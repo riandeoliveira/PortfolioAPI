@@ -2,6 +2,7 @@
 <root>
   <!-- Email -->
   <data name="EmailAlreadyExists" xml:space="preserve"><value>This 'email' is already being used.</value></data>
+  <data name="EmailIsNotRegistered" xml:space="preserve"><value>This 'email' is not registered.</value></data>
   <data name="EmailIsRequired" xml:space="preserve"><value>The 'email' must be provided.</value></data>
   <data name="InvalidEmail" xml:space="preserve"><value>The 'email' must be valid.</value></data>
   <data name="MaximumEmailLength" xml:space="preserve"><value>The 'email' must have a maximum of 64 characters.</value></data>
