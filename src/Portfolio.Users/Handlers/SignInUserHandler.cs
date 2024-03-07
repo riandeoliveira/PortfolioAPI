@@ -1,9 +1,13 @@
 using System.Security.Authentication;
 
+using FluentValidation;
+using FluentValidation.Results;
+
 using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;
+using Portfolio.Users.Validators;
 using Portfolio.Utils.Enums;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
@@ -24,18 +28,24 @@ public sealed class SignInUserHandler
 
     public async Task<TokenResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken = default)
     {
-        User? user = await _userRepository.FindAsync(user =>
-            user.Email == request.Email,
-            cancellationToken
-        );
+        SignInUserValidator validator = new(_localizationService, _userRepository);
+        ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
+        User? user = await _userRepository.FindByEmailAsync(request.Email, cancellationToken);
 
-        if (user is not null && PasswordExtension.VerifyPassword(request.Password, user.Password))
+        if (user is null || !result.IsValid)
         {
-            string token = _authService.GenerateToken(user);
-
-            return new TokenResponse(token, user.Id);
+            throw new ValidationException(result.Errors.First().ErrorMessage);
         }
 
-        throw new InvalidCredentialException(_localizationService.GetKey(LocalizationMessages.InvalidLoginCredentials));
+        bool isValidPassword = PasswordExtension.VerifyPassword(request.Password, user.Password);
+
+        if (!isValidPassword)
+        {
+            throw new InvalidCredentialException(_localizationService.GetKey(LocalizationMessages.InvalidLoginCredentials));
+        }
+
+        string token = _authService.GenerateToken(user);
+
+        return new TokenResponse(token, user.Id);
     }
 }

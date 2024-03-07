@@ -5,6 +5,10 @@ using Portfolio.Utils.Repositories;
 
 namespace Portfolio.Users.Repositories;
 
-public class UserRepository(DatabaseContext context) : BaseRepository<User>(context), IUserRepository
+public class UserRepository(DatabaseContext databaseContext) : BaseRepository<User>(databaseContext), IUserRepository
 {
+    public async Task<User?> FindByEmailAsync(string email, CancellationToken cancellationToken)
+    {
+        return await FindAsync(user => user.Email == email, cancellationToken);
+    }
 }

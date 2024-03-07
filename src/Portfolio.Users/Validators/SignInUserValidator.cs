@@ -8,12 +8,12 @@ using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Users.Validators;
 
-public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
+public sealed class SignInUserValidator : AbstractValidator<SignInUserRequest>
 {
     private readonly ILocalizationService _localizationService;
     private readonly IUserRepository _userRepository;
 
-    public SignUpUserValidator(ILocalizationService localizationService, IUserRepository userRepository)
+    public SignInUserValidator(ILocalizationService localizationService, IUserRepository userRepository)
     {
         _localizationService = localizationService;
         _userRepository = userRepository;
@@ -31,8 +31,8 @@ public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
             .EmailAddress()
             .WithMessage(_localizationService.GetKey(LocalizationMessages.InvalidEmail))
 
-            .MustAsync(EmailMustNotBeRegistered)
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.EmailAlreadyExists));
+            .MustAsync(EmailMustBeRegistered)
+            .WithMessage(_localizationService.GetKey(LocalizationMessages.EmailIsNotRegistered));
 
         RuleFor(request => request.Password)
             .NotEmpty()
@@ -48,8 +48,8 @@ public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
             .WithMessage(_localizationService.GetKey(LocalizationMessages.StrongPassword));
     }
 
-    private async Task<bool> EmailMustNotBeRegistered(string email, CancellationToken cancellationToken = default)
+    private async Task<bool> EmailMustBeRegistered(string email, CancellationToken cancellationToken = default)
     {
-        return !await _userRepository.ExistAsync(user => user.Email == email, cancellationToken);
+        return await _userRepository.ExistAsync(user => user.Email == email, cancellationToken);
     }
 }
