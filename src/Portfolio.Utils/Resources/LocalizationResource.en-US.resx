@@ -16,4 +16,18 @@
   <data name="MinimumPasswordLength" xml:space="preserve"><value>The 'password' must have a minimum of 8 characters.</value></data>
   <data name="PasswordIsRequired" xml:space="preserve"><value>The 'password' must be provided.</value></data>
   <data name="StrongPassword" xml:space="preserve"><value>The 'password' must have at least: one capital letter and one number.</value></data>
+
+  <!-- Author -->
+  <data name="AuthorNotFound" xml:space="preserve"><value>No 'author' found.</value></data>
+  <data name="AvatarUrlIsRequired" xml:space="preserve"><value>The 'avatar url' must be provided.</value></data>
+  <data name="DescriptionIsRequired" xml:space="preserve"><value>The 'description' must be provided.</value></data>
+  <data name="FullNameIsRequired" xml:space="preserve"><value>The 'full name' must be provided.</value></data>
+  <data name="MaximumAvatarUrlLength" xml:space="preserve"><value>The 'avatar url' must have a maximum of 512 characters.</value></data>
+  <data name="MaximumDescriptionLength" xml:space="preserve"><value>The 'description' must have a maximum of 1024 characters.</value></data>
+  <data name="MaximumFullNameLength" xml:space="preserve"><value>The 'full name' must have a maximum of 128 characters.</value></data>
+  <data name="MaximumNameLength" xml:space="preserve"><value>The 'name' must have a maximum of 64 characters.</value></data>
+  <data name="MaximumPositionLength" xml:space="preserve"><value>The 'position' must have a maximum of 64 characters.</value></data>
+  <data name="MaximumSpotifyAccountNameLength" xml:space="preserve"><value>The 'Spotify account name' must have a maximum of 64 characters.</value></data>
+  <data name="NameIsRequired" xml:space="preserve"><value>The 'name' must be provided.</value></data>
+  <data name="PositionIsRequired" xml:space="preserve"><value>The 'position' must be provided.</value></data>
 </root>

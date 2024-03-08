@@ -7,16 +7,22 @@ using Portfolio.Authors.Interfaces;
 using Portfolio.Authors.Requests;
 using Portfolio.Authors.Validators;
 using Portfolio.Domain.Entities;
+using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Authors.Handlers;
 
-public sealed class RemoveAuthorHandler(IAuthorRepository authorRepository) : IRequestHandler<RemoveAuthorRequest>
+public sealed class RemoveAuthorHandler
+(
+    IAuthorRepository authorRepository,
+    ILocalizationService localizationService
+) : IRequestHandler<RemoveAuthorRequest>
 {
     private readonly IAuthorRepository _authorRepository = authorRepository;
+    private readonly ILocalizationService _localizationService = localizationService;
 
     public async Task Handle(RemoveAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        RemoveAuthorValidator validator = new(_authorRepository);
+        RemoveAuthorValidator validator = new(_authorRepository, _localizationService);
         ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
 
         if (!result.IsValid)

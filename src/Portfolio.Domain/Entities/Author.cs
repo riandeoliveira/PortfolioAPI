@@ -9,50 +9,50 @@ public sealed class Author : BaseEntity
 {
     [Column("name")]
     [DataType(DataType.Text)]
-    [MaxLength(50)]
+    [MaxLength(64)]
     [NotNull]
     [Required]
     public required string Name { get; set; }
 
     [Column("full_name")]
     [DataType(DataType.Text)]
-    [MaxLength(100)]
+    [MaxLength(128)]
     [NotNull]
     [Required]
     public required string FullName { get; set; }
 
     [Column("position")]
     [DataType(DataType.Text)]
-    [MaxLength(50)]
+    [MaxLength(64)]
     [NotNull]
     [Required]
     public required string Position { get; set; }
 
     [Column("description")]
     [DataType(DataType.MultilineText)]
-    [MaxLength(1000)]
+    [MaxLength(1024)]
     [NotNull]
     [Required]
     public required string Description { get; set; }
 
     [Column("avatar_url")]
     [DataType(DataType.ImageUrl)]
-    [MaxLength(500)]
+    [MaxLength(512)]
     [NotNull]
     [Required]
     public required string AvatarUrl { get; set; }
 
     [Column("spotify_account_name")]
     [DataType(DataType.Text)]
-    [MaxLength(50)]
+    [MaxLength(64)]
     public string? SpotifyAccountName { get; set; }
 
-    /*[Column("user_id")]
+    [Column("user_id")]
     [ForeignKey("User")]
     [Key]
     [NotNull]
     [Required]
     public required Guid UserId { get; set; }
 
-    public User? User { get; set; }*/
+    public User? User { get; set; }
 }
