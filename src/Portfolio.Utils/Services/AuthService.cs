@@ -48,6 +48,15 @@ public sealed class AuthService : IAuthService
         return $"Bearer {result}";
     }
 
+    public Guid GetLoggedInUserId()
+    {
+        JwtPayload payload = _tokenHandler.ReadJwtToken(GetToken()).Payload;
+        string? userIdPayload = payload["id"] as string;
+        bool isValid = Guid.TryParse(userIdPayload, out Guid userId);
+
+        return isValid ? userId : Guid.Empty;
+    }
+
     public string? GetToken()
     {
         string? authorizationHeader = _httpContextAccessor.HttpContext?.Request.Headers.Authorization.ToString();
