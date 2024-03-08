@@ -1,3 +1,5 @@
+using System.Net;
+
 using MediatR;
 
 using Microsoft.AspNetCore.Authorization;
@@ -12,10 +14,8 @@ namespace Portfolio.Authors.Controllers;
 
 [Authorize]
 [Route("api/author")]
-public sealed class AuthorController(IMediator mediator) : BaseController
+public sealed class AuthorController(IMediator mediator) : BaseController(mediator)
 {
-    private readonly IMediator _mediator = mediator;
-
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -27,7 +27,7 @@ public sealed class AuthorController(IMediator mediator) : BaseController
         {
             Author author = await _mediator.Send(request, cancellationToken);
 
-            return Ok(author);
+            return StatusCode((int) HttpStatusCode.Created, author);
         }
         catch (Exception exception)
         {
@@ -36,7 +36,7 @@ public sealed class AuthorController(IMediator mediator) : BaseController
     }
 
     [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -46,7 +46,7 @@ public sealed class AuthorController(IMediator mediator) : BaseController
         {
             await _mediator.Send(new RemoveAuthorRequest(id), cancellationToken);
 
-            return Ok();
+            return NoContent();
         }
         catch (Exception exception)
         {

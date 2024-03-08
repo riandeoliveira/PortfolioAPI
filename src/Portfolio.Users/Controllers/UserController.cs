@@ -12,10 +12,8 @@ using Portfolio.Utils.Controllers;
 namespace Portfolio.Users.Controllers;
 
 [Route("api/user")]
-public sealed class UserController(IMediator mediator) : BaseController
+public sealed class UserController(IMediator mediator) : BaseController(mediator)
 {
-    private readonly IMediator _mediator = mediator;
-
     // NOTE: RemoveAsync -> excluir conta
     // NOTE: SignInAsync -> iniciar sessão
     // NOTE: SignOutAsync -> encerrar sessão
