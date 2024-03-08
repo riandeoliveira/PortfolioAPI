@@ -5,6 +5,8 @@ using Portfolio.Authors.Requests;
 
 namespace Portfolio.Authors.Validators;
 
+// TODO: APRIMORAR VALIDAÇÕES !!!
+
 public sealed class RemoveAuthorValidator : AbstractValidator<RemoveAuthorRequest>
 {
     private readonly IAuthorRepository _authorRepository;
