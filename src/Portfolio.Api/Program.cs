@@ -1,7 +1,8 @@
 using Portfolio.Api.Configurations;
-using Portfolio.Users.Environments;
 
-DotEnvExtension.Load();
+using SharpDotEnv;
+
+DotEnv.Config();
 
 await WebApplication.CreateBuilder(args)
     .ConfigureAuthentication()

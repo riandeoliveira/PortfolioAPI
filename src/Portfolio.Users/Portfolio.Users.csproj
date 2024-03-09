@@ -10,4 +10,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Portfolio.Utils\Portfolio.Utils.csproj" />
   </ItemGroup>
+
 </Project>
