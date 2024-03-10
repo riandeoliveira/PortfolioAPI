@@ -1,7 +1,4 @@
-using System.Security.Authentication;
-
 using FluentValidation;
-using FluentValidation.Results;
 
 using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
@@ -19,33 +16,29 @@ public sealed class SignInUserHandler
 (
     IAuthService authService,
     ILocalizationService localizationService,
-    IUserRepository userRepository
-) : IRequestHandler<SignInUserRequest, TokenResponse>
+    IUserRepository userRepository,
+    SignInUserValidator validator
+) : IRequestHandler<SignInUserRequest, SignInUserResponse>
 {
     private readonly IAuthService _authService = authService;
     private readonly ILocalizationService _localizationService = localizationService;
     private readonly IUserRepository _userRepository = userRepository;
+    private readonly SignInUserValidator _validator = validator;
 
-    public async Task<TokenResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken = default)
+    public async Task<SignInUserResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken = default)
     {
-        SignInUserValidator validator = new(_localizationService, _userRepository);
-        ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
-        User? user = await _userRepository.FindByEmailAsync(request.Email, cancellationToken);
+        await _validator.ValidateRequestAsync(request, cancellationToken);
 
-        if (user is null || !result.IsValid)
-        {
-            throw new ValidationException(result.Errors.First().ErrorMessage);
-        }
-
+        User user = await _userRepository.FindByEmailOrThrowAsync(request.Email, cancellationToken);
         bool isValidPassword = PasswordExtension.VerifyPassword(request.Password, user.Password);
 
         if (!isValidPassword)
         {
-            throw new InvalidCredentialException(_localizationService.GetKey(LocalizationMessages.InvalidLoginCredentials));
+            throw new ValidationException(_localizationService.GetKey(LocalizationMessages.InvalidLoginCredentials));
         }
 
         string token = _authService.GenerateToken(user);
 
-        return new TokenResponse(token, user.Id);
+        return new SignInUserResponse(token, user.Id);
     }
 }

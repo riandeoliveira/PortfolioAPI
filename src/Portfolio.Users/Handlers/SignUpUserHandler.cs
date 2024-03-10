@@ -15,38 +15,32 @@ namespace Portfolio.Users.Handlers;
 public sealed class SignUpUserHandler
 (
     IAuthService authService,
-    ILocalizationService localizationService,
-    IUserRepository userRepository
-) : IRequestHandler<SignUpUserRequest, TokenResponse>
+    IUserRepository userRepository,
+    SignUpUserValidator validator
+) : IRequestHandler<SignUpUserRequest, SignUpUserResponse>
 {
     private readonly IAuthService _authService = authService;
-    private readonly ILocalizationService _localizationService = localizationService;
     private readonly IUserRepository _userRepository = userRepository;
+    private readonly SignUpUserValidator _validator = validator;
 
-    public async Task<TokenResponse> Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
+    public async Task<SignUpUserResponse> Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
-        SignUpUserValidator validator = new(_localizationService, _userRepository);
-        ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
-
-        if (!result.IsValid)
-        {
-            throw new ValidationException(result.Errors.First().ErrorMessage);
-        }
+        await _validator.ValidateRequestAsync(request, cancellationToken);
 
         string hashedPassword = PasswordExtension.HashPassword(request.Password);
 
-        User newUser = new()
+        User user = new()
         {
             Email = request.Email,
             Password = hashedPassword
         };
 
-        User createdUser = await _userRepository.CreateAsync(newUser, cancellationToken);
+        User createdUser = await _userRepository.CreateAsync(user, cancellationToken);
 
         await _userRepository.SaveChangesAsync(cancellationToken);
 
         string token = _authService.GenerateToken(createdUser);
 
-        return new TokenResponse(token, createdUser.Id);
+        return new SignUpUserResponse(token, createdUser.Id);
     }
 }

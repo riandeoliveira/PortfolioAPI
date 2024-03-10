@@ -31,7 +31,9 @@ public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
             .EmailAddress()
             .WithMessage(_localizationService.GetKey(LocalizationMessages.InvalidEmail))
 
-            .MustAsync(EmailMustNotBeRegistered)
+            .MustAsync(async (email, cancellationToken) =>
+                !await _userRepository.ExistAsync(user => user.Email == email, cancellationToken)
+            )
             .WithMessage(_localizationService.GetKey(LocalizationMessages.EmailAlreadyExists));
 
         RuleFor(request => request.Password)
@@ -46,10 +48,5 @@ public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
 
             .StrongPassword()
             .WithMessage(_localizationService.GetKey(LocalizationMessages.StrongPassword));
-    }
-
-    private async Task<bool> EmailMustNotBeRegistered(string email, CancellationToken cancellationToken = default)
-    {
-        return !await _userRepository.ExistAsync(user => user.Email == email, cancellationToken);
     }
 }

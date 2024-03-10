@@ -27,7 +27,7 @@ public sealed class UserController(IMediator mediator) : BaseController(mediator
     {
         try
         {
-            TokenResponse response = await _mediator.Send(request, cancellationToken);
+            SignInUserResponse response = await _mediator.Send(request, cancellationToken);
 
             return StatusCode((int) HttpStatusCode.OK, response);
         }
@@ -45,7 +45,7 @@ public sealed class UserController(IMediator mediator) : BaseController(mediator
     {
         try
         {
-            TokenResponse response = await _mediator.Send(request, cancellationToken);
+            SignUpUserResponse response = await _mediator.Send(request, cancellationToken);
 
             return StatusCode((int) HttpStatusCode.Created, response);
         }
