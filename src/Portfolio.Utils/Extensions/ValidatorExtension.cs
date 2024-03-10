@@ -1,4 +1,5 @@
 using FluentValidation;
+using FluentValidation.Results;
 
 using Portfolio.Utils.Validators;
 
@@ -14,5 +15,19 @@ public static class ValidatorExtension
     public static IRuleBuilderOptions<T, TProperty> StrongPassword<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder)
     {
         return ruleBuilder.SetValidator(new PasswordValidator<T, TProperty>());
+    }
+
+    public static async Task ValidateRequestAsync<TRequest>(
+        this AbstractValidator<TRequest> validator,
+        TRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
+
+        if (!result.IsValid)
+        {
+            throw new ValidationException(result.Errors.First().ErrorMessage);
+        }
     }
 }
