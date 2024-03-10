@@ -8,6 +8,7 @@ public enum LocalizationMessages
     EmailAlreadyExists,
     EmailIsNotRegistered,
     EmailIsRequired,
+    EntityNotFound,
     FullNameIsRequired,
     InvalidEmail,
     InvalidLoginCredentials,
@@ -25,5 +26,6 @@ public enum LocalizationMessages
     PasswordIsRequired,
     PositionIsRequired,
     StrongPassword,
+    UnauthorizedOperation,
     UserNotFound,
 }

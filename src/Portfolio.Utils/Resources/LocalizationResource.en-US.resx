@@ -33,4 +33,8 @@
   <data name="MaximumSpotifyAccountNameLength" xml:space="preserve"><value>The 'Spotify account name' must have a maximum of 64 characters.</value></data>
   <data name="NameIsRequired" xml:space="preserve"><value>The 'name' must be provided.</value></data>
   <data name="PositionIsRequired" xml:space="preserve"><value>The 'position' must be provided.</value></data>
+
+  <!-- Others -->
+  <data name="UnauthorizedOperation" xml:space="preserve"><value>You do not have permission to perform this action.</value></data>
+  <data name="EntityNotFound" xml:space="preserve"><value>No entity found.</value></data>
 </root>

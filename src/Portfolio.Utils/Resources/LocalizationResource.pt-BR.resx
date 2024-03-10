@@ -33,4 +33,8 @@
   <data name="MaximumSpotifyAccountNameLength" xml:space="preserve"><value>O 'nome da conta do Spotify' deve possuir no máximo 64 carateres.</value></data>
   <data name="NameIsRequired" xml:space="preserve"><value>O 'nome' deve ser informado.</value></data>
   <data name="PositionIsRequired" xml:space="preserve"><value>O 'cargo' deve ser informado.</value></data>
+
+  <!-- Others -->
+  <data name="UnauthorizedOperation" xml:space="preserve"><value>Você não possui permissão para realizar esta ação.</value></data>
+  <data name="EntityNotFound" xml:space="preserve"><value>Nenhuma entidade encontrada.</value></data>
 </root>
