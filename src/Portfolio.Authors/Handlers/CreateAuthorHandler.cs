@@ -1,10 +1,8 @@
-using FluentValidation;
-using FluentValidation.Results;
-
 using Portfolio.Authors.Interfaces;
 using Portfolio.Authors.Requests;
 using Portfolio.Authors.Validators;
 using Portfolio.Domain.Entities;
+using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
 
@@ -12,24 +10,18 @@ namespace Portfolio.Authors.Handlers;
 
 public sealed class CreateAuthorHandler
 (
+    CreateAuthorValidator validator,
     IAuthorRepository authorRepository,
-    IAuthService authService,
-    ILocalizationService localizationService
+    IAuthService authService
 ) : IRequestHandler<CreateAuthorRequest, Author>
 {
+    private readonly CreateAuthorValidator _validator = validator;
     private readonly IAuthorRepository _authorRepository = authorRepository;
     private readonly IAuthService _authService = authService;
-    private readonly ILocalizationService _localizationService = localizationService;
 
     public async Task<Author> Handle(CreateAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        CreateAuthorValidator validator = new(_localizationService);
-        ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
-
-        if (!result.IsValid)
-        {
-            throw new ValidationException(result.Errors.First().ErrorMessage);
-        }
+        await _validator.ValidateRequestAsync(request, cancellationToken);
 
         Author author = new()
         {

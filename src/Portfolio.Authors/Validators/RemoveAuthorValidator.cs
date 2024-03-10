@@ -1,5 +1,7 @@
 using FluentValidation;
 
+using Microsoft.Extensions.Localization;
+
 using Portfolio.Authors.Interfaces;
 using Portfolio.Authors.Requests;
 using Portfolio.Utils.Enums;
@@ -19,12 +21,9 @@ public sealed class RemoveAuthorValidator : AbstractValidator<RemoveAuthorReques
 
         RuleFor(request => request.Id)
             .NotEmpty()
-            .MustAsync(AuthorMustExist)
+            .MustAsync(async (id, cancellationToken) =>
+                await _authorRepository.ExistAsync(id, cancellationToken)
+            )
             .WithMessage(_localizationService.GetKey(LocalizationMessages.AuthorNotFound));
-    }
-
-    private async Task<bool> AuthorMustExist(Guid id, CancellationToken cancellationToken = default)
-    {
-        return await _authorRepository.ExistAsync(id, cancellationToken);
     }
 }
