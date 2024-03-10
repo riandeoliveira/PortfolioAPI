@@ -10,43 +10,37 @@ namespace Portfolio.Users.Validators;
 
 public sealed class SignInUserValidator : AbstractValidator<SignInUserRequest>
 {
-    private readonly ILocalizationService _localizationService;
-    private readonly IUserRepository _userRepository;
-
     public SignInUserValidator(ILocalizationService localizationService, IUserRepository userRepository)
     {
-        _localizationService = localizationService;
-        _userRepository = userRepository;
-
         RuleFor(request => request.Email)
             .NotEmpty()
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.EmailIsRequired))
+            .Message(localizationService, LocalizationMessages.EmailIsRequired)
 
             .MinimumLength(8)
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.MinimumEmailLength))
+            .Message(localizationService, LocalizationMessages.MinimumEmailLength)
 
             .MaximumLength(64)
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.MaximumEmailLength))
+            .Message(localizationService, LocalizationMessages.MaximumEmailLength)
 
             .EmailAddress()
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.InvalidEmail))
+            .Message(localizationService, LocalizationMessages.InvalidEmail)
 
             .MustAsync(async (email, cancellationToken) =>
-                await _userRepository.ExistAsync(user => user.Email == email, cancellationToken)
+                await userRepository.ExistAsync(user => user.Email == email, cancellationToken)
             )
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.EmailIsNotRegistered));
+            .Message(localizationService, LocalizationMessages.EmailIsNotRegistered);
 
         RuleFor(request => request.Password)
             .NotEmpty()
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.PasswordIsRequired))
+            .Message(localizationService, LocalizationMessages.PasswordIsRequired)
 
             .MinimumLength(8)
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.MinimumPasswordLength))
+            .Message(localizationService, LocalizationMessages.MinimumPasswordLength)
 
             .MaximumLength(64)
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.MaximumPasswordLength))
+            .Message(localizationService, LocalizationMessages.MaximumPasswordLength)
 
             .StrongPassword()
-            .WithMessage(_localizationService.GetKey(LocalizationMessages.StrongPassword));
+            .Message(localizationService, LocalizationMessages.StrongPassword);
     }
 }

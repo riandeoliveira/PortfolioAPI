@@ -27,11 +27,11 @@ public sealed class SignUpUserHandler
     {
         await _validator.ValidateRequestAsync(request, cancellationToken);
 
-        string hashedPassword = PasswordExtension.HashPassword(request.Password);
+        string hashedPassword = PasswordExtension.HashPassword(request.Password.Trim());
 
         User user = new()
         {
-            Email = request.Email,
+            Email = request.Email.Trim(),
             Password = hashedPassword
         };
 
