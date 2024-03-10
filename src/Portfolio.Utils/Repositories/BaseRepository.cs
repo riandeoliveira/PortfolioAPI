@@ -45,7 +45,7 @@ public class BaseRepository<TEntity>(DatabaseContext databaseContext) : IBaseRep
         return await _databaseContext.Set<TEntity>().FirstOrDefaultAsync(predicate, cancellationToken);
     }
 
-    public async Task Remove(TEntity? entity, CancellationToken cancellationToken = default)
+    public async Task RemoveAsync(TEntity? entity, CancellationToken cancellationToken = default)
     {
         await Task.Run(() =>
         {
@@ -53,11 +53,20 @@ public class BaseRepository<TEntity>(DatabaseContext databaseContext) : IBaseRep
 
             _databaseContext.Set<TEntity>().Remove(entity);
         }, cancellationToken);
-
     }
 
     public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         await _databaseContext.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
+    {
+        await Task.Run(() =>
+        {
+            ArgumentNullException.ThrowIfNull(entity);
+
+            _databaseContext.Set<TEntity>().Update(entity);
+        }, cancellationToken);
     }
 }

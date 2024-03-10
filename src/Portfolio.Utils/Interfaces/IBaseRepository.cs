@@ -16,7 +16,9 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
 
     Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
-    Task Remove(TEntity? entity, CancellationToken cancellationToken = default);
+    Task RemoveAsync(TEntity? entity, CancellationToken cancellationToken = default);
 
     Task SaveChangesAsync(CancellationToken cancellationToken = default);
+
+    Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 }
