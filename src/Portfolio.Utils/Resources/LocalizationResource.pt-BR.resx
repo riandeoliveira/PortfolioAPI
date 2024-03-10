@@ -17,6 +17,9 @@
   <data name="PasswordIsRequired" xml:space="preserve"><value>A 'senha' deve ser informada.</value></data>
   <data name="StrongPassword" xml:space="preserve"><value>A 'senha' deve possuir pelo menos: uma letra maiúscula e um número.</value></data>
 
+  <!-- User -->
+  <data name="UserNotFound" xml:space="preserve"><value>Nenhum 'usuário' encontrado.</value></data>
+
   <!-- Author -->
   <data name="AuthorNotFound" xml:space="preserve"><value>Nenhum 'autor' encontrado.</value></data>
   <data name="AvatarUrlIsRequired" xml:space="preserve"><value>A 'url do avatar' deve ser informada.</value></data>

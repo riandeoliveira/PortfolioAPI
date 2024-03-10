@@ -25,4 +25,5 @@ public enum LocalizationMessages
     PasswordIsRequired,
     PositionIsRequired,
     StrongPassword,
+    UserNotFound,
 }

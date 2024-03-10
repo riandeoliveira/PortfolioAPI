@@ -17,6 +17,9 @@
   <data name="PasswordIsRequired" xml:space="preserve"><value>The 'password' must be provided.</value></data>
   <data name="StrongPassword" xml:space="preserve"><value>The 'password' must have at least: one capital letter and one number.</value></data>
 
+  <!-- User -->
+  <data name="UserNotFound" xml:space="preserve"><value>No 'user' found.</value></data>
+
   <!-- Author -->
   <data name="AuthorNotFound" xml:space="preserve"><value>No 'author' found.</value></data>
   <data name="AvatarUrlIsRequired" xml:space="preserve"><value>The 'avatar url' must be provided.</value></data>
