@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.Results;
 
 using Portfolio.Utils.Enums;
+using Portfolio.Utils.Exceptions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Validators;
 
@@ -9,7 +10,9 @@ namespace Portfolio.Utils.Extensions;
 
 public static class ValidatorExtension
 {
-    public static IRuleBuilderOptions<T, TProperty> EmailAddress<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder)
+    public static IRuleBuilderOptions<T, TProperty> EmailAddress<T, TProperty>(
+        this IRuleBuilder<T, TProperty> ruleBuilder
+    )
     {
         return ruleBuilder.SetValidator(new EmailValidator<T, TProperty>());
     }
@@ -23,7 +26,9 @@ public static class ValidatorExtension
         return ruleBuilder.WithMessage(localizationService.GetKey(key));
     }
 
-    public static IRuleBuilderOptions<T, TProperty> StrongPassword<T, TProperty>(this IRuleBuilder<T, TProperty> ruleBuilder)
+    public static IRuleBuilderOptions<T, TProperty> StrongPassword<T, TProperty>(
+        this IRuleBuilder<T, TProperty> ruleBuilder
+    )
     {
         return ruleBuilder.SetValidator(new PasswordValidator<T, TProperty>());
     }
@@ -35,10 +40,8 @@ public static class ValidatorExtension
     )
     {
         ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
+        string errorMessage = result.Errors.First().ErrorMessage;
 
-        if (!result.IsValid)
-        {
-            throw new ValidationException(result.Errors.First().ErrorMessage);
-        }
+        if (!result.IsValid) throw new BaseException(errorMessage);
     }
 }
