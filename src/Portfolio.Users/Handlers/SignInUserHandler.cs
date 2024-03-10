@@ -1,11 +1,10 @@
-using FluentValidation;
-
 using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
 using Portfolio.Users.Responses;
 using Portfolio.Users.Validators;
 using Portfolio.Utils.Enums;
+using Portfolio.Utils.Exceptions;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
@@ -20,24 +19,19 @@ public sealed class SignInUserHandler
     SignInUserValidator validator
 ) : IRequestHandler<SignInUserRequest, SignInUserResponse>
 {
-    private readonly IAuthService _authService = authService;
-    private readonly ILocalizationService _localizationService = localizationService;
-    private readonly IUserRepository _userRepository = userRepository;
-    private readonly SignInUserValidator _validator = validator;
-
     public async Task<SignInUserResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken = default)
     {
-        await _validator.ValidateRequestAsync(request, cancellationToken);
+        await validator.ValidateRequestAsync(request, cancellationToken);
 
-        User user = await _userRepository.FindByEmailOrThrowAsync(request.Email, cancellationToken);
+        User user = await userRepository.FindOrThrowAsync((user) => user.Email == request.Email, cancellationToken);
         bool isValidPassword = PasswordExtension.VerifyPassword(request.Password, user.Password);
 
         if (!isValidPassword)
         {
-            throw new ValidationException(_localizationService.GetKey(LocalizationMessages.InvalidLoginCredentials));
+            throw new BaseException(localizationService, LocalizationMessages.InvalidLoginCredentials);
         }
 
-        string token = _authService.GenerateToken(user);
+        string token = authService.GenerateToken(user);
 
         return new SignInUserResponse(token, user.Id);
     }

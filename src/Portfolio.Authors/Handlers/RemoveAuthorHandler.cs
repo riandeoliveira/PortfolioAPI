@@ -13,16 +13,13 @@ public sealed class RemoveAuthorHandler
     RemoveAuthorValidator validator
 ) : IRequestHandler<RemoveAuthorRequest>
 {
-    private readonly IAuthorRepository _authorRepository = authorRepository;
-    private readonly RemoveAuthorValidator _validator = validator;
-
     public async Task Handle(RemoveAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        await _validator.ValidateRequestAsync(request, cancellationToken);
+        await validator.ValidateRequestAsync(request, cancellationToken);
 
-        Author? author = await _authorRepository.FindAsync(request.Id, cancellationToken);
+        Author author = await authorRepository.FindOrThrowAsync(request.Id, cancellationToken);
 
-        await _authorRepository.RemoveAsync(author, cancellationToken);
-        await _authorRepository.SaveChangesAsync(cancellationToken);
+        await authorRepository.RemoveSoftAsync(author, cancellationToken);
+        await authorRepository.SaveChangesAsync(cancellationToken);
     }
 }

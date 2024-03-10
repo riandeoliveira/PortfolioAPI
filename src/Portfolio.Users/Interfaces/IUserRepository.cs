@@ -5,5 +5,4 @@ namespace Portfolio.Users.Interfaces;
 
 public interface IUserRepository : IBaseRepository<User>
 {
-    Task<User> FindByEmailOrThrowAsync(string email, CancellationToken cancellationToken);
 }

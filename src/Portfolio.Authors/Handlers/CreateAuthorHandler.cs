@@ -15,13 +15,9 @@ public sealed class CreateAuthorHandler
     IAuthService authService
 ) : IRequestHandler<CreateAuthorRequest, Author>
 {
-    private readonly CreateAuthorValidator _validator = validator;
-    private readonly IAuthorRepository _authorRepository = authorRepository;
-    private readonly IAuthService _authService = authService;
-
     public async Task<Author> Handle(CreateAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        await _validator.ValidateRequestAsync(request, cancellationToken);
+        await validator.ValidateRequestAsync(request, cancellationToken);
 
         Author author = new()
         {
@@ -31,12 +27,12 @@ public sealed class CreateAuthorHandler
             Description = request.Description.Trim(),
             AvatarUrl = request.AvatarUrl.Trim(),
             SpotifyAccountName = request.SpotifyAccountName?.Trim(),
-            UserId = _authService.GetLoggedInUserId()
+            UserId = authService.GetLoggedInUserId()
         };
 
-        Author createdAuthor = await _authorRepository.CreateAsync(author, cancellationToken);
+        Author createdAuthor = await authorRepository.CreateAsync(author, cancellationToken);
 
-        await _authorRepository.SaveChangesAsync(cancellationToken);
+        await authorRepository.SaveChangesAsync(cancellationToken);
 
         return createdAuthor;
     }

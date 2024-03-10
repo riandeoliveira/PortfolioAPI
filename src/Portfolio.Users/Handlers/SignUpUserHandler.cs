@@ -1,6 +1,3 @@
-using FluentValidation;
-using FluentValidation.Results;
-
 using Portfolio.Domain.Entities;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Requests;
@@ -19,13 +16,9 @@ public sealed class SignUpUserHandler
     SignUpUserValidator validator
 ) : IRequestHandler<SignUpUserRequest, SignUpUserResponse>
 {
-    private readonly IAuthService _authService = authService;
-    private readonly IUserRepository _userRepository = userRepository;
-    private readonly SignUpUserValidator _validator = validator;
-
     public async Task<SignUpUserResponse> Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
-        await _validator.ValidateRequestAsync(request, cancellationToken);
+        await validator.ValidateRequestAsync(request, cancellationToken);
 
         string hashedPassword = PasswordExtension.HashPassword(request.Password.Trim());
 
@@ -35,11 +28,11 @@ public sealed class SignUpUserHandler
             Password = hashedPassword
         };
 
-        User createdUser = await _userRepository.CreateAsync(user, cancellationToken);
+        User createdUser = await userRepository.CreateAsync(user, cancellationToken);
 
-        await _userRepository.SaveChangesAsync(cancellationToken);
+        await userRepository.SaveChangesAsync(cancellationToken);
 
-        string token = _authService.GenerateToken(createdUser);
+        string token = authService.GenerateToken(createdUser);
 
         return new SignUpUserResponse(token, createdUser.Id);
     }
