@@ -4,69 +4,86 @@ using Microsoft.EntityFrameworkCore;
 
 using Portfolio.Domain.Context;
 using Portfolio.Domain.Entities;
+using Portfolio.Utils.Enums;
+using Portfolio.Utils.Exceptions;
 using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Utils.Repositories;
 
-public class BaseRepository<TEntity>(DatabaseContext databaseContext) : IBaseRepository<TEntity> where TEntity : BaseEntity
+public class BaseRepository<TEntity>(
+    DatabaseContext databaseContext,
+    ILocalizationService localizationService
+) : IBaseRepository<TEntity> where TEntity : BaseEntity
 {
-    private readonly DatabaseContext _databaseContext = databaseContext;
-
     public async Task<TEntity> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(entity);
-
-        await _databaseContext.Set<TEntity>().AddAsync(entity, cancellationToken);
+        await databaseContext.Set<TEntity>().AddAsync(entity, cancellationToken);
 
         return entity;
     }
 
     public async Task<bool> ExistAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        TEntity? entity = await _databaseContext.Set<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
+        TEntity? entity = await databaseContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(
+            entity => entity.Id == id &&
+            !entity.ExcludedAt.HasValue,
+            cancellationToken
+        );
 
         return entity is not null;
     }
 
     public async Task<bool> ExistAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        TEntity? entity = await _databaseContext.Set<TEntity>().FirstOrDefaultAsync(predicate, cancellationToken);
+        TEntity? entity = await databaseContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(predicate, cancellationToken);
 
-        return entity is not null;
+        return entity is not null && !entity.ExcludedAt.HasValue;
     }
 
-    public async Task<TEntity?> FindAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<TEntity> FindOrThrowAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await _databaseContext.Set<TEntity>().FirstOrDefaultAsync(entity => entity.Id == id, cancellationToken);
+        TEntity? entity = await databaseContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(
+            entity => entity.Id == id &&
+            !entity.ExcludedAt.HasValue,
+            cancellationToken
+        );
+
+        return entity is not null
+            ? entity
+            : throw new BaseException(localizationService, LocalizationMessages.EntityNotFound);
     }
 
-    public async Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
+    public async Task<TEntity> FindOrThrowAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        return await _databaseContext.Set<TEntity>().FirstOrDefaultAsync(predicate, cancellationToken);
+        TEntity? entity = await databaseContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync(predicate, cancellationToken);
+
+        return entity is not null && !entity.ExcludedAt.HasValue
+            ? entity
+            : throw new BaseException(localizationService, LocalizationMessages.EntityNotFound);
     }
 
-    public async Task RemoveAsync(TEntity? entity, CancellationToken cancellationToken = default)
+    public async Task RemoveHardAsync(TEntity entity, CancellationToken cancellationToken = default)
+    {
+        await Task.Run(() => databaseContext.Set<TEntity>().Remove(entity), cancellationToken);
+    }
+
+    public async Task RemoveSoftAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         await Task.Run(() =>
         {
-            ArgumentNullException.ThrowIfNull(entity);
+            entity.ExcludedAt = DateTime.Now;
 
-            _databaseContext.Set<TEntity>().Remove(entity);
+            databaseContext.Set<TEntity>().Update(entity);
         }, cancellationToken);
     }
 
     public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await databaseContext.SaveChangesAsync(cancellationToken);
     }
 
     public async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        await Task.Run(() =>
-        {
-            ArgumentNullException.ThrowIfNull(entity);
-
-            _databaseContext.Set<TEntity>().Update(entity);
-        }, cancellationToken);
+        await Task.Run(() => databaseContext.Set<TEntity>().Update(entity), cancellationToken);
     }
 }
