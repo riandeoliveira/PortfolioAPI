@@ -5,14 +5,15 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using Portfolio.Users.Requests;
-using Portfolio.Users.Responses;
-using Portfolio.Utils.Controllers;
+using Portfolio.Users.Features.SignIn;
+using Portfolio.Users.Features.SignUp;
 
 namespace Portfolio.Users.Controllers;
 
+[ApiController]
+[Produces("application/json")]
 [Route("api/user")]
-public sealed class UserController(IMediator mediator) : BaseController(mediator)
+public sealed class UserController(IMediator mediator) : ControllerBase
 {
     // NOTE: RemoveAsync -> excluir conta
     // NOTE: SignInAsync -> iniciar sessão
@@ -27,7 +28,7 @@ public sealed class UserController(IMediator mediator) : BaseController(mediator
     {
         try
         {
-            SignInUserResponse response = await _mediator.Send(request, cancellationToken);
+            SignInUserResponse response = await mediator.Send(request, cancellationToken);
 
             return StatusCode((int) HttpStatusCode.OK, response);
         }
@@ -45,7 +46,7 @@ public sealed class UserController(IMediator mediator) : BaseController(mediator
     {
         try
         {
-            SignUpUserResponse response = await _mediator.Send(request, cancellationToken);
+            SignUpUserResponse response = await mediator.Send(request, cancellationToken);
 
             return StatusCode((int) HttpStatusCode.Created, response);
         }

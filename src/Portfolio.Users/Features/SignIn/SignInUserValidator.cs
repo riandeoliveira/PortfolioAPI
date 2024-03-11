@@ -1,16 +1,15 @@
 using FluentValidation;
 
 using Portfolio.Users.Interfaces;
-using Portfolio.Users.Requests;
 using Portfolio.Utils.Enums;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 
-namespace Portfolio.Users.Validators;
+namespace Portfolio.Users.Features.SignIn;
 
-public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
+public sealed class SignInUserValidator : AbstractValidator<SignInUserRequest>
 {
-    public SignUpUserValidator(ILocalizationService localizationService, IUserRepository userRepository)
+    public SignInUserValidator(ILocalizationService localizationService, IUserRepository userRepository)
     {
         RuleFor(request => request.Email)
             .NotEmpty()
@@ -26,9 +25,9 @@ public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
             .Message(localizationService, LocalizationMessages.InvalidEmail)
 
             .MustAsync(async (email, cancellationToken) =>
-                !await userRepository.ExistAsync(user => user.Email == email, cancellationToken)
+                await userRepository.ExistAsync(user => user.Email == email, cancellationToken)
             )
-            .Message(localizationService, LocalizationMessages.EmailAlreadyExists);
+            .Message(localizationService, LocalizationMessages.EmailIsNotRegistered);
 
         RuleFor(request => request.Password)
             .NotEmpty()

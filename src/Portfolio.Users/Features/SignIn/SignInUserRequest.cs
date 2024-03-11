@@ -1,7 +1,5 @@
 using MediatR;
 
-using Portfolio.Users.Responses;
-
-namespace Portfolio.Users.Requests;
+namespace Portfolio.Users.Features.SignIn;
 
 public sealed record SignInUserRequest(string Email, string Password) : IRequest<SignInUserResponse>;
