@@ -1,8 +1,10 @@
 using System.Reflection;
 using System.Text.Json;
 
-using Portfolio.Authors.Handlers;
-using Portfolio.Users.Handlers;
+using Portfolio.Authors.Features.Create;
+using Portfolio.Authors.Features.Remove;
+using Portfolio.Users.Features.SignIn;
+using Portfolio.Users.Features.SignUp;
 
 using Serilog;
 
