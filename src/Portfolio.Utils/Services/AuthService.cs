@@ -3,28 +3,19 @@ using System.Security.Claims;
 using System.Text;
 
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 using Portfolio.Domain.Entities;
+using Portfolio.Utils.Constants;
 using Portfolio.Utils.Interfaces;
 
 namespace Portfolio.Utils.Services;
 
-public sealed class AuthService : IAuthService
+public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAuthService
 {
-    private readonly IConfiguration _configuration;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly JwtSecurityTokenHandler _tokenHandler;
-    private readonly SymmetricSecurityKey _securityKey;
-
-    public AuthService(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
-    {
-        _configuration = configuration;
-        _httpContextAccessor = httpContextAccessor;
-        _securityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JwtSettings:Secret"] ?? ""));
-        _tokenHandler = new JwtSecurityTokenHandler();
-    }
+    private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
+    private readonly JwtSecurityTokenHandler _tokenHandler = new();
+    private readonly SymmetricSecurityKey _securityKey = new(Encoding.ASCII.GetBytes(EnvironmentVariables.JWT_SECRET));
 
     public string GenerateToken(User user)
     {

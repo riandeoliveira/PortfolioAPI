@@ -3,6 +3,8 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
+using Portfolio.Utils.Constants;
+
 namespace Portfolio.Api.Configurations;
 
 public static class AuthenticationConfiguration
@@ -19,13 +21,13 @@ public static class AuthenticationConfiguration
             })
             .AddJwtBearer(options => options.TokenValidationParameters = new TokenValidationParameters
             {
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Secret"] ?? "")),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(EnvironmentVariables.JWT_SECRET)),
                 ValidateAudience = false,
                 ValidateIssuer = false,
                 ValidateIssuerSigningKey = true,
                 ValidateLifetime = true,
-                ValidAudience = builder.Configuration["JwtSettings:Audience"],
-                ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+                ValidAudience = EnvironmentVariables.JWT_AUDIENCE,
+                ValidIssuer = EnvironmentVariables.JWT_ISSUER,
             });
 
         return builder;

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using Portfolio.Domain.Context;
+using Portfolio.Utils.Constants;
 
 namespace Portfolio.Api.Configurations;
 
@@ -8,16 +9,14 @@ public static class ContextConfiguration
 {
     public static WebApplicationBuilder ConfigureContext(this WebApplicationBuilder builder)
     {
-        var database = new
-        {
-            host = Environment.GetEnvironmentVariable("DATABASE_HOST"),
-            name = Environment.GetEnvironmentVariable("DATABASE_NAME"),
-            password = Environment.GetEnvironmentVariable("DATABASE_PASSWORD"),
-            port = Environment.GetEnvironmentVariable("DATABASE_PORT"),
-            user = Environment.GetEnvironmentVariable("DATABASE_USER")
-        };
-
-        string connectionString = $"Server={database.host};Port={database.port};Database={database.name};User Id={database.user};Password={database.password}";
+        string connectionString =
+        $@"
+            Server={EnvironmentVariables.DATABASE_HOST};
+            Port={EnvironmentVariables.DATABASE_PORT};
+            Database={EnvironmentVariables.DATABASE_NAME};
+            User Id={EnvironmentVariables.DATABASE_USER};
+            Password={EnvironmentVariables.DATABASE_PASSWORD}
+        ";
 
         builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(connectionString));
 
