@@ -1,15 +1,13 @@
-using Portfolio.Domain.Entities;
 using Portfolio.Utils.Messaging;
 
-namespace Portfolio.Authors.Requests;
+namespace Portfolio.Authors.Features.Create;
 
-public sealed record UpdateAuthorRequest
+public sealed record CreateAuthorRequest
 (
-    Guid Id,
     string Name,
     string FullName,
     string Position,
     string Description,
     string AvatarUrl,
     string? SpotifyAccountName
-) : IRequest<Author>;
+) : IRequest<CreateAuthorResponse>;

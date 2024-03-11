@@ -1,23 +1,20 @@
 using Portfolio.Authors.Interfaces;
-using Portfolio.Authors.Requests;
-using Portfolio.Authors.Validators;
 using Portfolio.Domain.Entities;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Messaging;
 
-namespace Portfolio.Authors.Handlers;
+namespace Portfolio.Authors.Features.Update;
 
-public sealed class UpdateAuthorHandler
-(
+public sealed class UpdateAuthorHandler(
     IAuthorRepository authorRepository,
     UpdateAuthorValidator validator
-) : IRequestHandler<UpdateAuthorRequest, Author>
+) : IRequestHandler<UpdateAuthorRequest, UpdateAuthorResponse>
 {
-    public async Task<Author> Handle(UpdateAuthorRequest request, CancellationToken cancellationToken = default)
+    public async Task<UpdateAuthorResponse> Handle(UpdateAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        await validator.ValidateRequestAsync(request, cancellationToken);
+        await validator.ValidateOrThrowAsync(request, cancellationToken);
 
-        Author author = await authorRepository.FindOrThrowAsync(request.Id, cancellationToken);
+        Author author = await authorRepository.FindOneOrThrowAsync(request.Id, cancellationToken);
 
         author.Name = request.Name;
         author.FullName = request.FullName;
@@ -29,6 +26,6 @@ public sealed class UpdateAuthorHandler
         await authorRepository.UpdateAsync(author, cancellationToken);
         await authorRepository.SaveChangesAsync(cancellationToken);
 
-        return author;
+        return new UpdateAuthorResponse(author);
     }
 }

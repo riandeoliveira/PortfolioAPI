@@ -1,23 +1,20 @@
 using Portfolio.Authors.Interfaces;
-using Portfolio.Authors.Requests;
-using Portfolio.Authors.Validators;
 using Portfolio.Domain.Entities;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
 
-namespace Portfolio.Authors.Handlers;
+namespace Portfolio.Authors.Features.Create;
 
-public sealed class CreateAuthorHandler
-(
+public sealed class CreateAuthorHandler(
     CreateAuthorValidator validator,
     IAuthorRepository authorRepository,
     IAuthService authService
-) : IRequestHandler<CreateAuthorRequest, Author>
+) : IRequestHandler<CreateAuthorRequest, CreateAuthorResponse>
 {
-    public async Task<Author> Handle(CreateAuthorRequest request, CancellationToken cancellationToken = default)
+    public async Task<CreateAuthorResponse> Handle(CreateAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        await validator.ValidateRequestAsync(request, cancellationToken);
+        await validator.ValidateOrThrowAsync(request, cancellationToken);
 
         Author author = new()
         {
@@ -34,6 +31,6 @@ public sealed class CreateAuthorHandler
 
         await authorRepository.SaveChangesAsync(cancellationToken);
 
-        return createdAuthor;
+        return new CreateAuthorResponse(createdAuthor);
     }
 }

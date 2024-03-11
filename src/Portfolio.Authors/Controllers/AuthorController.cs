@@ -6,15 +6,17 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using Portfolio.Authors.Requests;
-using Portfolio.Domain.Entities;
-using Portfolio.Utils.Controllers;
+using Portfolio.Authors.Features.Create;
+using Portfolio.Authors.Features.Remove;
+using Portfolio.Authors.Features.Update;
 
 namespace Portfolio.Authors.Controllers;
 
+[ApiController]
 [Authorize]
+[Produces("application/json")]
 [Route("api/author")]
-public sealed class AuthorController(IMediator mediator) : BaseController(mediator)
+public sealed class AuthorController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -25,9 +27,9 @@ public sealed class AuthorController(IMediator mediator) : BaseController(mediat
     {
         try
         {
-            Author author = await _mediator.Send(request, cancellationToken);
+            CreateAuthorResponse response = await mediator.Send(request, cancellationToken);
 
-            return StatusCode((int) HttpStatusCode.Created, author);
+            return StatusCode((int) HttpStatusCode.Created, response);
         }
         catch (Exception exception)
         {
@@ -44,7 +46,7 @@ public sealed class AuthorController(IMediator mediator) : BaseController(mediat
     {
         try
         {
-            await _mediator.Send(new RemoveAuthorRequest(id), cancellationToken);
+            await mediator.Send(new RemoveAuthorRequest(id), cancellationToken);
 
             return NoContent();
         }
@@ -63,7 +65,7 @@ public sealed class AuthorController(IMediator mediator) : BaseController(mediat
     {
         try
         {
-            await _mediator.Send(request, cancellationToken);
+            await mediator.Send(request, cancellationToken);
 
             return Ok();
         }

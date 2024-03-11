@@ -1,35 +1,15 @@
 using FluentValidation;
 
-using Portfolio.Authors.Interfaces;
-using Portfolio.Authors.Requests;
 using Portfolio.Utils.Enums;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 
-namespace Portfolio.Authors.Validators;
+namespace Portfolio.Authors.Features.Create;
 
-public sealed class UpdateAuthorValidator : AbstractValidator<UpdateAuthorRequest>
+public sealed class CreateAuthorValidator : AbstractValidator<CreateAuthorRequest>
 {
-    public UpdateAuthorValidator(
-        IAuthorRepository authorRepository,
-        IAuthService authService,
-        ILocalizationService localizationService
-    )
+    public CreateAuthorValidator(ILocalizationService localizationService)
     {
-        RuleFor(request => request.Id)
-            .NotEmpty()
-            .MustAsync(authorRepository.ExistAsync)
-            .Message(localizationService, LocalizationMessages.AuthorNotFound)
-
-            .MustAsync(async (id, cancellationToken) =>
-                await authorRepository.ExistAsync(
-                    author => author.Id == id &&
-                    author.UserId == authService.GetLoggedInUserId(),
-                    cancellationToken
-                )
-            )
-            .Message(localizationService, LocalizationMessages.UnauthorizedOperation);
-
         RuleFor(request => request.Name)
             .NotEmpty()
             .Message(localizationService, LocalizationMessages.NameIsRequired)
