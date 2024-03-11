@@ -1,4 +1,4 @@
-using MediatR;
+using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Users.Features.SignIn;
 

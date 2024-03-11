@@ -1,5 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
-
 using Portfolio.Domain.Entities;
 
 namespace Portfolio.Utils.Interfaces;

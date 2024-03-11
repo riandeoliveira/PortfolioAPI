@@ -26,6 +26,6 @@ public sealed class UpdateAuthorHandler(
         await authorRepository.UpdateAsync(author, cancellationToken);
         await authorRepository.SaveChangesAsync(cancellationToken);
 
-        return new UpdateAuthorResponse(author);
+        return new UpdateAuthorResponse();
     }
 }
