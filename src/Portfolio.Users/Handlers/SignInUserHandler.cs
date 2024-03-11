@@ -23,7 +23,7 @@ public sealed class SignInUserHandler
     {
         await validator.ValidateRequestAsync(request, cancellationToken);
 
-        User user = await userRepository.FindOrThrowAsync((user) => user.Email == request.Email, cancellationToken);
+        User user = await userRepository.FindOrThrowAsync(user => user.Email == request.Email, cancellationToken);
         bool isValidPassword = PasswordExtension.VerifyPassword(request.Password, user.Password);
 
         if (!isValidPassword)

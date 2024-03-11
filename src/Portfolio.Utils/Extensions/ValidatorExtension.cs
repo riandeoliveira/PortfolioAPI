@@ -40,8 +40,7 @@ public static class ValidatorExtension
     )
     {
         ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
-        string errorMessage = result.Errors.First().ErrorMessage;
 
-        if (!result.IsValid) throw new BaseException(errorMessage);
+        if (!result.IsValid) throw new BaseException(result.Errors.First().ErrorMessage);
     }
 }
