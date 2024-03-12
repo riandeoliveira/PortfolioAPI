@@ -5,6 +5,7 @@ using Portfolio.Utils.Exceptions;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
+using Portfolio.Utils.Tools;
 
 namespace Portfolio.Users.Features.SignIn;
 
@@ -20,7 +21,7 @@ public sealed class SignInUserHandler(
         await validator.ValidateOrThrowAsync(request, cancellationToken);
 
         User user = await userRepository.FindOneOrThrowAsync(user => user.Email == request.Email, cancellationToken);
-        bool isValidPassword = PasswordExtension.VerifyPassword(request.Password, user.Password);
+        bool isValidPassword = PasswordTool.Verify(request.Password, user.Password);
 
         if (!isValidPassword)
         {

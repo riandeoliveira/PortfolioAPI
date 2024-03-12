@@ -3,6 +3,7 @@ using Portfolio.Users.Interfaces;
 using Portfolio.Utils.Extensions;
 using Portfolio.Utils.Interfaces;
 using Portfolio.Utils.Messaging;
+using Portfolio.Utils.Tools;
 
 namespace Portfolio.Users.Features.SignUp;
 
@@ -16,7 +17,7 @@ public sealed class SignUpUserHandler(
     {
         await validator.ValidateOrThrowAsync(request, cancellationToken);
 
-        string hashedPassword = PasswordExtension.HashPassword(request.Password.Trim());
+        string hashedPassword = PasswordTool.Hash(request.Password.Trim());
 
         User user = new()
         {
