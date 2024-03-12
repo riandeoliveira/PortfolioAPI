@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Portfolio.Users.Features.SignIn;
 using Portfolio.Users.Features.SignUp;
+using Portfolio.Users.Features.Update;
 using Portfolio.Users.Interfaces;
 using Portfolio.Users.Repositories;
 
@@ -22,6 +23,7 @@ public static class UserExtension
 
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<SignInUserValidator>()
-            .AddScoped<SignUpUserValidator>();
+            .AddScoped<SignUpUserValidator>()
+            .AddScoped<UpdateUserValidator>();
     }
 }
