@@ -1,3 +1,7 @@
+using System.Reflection;
+
+using MediatR;
+
 using Microsoft.Extensions.DependencyInjection;
 
 using Portfolio.Users.Features.SignIn;
@@ -12,6 +16,10 @@ public static class UserExtension
     public static IServiceCollection AddUserDependencies(this IServiceCollection services)
     {
         return services
+            .AddMediatR(configuration =>
+                configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly())
+            )
+
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<SignInUserValidator>()
             .AddScoped<SignUpUserValidator>();
