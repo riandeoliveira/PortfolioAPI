@@ -5,8 +5,7 @@ using Portfolio.Utils.Interfaces;
 namespace Portfolio.Utils.Repositories;
 
 public abstract partial class BaseRepository<TEntity>(
-    DatabaseContext databaseContext,
-    ILocalizationService localizationService
+    DatabaseContext databaseContext
 ) : IBaseRepository<TEntity> where TEntity : BaseEntity
 {
 }

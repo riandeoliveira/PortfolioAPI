@@ -12,13 +12,13 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
 
     Task<bool> ExistAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<TEntity>> FindManyOrThrowAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<IEnumerable<TEntity>> FindManyAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<IEnumerable<TEntity>> FindManyOrThrowAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
+    Task<IEnumerable<TEntity>> FindManyAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
-    Task<TEntity> FindOneOrThrowAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<TEntity?> FindOneAsync(Guid id, CancellationToken cancellationToken = default);
 
-    Task<TEntity> FindOneOrThrowAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
+    Task<TEntity?> FindOneAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
     Task RemoveHardAsync(TEntity entity, CancellationToken cancellationToken = default);
 
