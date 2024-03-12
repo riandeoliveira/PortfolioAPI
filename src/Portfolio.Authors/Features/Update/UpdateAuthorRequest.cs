@@ -2,8 +2,7 @@ using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Authors.Features.Update;
 
-public sealed record UpdateAuthorRequest
-(
+public sealed record UpdateAuthorRequest(
     Guid Id,
     string Name,
     string FullName,

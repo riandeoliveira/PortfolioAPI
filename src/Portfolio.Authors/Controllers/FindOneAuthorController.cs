@@ -12,7 +12,7 @@ public sealed partial class AuthorController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> FindAsync([FromRoute] Guid id, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> FindOneAsync([FromRoute] Guid id, CancellationToken cancellationToken = default)
     {
         try
         {

@@ -2,8 +2,7 @@ using Portfolio.Utils.Messaging;
 
 namespace Portfolio.Authors.Features.Create;
 
-public sealed record CreateAuthorRequest
-(
+public sealed record CreateAuthorRequest(
     string Name,
     string FullName,
     string Position,
