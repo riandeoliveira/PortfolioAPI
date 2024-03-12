@@ -3,6 +3,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
 using Portfolio.Authors.Features.Create;
+using Portfolio.Authors.Features.FindOne;
 using Portfolio.Authors.Features.Remove;
 using Portfolio.Authors.Features.Update;
 using Portfolio.Authors.Interfaces;
@@ -20,6 +21,7 @@ public static class AuthorExtension
             )
 
             .AddScoped<CreateAuthorValidator>()
+            .AddScoped<FindOneAuthorValidator>()
             .AddScoped<IAuthorRepository, AuthorRepository>()
             .AddScoped<RemoveAuthorValidator>()
             .AddScoped<UpdateAuthorValidator>();
