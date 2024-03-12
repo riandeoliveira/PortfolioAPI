@@ -1,16 +1,14 @@
 using Portfolio.Api.Configurations;
 
-using SharpDotEnv;
-
-DotEnv.Config();
-
 await WebApplication.CreateBuilder(args)
-    .ConfigureAuthentication()
+    .ConfigureEnvironment()
     .ConfigureContext()
-    .ConfigureControllers()
     .ConfigureDependencies()
-    .ConfigureDocumentation()
     .ConfigureLocalization()
+    .ConfigureAuthentication()
+    .ConfigureControllers()
+    .ConfigureDocumentation()
+
     .Build()
     .ConfigureApplication()
     .RunAsync();
