@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Authors", "src/Po
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Domain", "src/Portfolio.Domain/Portfolio.Domain.csproj", "{8F90A0C9-92F1-4B45-B46F-3D630BFA9C09}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Scripts", "scripts/Portfolio.Scripts.csproj", "{2F10C411-0CCB-476C-865B-7441B05731BC}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Users", "src/Portfolio.Users/Portfolio.Users.csproj", "{D9F141D8-3E1E-4753-AD02-531E95725A05}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Utils", "src/Portfolio.Utils/Portfolio.Utils.csproj", "{B73AC042-2532-40A6-85D7-27D963C9C9C4}"
@@ -33,6 +35,11 @@ Global
 		{8F90A0C9-92F1-4B45-B46F-3D630BFA9C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F90A0C9-92F1-4B45-B46F-3D630BFA9C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F90A0C9-92F1-4B45-B46F-3D630BFA9C09}.Release|Any CPU.Build.0 = Release|Any CPU
+
+    {2f10c411-0ccb-476c-865b-7441b05731bc}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2f10c411-0ccb-476c-865b-7441b05731bc}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2f10c411-0ccb-476c-865b-7441b05731bc}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2f10c411-0ccb-476c-865b-7441b05731bc}.Release|Any CPU.Build.0 = Release|Any CPU
 
     {D9F141D8-3E1E-4753-AD02-531E95725A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9F141D8-3E1E-4753-AD02-531E95725A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
