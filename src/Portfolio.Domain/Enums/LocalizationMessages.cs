@@ -1,0 +1,31 @@
+namespace Portfolio.Domain.Enums;
+
+public enum LocalizationMessages
+{
+    AuthorNotFound,
+    AvatarUrlIsRequired,
+    DescriptionIsRequired,
+    EmailAlreadyExists,
+    EmailIsNotRegistered,
+    EmailIsRequired,
+    EntityNotFound,
+    FullNameIsRequired,
+    InvalidEmail,
+    InvalidLoginCredentials,
+    MaximumAvatarUrlLength,
+    MaximumDescriptionLength,
+    MaximumEmailLength,
+    MaximumFullNameLength,
+    MaximumNameLength,
+    MaximumPasswordLength,
+    MaximumPositionLength,
+    MaximumSpotifyAccountNameLength,
+    MinimumEmailLength,
+    MinimumPasswordLength,
+    NameIsRequired,
+    PasswordIsRequired,
+    PositionIsRequired,
+    StrongPassword,
+    UnauthorizedOperation,
+    UserNotFound,
+}
