@@ -1,4 +1,3 @@
-
 using Portfolio.Domain.Enums;
 using Portfolio.Domain.Interfaces;
 
