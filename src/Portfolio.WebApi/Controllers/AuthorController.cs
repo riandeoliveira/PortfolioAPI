@@ -29,6 +29,7 @@ public sealed class AuthorController(IMediator mediator) : ControllerBase
         try
         {
             CreateAuthorResponse response = await mediator.Send(request, cancellationToken);
+
             return StatusCode((int) HttpStatusCode.Created, response.Author);
         }
         catch (Exception exception)

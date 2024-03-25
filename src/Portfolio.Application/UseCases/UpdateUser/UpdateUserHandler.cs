@@ -23,8 +23,8 @@ public sealed class UpdateUserHandler(
             cancellationToken
         );
 
-        user.Email = request.Email;
-        user.Password = request.Password;
+        user.Email = request.Email.Trim();
+        user.Password = request.Password.Trim();
 
         await userRepository.UpdateAsync(user, cancellationToken);
         await userRepository.SaveChangesAsync(cancellationToken);

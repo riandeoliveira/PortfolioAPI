@@ -17,12 +17,12 @@ public sealed class UpdateAuthorHandler(
 
         Author author = await authorRepository.FindOneOrThrowAsync(request.Id, cancellationToken);
 
-        author.Name = request.Name;
-        author.FullName = request.FullName;
-        author.Position = request.Position;
-        author.Description = request.Description;
-        author.AvatarUrl = request.AvatarUrl;
-        author.SpotifyAccountName = request.SpotifyAccountName;
+        author.Name = request.Name.Trim();
+        author.FullName = request.FullName.Trim();
+        author.Position = request.Position.Trim();
+        author.Description = request.Description.Trim();
+        author.AvatarUrl = request.AvatarUrl.Trim();
+        author.SpotifyAccountName = request.SpotifyAccountName?.Trim();
 
         await authorRepository.UpdateAsync(author, cancellationToken);
         await authorRepository.SaveChangesAsync(cancellationToken);
