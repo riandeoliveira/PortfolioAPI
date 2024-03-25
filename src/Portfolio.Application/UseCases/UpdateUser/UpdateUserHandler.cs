@@ -25,7 +25,6 @@ public sealed class UpdateUserHandler(
 
         user.Email = request.Email;
         user.Password = request.Password;
-        user.UpdatedAt = DateTime.Now;
 
         await userRepository.UpdateAsync(user, cancellationToken);
         await userRepository.SaveChangesAsync(cancellationToken);

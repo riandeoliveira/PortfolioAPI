@@ -23,7 +23,6 @@ public sealed class UpdateAuthorHandler(
         author.Description = request.Description;
         author.AvatarUrl = request.AvatarUrl;
         author.SpotifyAccountName = request.SpotifyAccountName;
-        author.UpdatedAt = DateTime.Now;
 
         await authorRepository.UpdateAsync(author, cancellationToken);
         await authorRepository.SaveChangesAsync(cancellationToken);

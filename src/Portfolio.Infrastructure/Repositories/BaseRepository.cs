@@ -139,6 +139,8 @@ public abstract class BaseRepository<TEntity>(
     /// <param name="cancellationToken">A token to cancel the operation.</param>
     public async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
+        entity.UpdatedAt = DateTime.Now;
+
         await Task.Run(() => databaseContext.Set<TEntity>().Update(entity), cancellationToken);
     }
 }
