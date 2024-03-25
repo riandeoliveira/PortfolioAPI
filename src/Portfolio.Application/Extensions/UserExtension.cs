@@ -2,6 +2,7 @@ using System.Reflection;
 
 using Microsoft.Extensions.DependencyInjection;
 
+using Portfolio.Application.UseCases.RemoveUser;
 using Portfolio.Application.UseCases.SignInUser;
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Application.UseCases.UpdateUser;
@@ -20,6 +21,7 @@ public static class UserExtension
             )
 
             .AddScoped<IUserRepository, UserRepository>()
+            .AddScoped<RemoveUserValidator>()
             .AddScoped<SignInUserValidator>()
             .AddScoped<SignUpUserValidator>()
             .AddScoped<UpdateUserValidator>();

@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using Portfolio.Application.UseCases.RemoveUser;
 using Portfolio.Application.UseCases.SignInUser;
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Application.Users.UpdateUser;
@@ -16,6 +17,25 @@ namespace Portfolio.WebApi.Controllers;
 [Route("api/user")]
 public sealed class UserController(IMediator mediator) : ControllerBase
 {
+    [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> RemoveAsync(CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            await mediator.Send(new RemoveUserRequest(), cancellationToken);
+
+            return NoContent();
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception.Message);
+        }
+    }
+
     [HttpPost("sign-in")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
