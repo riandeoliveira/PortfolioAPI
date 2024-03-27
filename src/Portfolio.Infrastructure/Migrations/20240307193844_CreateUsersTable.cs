@@ -21,10 +21,7 @@ namespace Portfolio.Infrastructure.Migrations
                     updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     excluded_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_users", x => x.id);
-                });
+                constraints: table => table.PrimaryKey("PK_users", x => x.id));
         }
 
         /// <inheritdoc />

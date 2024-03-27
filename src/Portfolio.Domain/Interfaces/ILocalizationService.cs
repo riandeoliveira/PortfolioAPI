@@ -1,6 +1,6 @@
-using Portfolio.Domain.Enums;
-
 using Microsoft.Extensions.Localization;
+
+using Portfolio.Domain.Enums;
 
 namespace Portfolio.Domain.Interfaces;
 
