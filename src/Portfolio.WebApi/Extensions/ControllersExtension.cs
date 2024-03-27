@@ -10,7 +10,7 @@ public static class ControllerExtension
     {
         builder.Services
             .AddProblemDetails()
-            .AddControllers()
+            .AddControllersWithViews()
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower);
 
         builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
