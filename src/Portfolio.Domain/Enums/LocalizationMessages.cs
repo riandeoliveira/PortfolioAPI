@@ -9,6 +9,7 @@ public enum LocalizationMessages
     EmailIsNotRegistered,
     EmailIsRequired,
     EntityNotFound,
+    EquivalentPasswords,
     FullNameIsRequired,
     InvalidEmail,
     InvalidLoginCredentials,

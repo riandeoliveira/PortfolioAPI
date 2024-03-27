@@ -12,6 +12,7 @@
   <data name="InvalidLoginCredentials" xml:space="preserve"><value>O 'e-mail' ou 'senha' são inválidos.</value></data>
 
   <!-- Password -->
+  <data name="EquivalentPasswords" xml:space="preserve"><value>As 'senhas' devem ser equivalentes.</value></data>
   <data name="MaximumPasswordLength" xml:space="preserve"><value>A 'senha' deve possuir no máximo 64 carateres.</value></data>
   <data name="MinimumPasswordLength" xml:space="preserve"><value>A 'senha' deve possuir no mínimo 8 carateres.</value></data>
   <data name="PasswordIsRequired" xml:space="preserve"><value>A 'senha' deve ser informada.</value></data>
