@@ -13,6 +13,7 @@ public static class InfraExtension
         return services
             .AddScoped<IAuthService, AuthService>()
             .AddScoped<ILocalizationService, LocalizationService>()
+            .AddScoped<IMailService, MailService>()
             .AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
     }
 }
