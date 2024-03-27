@@ -5,7 +5,9 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+using Portfolio.Application.UseCases.ForgotUserPassword;
 using Portfolio.Application.UseCases.RemoveUser;
+using Portfolio.Application.UseCases.ResetUserPassword;
 using Portfolio.Application.UseCases.SignInUser;
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Application.Users.UpdateUser;
@@ -15,8 +17,27 @@ namespace Portfolio.WebApi.Controllers;
 [ApiController]
 [Produces("application/json")]
 [Route("api/user")]
-public sealed class UserController(IMediator mediator) : ControllerBase
+public sealed class UserController(IMediator mediator) : Controller
 {
+    [HttpPost("forgot-password")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> ForgotPasswordAsync([FromBody] ForgotUserPasswordRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            ForgotUserPasswordResponse response = await mediator.Send(request, cancellationToken);
+
+            return Ok(response);
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception.Message);
+        }
+    }
+
+    [Authorize]
     [HttpDelete]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -27,6 +48,26 @@ public sealed class UserController(IMediator mediator) : ControllerBase
         try
         {
             await mediator.Send(new RemoveUserRequest(), cancellationToken);
+
+            return NoContent();
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception.Message);
+        }
+    }
+
+    [Authorize]
+    [HttpPost("reset-password")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> ResetPasswordAsync([FromBody] ResetUserPasswordRequest request, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            ResetUserPasswordResponse response = await mediator.Send(request, cancellationToken);
 
             return NoContent();
         }
