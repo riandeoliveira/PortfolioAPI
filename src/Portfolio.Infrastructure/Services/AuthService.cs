@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 
 using Portfolio.Domain.Constants;
-using Portfolio.Domain.Entities;
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Interfaces;
 
 namespace Portfolio.Infrastructure.Services;
@@ -17,7 +17,7 @@ public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAut
     private readonly JwtSecurityTokenHandler _tokenHandler = new();
     private readonly SymmetricSecurityKey _securityKey = new(Encoding.ASCII.GetBytes(EnvironmentVariables.JWT_SECRET));
 
-    public string GenerateToken(User user)
+    public string GenerateToken(UserDto user)
     {
         Claim[] claims =
         [

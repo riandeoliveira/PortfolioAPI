@@ -1,5 +1,8 @@
+using Mapster;
+
 using MediatR;
 
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Enums;
 using Portfolio.Domain.Exceptions;
@@ -28,7 +31,7 @@ public sealed class SignInUserHandler(
             throw new BaseException(localizationService, LocalizationMessages.InvalidLoginCredentials);
         }
 
-        string token = authService.GenerateToken(user);
+        string token = authService.GenerateToken(user.Adapt<UserDto>());
 
         return new SignInUserResponse(token, user.Id);
     }

@@ -1,5 +1,8 @@
+using Mapster;
+
 using MediatR;
 
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;
@@ -29,7 +32,7 @@ public sealed class SignUpUserHandler(
 
         await userRepository.SaveChangesAsync(cancellationToken);
 
-        string token = authService.GenerateToken(createdUser);
+        string token = authService.GenerateToken(createdUser.Adapt<UserDto>());
 
         return new SignUpUserResponse(token, createdUser.Id);
     }

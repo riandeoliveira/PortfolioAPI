@@ -1,10 +1,10 @@
-using Portfolio.Domain.Entities;
+using Portfolio.Domain.Dtos;
 
 namespace Portfolio.Domain.Interfaces;
 
 public interface IAuthService
 {
-    string GenerateToken(User user);
+    string GenerateToken(UserDto user);
 
     Guid GetLoggedInUserId();
 

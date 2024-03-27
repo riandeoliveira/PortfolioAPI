@@ -1,5 +1,8 @@
+using Mapster;
+
 using MediatR;
 
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;
@@ -17,6 +20,6 @@ public sealed class FindOneAuthorHandler(
 
         Author author = await authorRepository.FindOneOrThrowAsync(request.Id, cancellationToken);
 
-        return new FindOneAuthorResponse(author);
+        return new FindOneAuthorResponse(author.Adapt<AuthorDto>());
     }
 }

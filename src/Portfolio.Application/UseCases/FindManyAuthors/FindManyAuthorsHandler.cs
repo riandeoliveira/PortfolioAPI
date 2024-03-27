@@ -1,5 +1,8 @@
+using Mapster;
+
 using MediatR;
 
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;
@@ -21,6 +24,6 @@ public sealed class FindManyAuthorsHandler(
             cancellationToken
         );
 
-        return new FindManyAuthorsResponse(authors);
+        return new FindManyAuthorsResponse(authors.Adapt<IEnumerable<AuthorDto>>());
     }
 }

@@ -1,3 +1,5 @@
+using Mapster;
+
 using MediatR;
 
 using Portfolio.Domain.Constants;
@@ -25,7 +27,7 @@ public sealed class ForgotUserPasswordHandler(
             cancellationToken
         );
 
-        string token = authService.GenerateToken(user);
+        string token = authService.GenerateToken(user.Adapt<UserDto>());
 
         ForgotUserPasswordViewModel viewModel = new(user.Email, token, EnvironmentVariables.CLIENT_URL);
         MailSenderDto mailSender = new(

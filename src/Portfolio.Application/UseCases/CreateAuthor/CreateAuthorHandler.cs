@@ -1,5 +1,8 @@
+using Mapster;
+
 using MediatR;
 
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;
@@ -31,6 +34,6 @@ public sealed class CreateAuthorHandler(
 
         await authorRepository.SaveChangesAsync(cancellationToken);
 
-        return new CreateAuthorResponse(createdAuthor);
+        return new CreateAuthorResponse(createdAuthor.Adapt<AuthorDto>());
     }
 }

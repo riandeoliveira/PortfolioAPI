@@ -1,5 +1,5 @@
-using Portfolio.Domain.Entities;
+using Portfolio.Domain.Dtos;
 
 namespace Portfolio.Application.UseCases.CreateAuthor;
 
-public sealed record CreateAuthorResponse(Author Author);
+public sealed record CreateAuthorResponse(AuthorDto Author);
