@@ -53,23 +53,6 @@
   </style>
 </head>
 
-<div class="flex-container">
-  <div class="flex-item">
-    <h1>Olá!</h1>
-    <p>
-      Foi feita uma solicitação de redefinição de senha para sua conta:
-      <a href="mailto:@Model.Email">@Model.Email</a>
-    </p>
-    <p>Por favor, clique no link abaixo para redefinir sua senha:</p>
-    <div class="button-container">
-      <a href="@Model.ClientUrl/user/reset-password?token=@Model.Token" rel="external" class="button">Redefinir
-        Senha</a>
-    </div>
-    <p>
-      Se você não solicitou uma <strong>redefinição de senha</strong>, por
-      favor, ignore este e-mail.
-    </p>
-  </div>
-</div>
+@RenderBody()
 
 </html>
