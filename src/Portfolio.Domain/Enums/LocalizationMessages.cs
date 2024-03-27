@@ -25,6 +25,7 @@ public enum LocalizationMessages
     MinimumPasswordLength,
     NameIsRequired,
     PasswordIsRequired,
+    PasswordResetRequest,
     PositionIsRequired,
     StrongPassword,
     UnauthorizedOperation,

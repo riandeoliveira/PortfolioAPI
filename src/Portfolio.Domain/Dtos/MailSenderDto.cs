@@ -1,8 +1,10 @@
+using Portfolio.Domain.Enums;
+
 namespace Portfolio.Domain.Dtos;
 
 public sealed record MailSenderDto(
     string Recipient,
-    string? Subject,
-    string? ViewPath,
+    LocalizationMessages Subject,
+    string? ViewName,
     object? ViewModel
 );

@@ -36,6 +36,7 @@
   <data name="PositionIsRequired" xml:space="preserve"><value>O 'cargo' deve ser informado.</value></data>
 
   <!-- Others -->
-  <data name="UnauthorizedOperation" xml:space="preserve"><value>Você não possui permissão para realizar esta ação.</value></data>
   <data name="EntityNotFound" xml:space="preserve"><value>Nenhuma entidade encontrada.</value></data>
+  <data name="PasswordResetRequest" xml:space="preserve"><value>Solicitação de redefinição de senha</value></data>
+  <data name="UnauthorizedOperation" xml:space="preserve"><value>Você não possui permissão para realizar esta ação.</value></data>
 </root>

@@ -9,7 +9,7 @@ using Razor.Templating.Core;
 
 namespace Portfolio.Infrastructure.Services;
 
-public sealed class MailService : IMailService
+public sealed class MailService(ILocalizationService localizationService) : IMailService
 {
     public async Task SendMailAsync(MailSenderDto mailSender, CancellationToken cancellationToken = default)
     {
@@ -21,14 +21,15 @@ public sealed class MailService : IMailService
             Port = int.Parse(EnvironmentVariables.MAIL_PORT)
         };
 
-        string? html = await RazorTemplateEngine.RenderAsync($"/Views/{mailSender.ViewPath}", mailSender.ViewModel);
+        string? culture = localizationService.GetCultureName();
+        string? html = await RazorTemplateEngine.RenderAsync($"/Views/{culture}/{mailSender.ViewName}.cshtml", mailSender.ViewModel);
 
         MailMessage mailMessage = new()
         {
             Body = html,
             From = new MailAddress(EnvironmentVariables.MAIL_SENDER),
             IsBodyHtml = true,
-            Subject = mailSender.Subject,
+            Subject = localizationService.GetKey(mailSender.Subject),
         };
 
         mailMessage.To.Add(mailSender.Recipient);
