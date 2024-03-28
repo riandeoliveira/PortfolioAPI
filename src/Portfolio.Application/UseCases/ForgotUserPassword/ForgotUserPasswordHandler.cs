@@ -39,6 +39,6 @@ public sealed class ForgotUserPasswordHandler(
 
         await mailService.SendMailAsync(mailSender, cancellationToken);
 
-        return new ForgotUserPasswordResponse(token);
+        return new ForgotUserPasswordResponse();
     }
 }

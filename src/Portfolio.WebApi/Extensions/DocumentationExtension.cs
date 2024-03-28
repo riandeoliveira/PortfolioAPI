@@ -59,6 +59,7 @@ public static class DocumentationExtension
             {
                 option.AddSecurityDefinition("Bearer", openApiSecurityScheme);
                 option.AddSecurityRequirement(openApiSecurityRequirement);
+                option.EnableAnnotations();
                 option.OperationFilter<AddHeaderParameter>();
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "Portfolio API", Version = "v1" });
             });
