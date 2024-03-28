@@ -6,25 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.Filters;
-
-public class SignUpUserRequestModel
-{
-    public string Email { get; set; }
-    public string Password { get; set; }
-}
-
-public class SignUpUserRequestModelExample : IExamplesProvider<SignUpUserRequestModel>
-{
-    public SignUpUserRequestModel GetExamples()
-    {
-        return new SignUpUserRequestModel
-        {
-            Email = "denji@email.com",
-            Password = "DENJIZINHO12345",
-        };
-    }
-}
 
 namespace Portfolio.Application.UseCases.SignUpUser
 {
@@ -48,7 +29,6 @@ namespace Portfolio.Application.UseCases.SignUpUser
             OperationId = "SignUpUser",
             Tags = ["User"]
         )]
-        [SwaggerRequestExample(typeof(SignUpUserRequestModel), typeof(SignUpUserRequestModelExample))]
         public async Task<IActionResult> Handle([FromBody] SignUpUserRequest request, CancellationToken cancellationToken = default)
         {
             try
