@@ -1,6 +1,5 @@
 using FluentValidation;
 
-using Portfolio.Application.Users.UpdateUser;
 using Portfolio.Domain.Enums;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;

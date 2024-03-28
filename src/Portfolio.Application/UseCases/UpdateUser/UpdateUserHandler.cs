@@ -1,11 +1,10 @@
 using MediatR;
 
-using Portfolio.Application.UseCases.UpdateUser;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;
 
-namespace Portfolio.Application.Users.UpdateUser;
+namespace Portfolio.Application.UseCases.UpdateUser;
 
 public sealed class UpdateUserHandler(
     IAuthService authService,

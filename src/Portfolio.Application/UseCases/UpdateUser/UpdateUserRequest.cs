@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Portfolio.Application.Users.UpdateUser;
+namespace Portfolio.Application.UseCases.UpdateUser;
 
 public sealed record UpdateUserRequest(
     Guid Id,
