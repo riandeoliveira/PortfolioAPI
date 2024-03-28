@@ -1,7 +1,5 @@
 using Mapster;
 
-using MediatR;
-
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;

@@ -1,4 +1,4 @@
-using MediatR;
+using Portfolio.Domain.Interfaces;
 
 namespace Portfolio.Application.UseCases.ResetUserPassword;
 
