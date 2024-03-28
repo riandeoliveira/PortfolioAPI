@@ -12,5 +12,3 @@ await WebApplication.CreateBuilder(args)
     .Build()
     .ConfigureApplication()
     .RunAsync();
-
-public partial class Program;

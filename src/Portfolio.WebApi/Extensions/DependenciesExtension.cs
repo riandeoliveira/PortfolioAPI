@@ -3,9 +3,9 @@ using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.WebApi.Extensions;
 
-public static class DependenciesExtension
+internal static class DependenciesExtension
 {
-    public static WebApplicationBuilder ConfigureDependencies(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder ConfigureDependencies(this WebApplicationBuilder builder)
     {
         builder.Services
             .AddAuthorDependencies()

@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Localization;
 
 namespace Portfolio.WebApi.Extensions;
 
-public static class LocalizationExtension
+internal static class LocalizationExtension
 {
-    public static WebApplicationBuilder ConfigureLocalization(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder ConfigureLocalization(this WebApplicationBuilder builder)
     {
         builder.Services
             .AddLocalization(options => options.ResourcesPath = "Resources")

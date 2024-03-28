@@ -4,9 +4,9 @@ using Serilog;
 
 namespace Portfolio.WebApi.Extensions;
 
-public static class ApplicationExtension
+internal static class ApplicationExtension
 {
-    public static WebApplication ConfigureApplication(this WebApplication application)
+    internal static WebApplication ConfigureApplication(this WebApplication application)
     {
         if (application.Environment.IsDevelopment())
         {

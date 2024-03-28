@@ -8,7 +8,7 @@ using Portfolio.Infrastructure.Contexts;
 
 namespace Portfolio.Infrastructure.Repositories;
 
-public class UserRepository(
+public sealed class UserRepository(
     DatabaseContext databaseContext,
     ILocalizationService localizationService
 ) : BaseRepository<User>(databaseContext), IUserRepository

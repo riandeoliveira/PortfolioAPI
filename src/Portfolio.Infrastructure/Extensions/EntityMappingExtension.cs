@@ -5,9 +5,9 @@ using Portfolio.Domain.Entities;
 
 namespace Portfolio.Infrastructure.Extensions;
 
-public static class EntityMappingExtension
+internal static class EntityMappingExtension
 {
-    public static void ConfigureAuditProperties<TEntity>(this EntityTypeBuilder<TEntity> builder, string table) where TEntity : BaseEntity
+    internal static void ConfigureAuditProperties<TEntity>(this EntityTypeBuilder<TEntity> builder, string table) where TEntity : BaseEntity
     {
         builder
             .ToTable(table)

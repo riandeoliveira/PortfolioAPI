@@ -5,7 +5,7 @@ using FluentValidation.Validators;
 
 namespace Portfolio.Infrastructure.Validators;
 
-public class PasswordValidator<T, TProperty> : PropertyValidator<T, TProperty>
+internal class PasswordValidator<T, TProperty> : PropertyValidator<T, TProperty>
 {
     public override string Name => "PasswordValidator";
 

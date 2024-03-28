@@ -8,7 +8,7 @@ using Portfolio.Infrastructure.Contexts;
 
 namespace Portfolio.Infrastructure.Repositories;
 
-public class AuthorRepository(
+public sealed class AuthorRepository(
     DatabaseContext databaseContext,
     IAuthService authService,
     ILocalizationService localizationService

@@ -5,9 +5,9 @@ using Portfolio.Infrastructure.Contexts;
 
 namespace Portfolio.WebApi.Extensions;
 
-public static class ContextExtension
+internal static class ContextExtension
 {
-    public static WebApplicationBuilder ConfigureContext(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder ConfigureContext(this WebApplicationBuilder builder)
     {
         string connectionString =
         $@"

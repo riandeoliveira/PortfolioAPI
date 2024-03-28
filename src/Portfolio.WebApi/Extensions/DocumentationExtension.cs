@@ -5,7 +5,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Portfolio.WebApi.Extensions;
 
-public sealed class AddHeaderParameter : IOperationFilter
+internal sealed class AddHeaderParameter : IOperationFilter
 {
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
@@ -25,9 +25,9 @@ public sealed class AddHeaderParameter : IOperationFilter
     }
 }
 
-public static class DocumentationExtension
+internal static class DocumentationExtension
 {
-    public static WebApplicationBuilder ConfigureDocumentation(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder ConfigureDocumentation(this WebApplicationBuilder builder)
     {
         OpenApiSecurityScheme openApiSecurityScheme = new()
         {

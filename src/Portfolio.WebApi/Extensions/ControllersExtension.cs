@@ -4,9 +4,9 @@ using Serilog;
 
 namespace Portfolio.WebApi.Extensions;
 
-public static class ControllerExtension
+internal static class ControllerExtension
 {
-    public static WebApplicationBuilder ConfigureControllers(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder ConfigureControllers(this WebApplicationBuilder builder)
     {
         builder.Services
             .AddProblemDetails()

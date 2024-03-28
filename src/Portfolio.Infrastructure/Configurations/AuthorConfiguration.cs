@@ -6,7 +6,7 @@ using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Infrastructure.Configurations;
 
-public sealed class AuthorConfiguration : IEntityTypeConfiguration<Author>
+internal sealed class AuthorConfiguration : IEntityTypeConfiguration<Author>
 {
     public void Configure(EntityTypeBuilder<Author> builder)
     {

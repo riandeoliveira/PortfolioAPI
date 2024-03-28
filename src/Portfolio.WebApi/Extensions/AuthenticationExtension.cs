@@ -7,9 +7,9 @@ using Portfolio.Domain.Constants;
 
 namespace Portfolio.WebApi.Extensions;
 
-public static class AuthenticationExtension
+internal static class AuthenticationExtension
 {
-    public static WebApplicationBuilder ConfigureAuthentication(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder ConfigureAuthentication(this WebApplicationBuilder builder)
     {
         builder.Services
             .AddAuthorization()
