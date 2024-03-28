@@ -8,41 +8,40 @@ using Portfolio.Domain.Dtos;
 
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Portfolio.Application.UseCases.FindOneAuthor
+namespace Portfolio.Application.UseCases.FindOneAuthor;
+
+/// <summary>
+/// Endpoint for finding a single author by ID.
+/// </summary>
+public sealed class FindOneAuthorEndpoint(IMediator mediator) : AuthorEndpoint
 {
     /// <summary>
-    /// Endpoint for finding a single author by ID.
+    /// Handles the request to find a single author by ID.
     /// </summary>
-    public sealed class FindOneAuthorEndpoint(IMediator mediator) : AuthorEndpoint
+    /// <param name="id">The ID of the author to find.</param>
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AuthorDto))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [SwaggerOperation(
+        Description = "Finds a single author by ID and returns their details.",
+        OperationId = "FindOneAuthor",
+        Tags = ["Author"]
+    )]
+    public async Task<IActionResult> Handle([FromRoute] Guid id, CancellationToken cancellationToken = default)
     {
-        /// <summary>
-        /// Handles the request to find a single author by ID.
-        /// </summary>
-        /// <param name="id">The ID of the author to find.</param>
-        /// <param name="cancellationToken">A token to cancel the operation.</param>
-        /// <returns>A task representing the asynchronous operation.</returns>
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AuthorDto))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
-        [SwaggerOperation(
-            Description = "Finds a single author by ID and returns their details.",
-            OperationId = "FindOneAuthor",
-            Tags = ["Author"]
-        )]
-        public async Task<IActionResult> Handle([FromRoute] Guid id, CancellationToken cancellationToken = default)
+        try
         {
-            try
-            {
-                FindOneAuthorResponse response = await mediator.Send(new FindOneAuthorRequest(id), cancellationToken);
+            FindOneAuthorResponse response = await mediator.Send(new FindOneAuthorRequest(id), cancellationToken);
 
-                return Ok(response.Author);
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
+            return Ok(response.Author);
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception.Message);
         }
     }
 }

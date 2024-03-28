@@ -8,40 +8,39 @@ using Portfolio.Domain.Dtos;
 
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Portfolio.Application.UseCases.FindManyAuthors
+namespace Portfolio.Application.UseCases.FindManyAuthors;
+
+/// <summary>
+/// Endpoint for finding multiple authors.
+/// </summary>
+public sealed class FindManyAuthorsEndpoint(IMediator mediator) : AuthorEndpoint
 {
     /// <summary>
-    /// Endpoint for finding multiple authors.
+    /// Handles the request to find multiple authors.
     /// </summary>
-    public sealed class FindManyAuthorsEndpoint(IMediator mediator) : AuthorEndpoint
+    /// <param name="cancellationToken">A token to cancel the operation.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
+    [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AuthorDto>))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [SwaggerOperation(
+        Description = "Finds multiple authors and returns their details.",
+        OperationId = "FindManyAuthors",
+        Tags = ["Author"]
+    )]
+    public async Task<IActionResult> Handle(CancellationToken cancellationToken = default)
     {
-        /// <summary>
-        /// Handles the request to find multiple authors.
-        /// </summary>
-        /// <param name="cancellationToken">A token to cancel the operation.</param>
-        /// <returns>A task representing the asynchronous operation.</returns>
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<AuthorDto>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetails))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
-        [SwaggerOperation(
-            Description = "Finds multiple authors and returns their details.",
-            OperationId = "FindManyAuthors",
-            Tags = ["Author"]
-        )]
-        public async Task<IActionResult> Handle(CancellationToken cancellationToken = default)
+        try
         {
-            try
-            {
-                FindManyAuthorsResponse response = await mediator.Send(new FindManyAuthorsRequest(), cancellationToken);
+            FindManyAuthorsResponse response = await mediator.Send(new FindManyAuthorsRequest(), cancellationToken);
 
-                return Ok(response.Authors);
-            }
-            catch (Exception exception)
-            {
-                return BadRequest(exception.Message);
-            }
+            return Ok(response.Authors);
+        }
+        catch (Exception exception)
+        {
+            return BadRequest(exception.Message);
         }
     }
 }
