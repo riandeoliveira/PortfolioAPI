@@ -2,6 +2,7 @@ using System.Reflection;
 
 using Microsoft.Extensions.DependencyInjection;
 
+using Portfolio.Application.UseCases.FindCurrentUser;
 using Portfolio.Application.UseCases.ForgotUserPassword;
 using Portfolio.Application.UseCases.RemoveUser;
 using Portfolio.Application.UseCases.ResetUserPassword;
@@ -22,6 +23,7 @@ public static class UserExtension
                 configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly())
             )
 
+            .AddScoped<FindCurrentUserValidator>()
             .AddScoped<ForgotUserPasswordValidator>()
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<RemoveUserValidator>()
