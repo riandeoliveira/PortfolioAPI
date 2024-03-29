@@ -6,7 +6,7 @@
   //
   // Diff Editor
   //
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   //
   // Editor
   //
