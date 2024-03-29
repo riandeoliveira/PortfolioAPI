@@ -22,14 +22,6 @@ public static class UserExtension
             .AddMediatR(configuration =>
                 configuration.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly())
             )
-
-            .AddScoped<FindCurrentUserValidator>()
-            .AddScoped<ForgotUserPasswordValidator>()
-            .AddScoped<IUserRepository, UserRepository>()
-            .AddScoped<RemoveUserValidator>()
-            .AddScoped<ResetUserPasswordValidator>()
-            .AddScoped<SignInUserValidator>()
-            .AddScoped<SignUpUserValidator>()
-            .AddScoped<UpdateUserValidator>();
+            .AddScoped<IUserRepository, UserRepository>();
     }
 }

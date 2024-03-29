@@ -1,18 +1,14 @@
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
-using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Application.UseCases.UpdateAuthor;
 
 public sealed class UpdateAuthorHandler(
-    IAuthorRepository authorRepository,
-    UpdateAuthorValidator validator
+    IAuthorRepository authorRepository
 ) : IRequestHandler<UpdateAuthorRequest, UpdateAuthorResponse>
 {
     public async Task<UpdateAuthorResponse> Handle(UpdateAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        await validator.ValidateOrThrowAsync(request, cancellationToken);
-
         Author author = await authorRepository.FindOneOrThrowAsync(request.Id, cancellationToken);
 
         author.Name = request.Name.Trim();

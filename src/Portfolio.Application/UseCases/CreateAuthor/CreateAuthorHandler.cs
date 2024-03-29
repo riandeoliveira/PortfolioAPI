@@ -3,20 +3,16 @@ using Mapster;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
-using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Application.UseCases.CreateAuthor;
 
 public sealed class CreateAuthorHandler(
-    CreateAuthorValidator validator,
     IAuthorRepository authorRepository,
     IAuthService authService
 ) : IRequestHandler<CreateAuthorRequest, CreateAuthorResponse>
 {
     public async Task<CreateAuthorResponse> Handle(CreateAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        await validator.ValidateOrThrowAsync(request, cancellationToken);
-
         Author author = new()
         {
             Name = request.Name.Trim(),

@@ -32,15 +32,4 @@ public static class ValidatorExtension
     {
         return ruleBuilder.SetValidator(new PasswordValidator<T, TProperty>());
     }
-
-    public static async Task ValidateOrThrowAsync<TRequest>(
-        this AbstractValidator<TRequest> validator,
-        TRequest request,
-        CancellationToken cancellationToken = default
-    )
-    {
-        ValidationResult result = await validator.ValidateAsync(request, cancellationToken);
-
-        if (!result.IsValid) throw new BaseException(result.Errors.First().ErrorMessage);
-    }
 }

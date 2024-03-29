@@ -3,21 +3,17 @@ using Mapster;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
-using Portfolio.Infrastructure.Extensions;
 using Portfolio.Infrastructure.Tools;
 
 namespace Portfolio.Application.UseCases.SignUpUser;
 
 public sealed class SignUpUserHandler(
     IAuthService authService,
-    IUserRepository userRepository,
-    SignUpUserValidator validator
+    IUserRepository userRepository
 ) : IRequestHandler<SignUpUserRequest, SignUpUserResponse>
 {
     public async Task<SignUpUserResponse> Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
-        await validator.ValidateOrThrowAsync(request, cancellationToken);
-
         string hashedPassword = PasswordTool.Hash(request.Password.Trim());
 
         User user = new()
