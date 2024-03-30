@@ -2,10 +2,7 @@ using System.Text.Json;
 
 using FluentValidation;
 
-using MediatR;
-
 using Portfolio.Application.Endpoints;
-using Portfolio.Infrastructure.Behaviors;
 
 using Serilog;
 

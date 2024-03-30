@@ -1,8 +1,6 @@
 using FluentValidation;
-using FluentValidation.Results;
 
 using Portfolio.Domain.Enums;
-using Portfolio.Domain.Exceptions;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Validators;
 
