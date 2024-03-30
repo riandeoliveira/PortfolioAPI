@@ -26,7 +26,7 @@ public class ConversionBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
 
         foreach (PropertyInfo property in stringProperties)
         {
-            string? value = (string) property.GetValue(request);
+            string? value = (string?) property.GetValue(request);
 
             if (value is not null) property.SetValue(request, value.Trim());
         }
