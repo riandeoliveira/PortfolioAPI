@@ -17,6 +17,7 @@ internal static class ControllerExtension
     {
         builder.Services
             .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>))
+            .AddTransient(typeof(IPipelineBehavior<,>), typeof(ConversionBehavior<,>))
             .AddValidatorsFromAssemblyContaining<BaseEndpoint>()
             .AddProblemDetails()
             .AddControllersWithViews()

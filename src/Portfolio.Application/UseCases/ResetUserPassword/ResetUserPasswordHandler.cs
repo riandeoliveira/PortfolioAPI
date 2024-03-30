@@ -13,7 +13,7 @@ public sealed class ResetUserPasswordHandler(
     {
         User user = await userRepository.FindOneOrThrowAsync(authService.GetLoggedInUserId(), cancellationToken);
 
-        string hashedPassword = PasswordTool.Hash(request.Password.Trim());
+        string hashedPassword = PasswordTool.Hash(request.Password);
 
         user.Password = hashedPassword;
 

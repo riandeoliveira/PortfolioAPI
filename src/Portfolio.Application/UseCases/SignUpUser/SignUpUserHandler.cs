@@ -14,11 +14,11 @@ public sealed class SignUpUserHandler(
 {
     public async Task<SignUpUserResponse> Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
-        string hashedPassword = PasswordTool.Hash(request.Password.Trim());
+        string hashedPassword = PasswordTool.Hash(request.Password);
 
         User user = new()
         {
-            Email = request.Email.Trim(),
+            Email = request.Email,
             Password = hashedPassword
         };
 

@@ -15,12 +15,12 @@ public sealed class CreateAuthorHandler(
     {
         Author author = new()
         {
-            Name = request.Name.Trim(),
-            FullName = request.FullName.Trim(),
-            Position = request.Position.Trim(),
-            Description = request.Description.Trim(),
-            AvatarUrl = request.AvatarUrl.Trim(),
-            SpotifyAccountName = request.SpotifyAccountName?.Trim(),
+            Name = request.Name,
+            FullName = request.FullName,
+            Position = request.Position,
+            Description = request.Description,
+            AvatarUrl = request.AvatarUrl,
+            SpotifyAccountName = request.SpotifyAccountName,
             UserId = authService.GetLoggedInUserId()
         };
 
