@@ -7,6 +7,7 @@ using Portfolio.Application.Endpoints;
 using Portfolio.Domain.Dtos;
 
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.FindOneAuthor;
 
@@ -31,6 +32,7 @@ public sealed class FindOneAuthorEndpoint(IMediator mediator) : AuthorEndpoint
         OperationId = "FindOneAuthor",
         Tags = ["Author"]
     )]
+    [SwaggerRequestExample(typeof(FindOneAuthorRequest), typeof(FindOneAuthorExample))]
     public async Task<IActionResult> Handle([FromRoute] Guid id, CancellationToken cancellationToken = default)
     {
         try

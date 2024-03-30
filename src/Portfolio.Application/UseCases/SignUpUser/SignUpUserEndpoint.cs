@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.SignUpUser;
 
@@ -29,6 +30,7 @@ public sealed class SignUpUserEndpoint(IMediator mediator) : UserEndpoint
         OperationId = "SignUpUser",
         Tags = ["User"]
     )]
+    [SwaggerRequestExample(typeof(SignUpUserRequest), typeof(SignUpUserExample))]
     public async Task<IActionResult> Handle([FromBody] SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
         try

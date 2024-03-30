@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.ResetUserPassword;
 
@@ -32,6 +33,7 @@ public sealed class ResetUserEndpoint(IMediator mediator) : UserEndpoint
         OperationId = "ResetUserPassword",
         Tags = ["User"]
     )]
+    [SwaggerRequestExample(typeof(ResetUserPasswordRequest), typeof(ResetUserPasswordExample))]
     public async Task<IActionResult> Handle([FromBody] ResetUserPasswordRequest request, CancellationToken cancellationToken = default)
     {
         try

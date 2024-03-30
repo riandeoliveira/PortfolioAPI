@@ -1,6 +1,9 @@
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
+using Portfolio.Application.Endpoints;
+
+using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Portfolio.WebApi.Extensions;
@@ -55,11 +58,13 @@ internal static class DocumentationExtension
 
         builder.Services
             .AddEndpointsApiExplorer()
+            .AddSwaggerExamplesFromAssemblyOf<BaseEndpoint>()
             .AddSwaggerGen(option =>
             {
                 option.AddSecurityDefinition("Bearer", openApiSecurityScheme);
                 option.AddSecurityRequirement(openApiSecurityRequirement);
                 option.EnableAnnotations();
+                option.ExampleFilters();
                 option.OperationFilter<AddHeaderParameter>();
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "Portfolio API", Version = "v1" });
             });

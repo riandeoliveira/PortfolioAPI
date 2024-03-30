@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.RemoveUser;
 
@@ -31,6 +32,7 @@ public sealed class RemoveUserEndpoint(IMediator mediator) : UserEndpoint
         OperationId = "RemoveUser",
         Tags = ["User"]
     )]
+    [SwaggerRequestExample(typeof(RemoveUserRequest), typeof(RemoveUserExample))]
     public async Task<IActionResult> Handle(CancellationToken cancellationToken = default)
     {
         try

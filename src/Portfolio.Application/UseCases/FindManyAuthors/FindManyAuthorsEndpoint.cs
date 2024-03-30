@@ -7,6 +7,7 @@ using Portfolio.Application.Endpoints;
 using Portfolio.Domain.Dtos;
 
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.FindManyAuthors;
 
@@ -30,6 +31,7 @@ public sealed class FindManyAuthorsEndpoint(IMediator mediator) : AuthorEndpoint
         OperationId = "FindManyAuthors",
         Tags = ["Author"]
     )]
+    [SwaggerRequestExample(typeof(FindManyAuthorsRequest), typeof(FindManyAuthorsExample))]
     public async Task<IActionResult> Handle(CancellationToken cancellationToken = default)
     {
         try
