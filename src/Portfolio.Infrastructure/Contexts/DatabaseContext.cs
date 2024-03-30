@@ -5,7 +5,7 @@ using Portfolio.Infrastructure.Configurations;
 
 namespace Portfolio.Infrastructure.Contexts;
 
-public class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbContext(options)
+public sealed class DatabaseContext(DbContextOptions<DatabaseContext> options) : DbContext(options)
 {
     public DbSet<Author> Authors => Set<Author>();
     public DbSet<User> Users => Set<User>();

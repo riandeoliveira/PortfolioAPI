@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Portfolio.Infrastructure.Behaviors;
 
-public class ConversionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
+public sealed class ConversionBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {
     public async Task<TResponse> Handle(
         TRequest request,
