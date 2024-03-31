@@ -18,6 +18,8 @@ public enum LocalizationMessages
     MaximumEmailLength,
     MaximumFullNameLength,
     MaximumNameLength,
+    MaximumPageNumberLength,
+    MaximumPageSizeLength,
     MaximumPasswordLength,
     MaximumPositionLength,
     MaximumSpotifyAccountNameLength,

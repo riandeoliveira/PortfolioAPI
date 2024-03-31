@@ -37,6 +37,8 @@
 
   <!-- Others -->
   <data name="EntityNotFound" xml:space="preserve"><value>No entity found.</value></data>
+  <data name="MaximumPageNumberLength" xml:space="preserve"><value>The 'page number' must be less than or equal to 100.</value></data>
+  <data name="MaximumPageSizeLength" xml:space="preserve"><value>The 'page size' must be less than or equal to 100.</value></data>
   <data name="PasswordResetRequest" xml:space="preserve"><value>Password reset request</value></data>
   <data name="UnauthorizedOperation" xml:space="preserve"><value>You do not have permission to perform this action.</value></data>
 </root>
