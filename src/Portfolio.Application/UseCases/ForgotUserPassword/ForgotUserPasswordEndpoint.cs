@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.ForgotUserPassword;
 
@@ -30,7 +29,6 @@ public sealed class ForgotUserEndpoint(IMediator mediator) : UserEndpoint
         OperationId = "ForgotUserPassword",
         Tags = ["User"]
     )]
-    [SwaggerRequestExample(typeof(ForgotUserPasswordRequest), typeof(ForgotUserPasswordExample))]
     public async Task<IActionResult> Handle([FromBody] ForgotUserPasswordRequest request, CancellationToken cancellationToken = default)
     {
         try

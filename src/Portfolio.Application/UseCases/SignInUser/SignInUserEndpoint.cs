@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.SignInUser;
 
@@ -30,7 +29,6 @@ public sealed class SignInUserEndpoint(IMediator mediator) : UserEndpoint
         OperationId = "SignInUser",
         Tags = ["User"]
     )]
-    [SwaggerRequestExample(typeof(SignInUserRequest), typeof(SignInUserExample))]
     public async Task<IActionResult> Handle([FromBody] SignInUserRequest request, CancellationToken cancellationToken = default)
     {
         try

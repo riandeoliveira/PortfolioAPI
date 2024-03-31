@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.UpdateAuthor;
 
@@ -31,7 +30,6 @@ public sealed class UpdateAuthorEndpoint(IMediator mediator) : AuthorEndpoint
         OperationId = "UpdateAuthor",
         Tags = ["Author"]
     )]
-    [SwaggerRequestExample(typeof(UpdateAuthorRequest), typeof(UpdateAuthorExample))]
     public async Task<IActionResult> Handle([FromBody] UpdateAuthorRequest request, CancellationToken cancellationToken = default)
     {
         try

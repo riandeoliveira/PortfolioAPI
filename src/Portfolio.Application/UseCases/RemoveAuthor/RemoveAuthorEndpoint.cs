@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.RemoveAuthor;
 
@@ -31,7 +30,6 @@ public sealed class RemoveAuthorEndpoint(IMediator mediator) : AuthorEndpoint
         OperationId = "RemoveAuthor",
         Tags = ["Author"]
     )]
-    [SwaggerRequestExample(typeof(RemoveAuthorRequest), typeof(RemoveAuthorExample))]
     public async Task<IActionResult> Handle([FromRoute] Guid id, CancellationToken cancellationToken = default)
     {
         try

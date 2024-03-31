@@ -7,7 +7,6 @@ using Portfolio.Application.Endpoints;
 using Portfolio.Domain.Dtos;
 
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.CreateAuthor;
 
@@ -32,7 +31,6 @@ public sealed class CreateAuthorEndpoint(IMediator mediator) : AuthorEndpoint
         OperationId = "CreateAuthor",
         Tags = ["Author"]
     )]
-    [SwaggerRequestExample(typeof(CreateAuthorRequest), typeof(CreateAuthorExample))]
     public async Task<IActionResult> Handle([FromBody] CreateAuthorRequest request, CancellationToken cancellationToken = default)
     {
         try

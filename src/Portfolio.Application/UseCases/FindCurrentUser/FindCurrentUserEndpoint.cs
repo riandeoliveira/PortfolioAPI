@@ -8,7 +8,6 @@ using Portfolio.Application.Endpoints;
 using Portfolio.Domain.Dtos;
 
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.FindCurrentUser;
 
@@ -33,7 +32,6 @@ public sealed class FindCurrentUserEndpoint(IMediator mediator) : UserEndpoint
         OperationId = "FindCurrentUser",
         Tags = ["User"]
     )]
-    [SwaggerRequestExample(typeof(FindCurrentUserRequest), typeof(FindCurrentUserExample))]
     public async Task<IActionResult> Handle(CancellationToken cancellationToken = default)
     {
         try

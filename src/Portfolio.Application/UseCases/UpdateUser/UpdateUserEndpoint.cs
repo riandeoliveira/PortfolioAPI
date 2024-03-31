@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Endpoints;
 
 using Swashbuckle.AspNetCore.Annotations;
-using Swashbuckle.AspNetCore.Filters;
 
 namespace Portfolio.Application.UseCases.UpdateUser;
 
@@ -33,7 +32,6 @@ public sealed class UpdateUserEndpoint(IMediator mediator) : UserEndpoint
         OperationId = "UpdateUser",
         Tags = ["User"]
     )]
-    [SwaggerRequestExample(typeof(UpdateUserRequest), typeof(UpdateUserExample))]
     public async Task<IActionResult> Handle([FromBody] UpdateUserRequest request, CancellationToken cancellationToken = default)
     {
         try
