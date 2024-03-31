@@ -5,6 +5,7 @@ using Portfolio.Domain.Enums;
 using Portfolio.Domain.Exceptions;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Contexts;
+using Portfolio.Infrastructure.Repositories.Base;
 
 namespace Portfolio.Infrastructure.Repositories;
 
