@@ -3,6 +3,7 @@ using System.Text.Json;
 using FluentValidation;
 
 using Portfolio.Application.Endpoints;
+using Portfolio.Domain.Constants;
 
 using Serilog;
 
@@ -18,6 +19,8 @@ internal static class ControllerExtension
             .AddProblemDetails()
             .AddControllersWithViews()
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower);
+
+        builder.Services.AddHealthChecks().AddNpgSql(Database.CONNECTION_STRING);
 
         builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
