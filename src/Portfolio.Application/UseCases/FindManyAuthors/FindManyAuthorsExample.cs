@@ -6,6 +6,6 @@ public sealed class FindManyAuthorsExample : BaseEndpointExample<FindManyAuthors
 {
     public override FindManyAuthorsRequest GetExamples()
     {
-        return new FindManyAuthorsRequest();
+        return new FindManyAuthorsRequest(_faker.Random.Number(), _faker.Random.Number());
     }
 }

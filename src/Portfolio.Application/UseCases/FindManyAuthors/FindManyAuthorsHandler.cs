@@ -13,11 +13,18 @@ public sealed class FindManyAuthorsHandler(
 {
     public async Task<FindManyAuthorsResponse> Handle(FindManyAuthorsRequest request, CancellationToken cancellationToken = default)
     {
-        IEnumerable<Author> authors = await authorRepository.FindManyAsync(
+        PaginationDto<Author> response = await authorRepository.PaginateAsync(
             author => author.UserId == authService.GetLoggedInUserId(),
+            request.PageNumber,
+            request.PageSize,
             cancellationToken
         );
 
-        return new FindManyAuthorsResponse(authors.Adapt<IEnumerable<AuthorDto>>());
+        return new FindManyAuthorsResponse(
+            response.PageNumber,
+            response.PageSize,
+            response.TotalPages,
+            response.Entities.Adapt<IEnumerable<AuthorDto>>()
+        );
     }
 }

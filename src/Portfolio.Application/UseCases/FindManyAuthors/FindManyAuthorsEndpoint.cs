@@ -32,13 +32,13 @@ public sealed class FindManyAuthorsEndpoint(IMediator mediator) : AuthorEndpoint
         Tags = ["Author"]
     )]
     [SwaggerRequestExample(typeof(FindManyAuthorsRequest), typeof(FindManyAuthorsExample))]
-    public async Task<IActionResult> Handle(CancellationToken cancellationToken = default)
+    public async Task<IActionResult> Handle([FromQuery] FindManyAuthorsRequest request, CancellationToken cancellationToken = default)
     {
         try
         {
-            FindManyAuthorsResponse response = await mediator.Send(new FindManyAuthorsRequest(), cancellationToken);
+            FindManyAuthorsResponse response = await mediator.Send(request, cancellationToken);
 
-            return Ok(response.Authors);
+            return Ok(response);
         }
         catch (Exception exception)
         {
