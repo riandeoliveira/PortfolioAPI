@@ -11,13 +11,6 @@ internal static class ContextExtension
     {
         builder.Services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(Database.CONNECTION_STRING));
 
-        using (IServiceScope scope = builder.Services.BuildServiceProvider().CreateScope())
-        {
-            DatabaseContext context = scope.ServiceProvider.GetRequiredService<DatabaseContext>();
-
-            context.Database.Migrate();
-        }
-
         return builder;
     }
 }
