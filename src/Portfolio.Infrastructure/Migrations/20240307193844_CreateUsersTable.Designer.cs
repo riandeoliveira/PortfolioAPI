@@ -40,9 +40,9 @@ namespace Portfolio.Infrastructure.Migrations
                         .HasColumnType("character varying(64)")
                         .HasColumnName("email");
 
-                    b.Property<DateTime?>("ExcludedAt")
+                    b.Property<DateTime?>("RemovedAt")
                         .HasColumnType("timestamp without time zone")
-                        .HasColumnName("excluded_at");
+                        .HasColumnName("removed_at");
 
                     b.Property<string>("Password")
                         .IsRequired()

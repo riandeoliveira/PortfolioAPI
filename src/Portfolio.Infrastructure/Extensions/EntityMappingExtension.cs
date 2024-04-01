@@ -23,7 +23,7 @@ internal static class EntityMappingExtension
             .HasColumnName("updated_at");
 
         builder
-            .Property(e => e.ExcludedAt)
-            .HasColumnName("excluded_at");
+            .Property(e => e.RemovedAt)
+            .HasColumnName("removed_at");
     }
 }

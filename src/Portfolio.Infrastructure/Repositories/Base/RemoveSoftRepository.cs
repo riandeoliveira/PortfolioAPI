@@ -6,7 +6,7 @@ public abstract partial class BaseRepository<TEntity>
     {
         await Task.Run(() =>
         {
-            entity.ExcludedAt = DateTime.Now;
+            entity.RemovedAt = DateTime.Now;
 
             databaseContext.Set<TEntity>().Update(entity);
         }, cancellationToken);

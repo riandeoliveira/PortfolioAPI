@@ -24,7 +24,7 @@ namespace Portfolio.Infrastructure.Migrations
                     user_id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    excluded_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    removed_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -16,55 +16,55 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>Asynchronously checks if an entity with the specified ID exists and is not excluded.</summary>
+    /// <summary>Asynchronously checks if an entity with the specified ID exists and is not removed.</summary>
     /// <param name="id">The ID of the entity to check.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
-    /// <returns>True if the entity exists and is not excluded, false otherwise.</returns>
+    /// <returns>True if the entity exists and is not removed, false otherwise.</returns>
     Task<bool> ExistAsync(
         Guid id,
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>Asynchronously checks if an entity matching the specified predicate exists and is not excluded.</summary>
+    /// <summary>Asynchronously checks if an entity matching the specified predicate exists and is not removed.</summary>
     /// <param name="predicate">The predicate to match the entity.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
-    /// <returns>True if the entity exists and is not excluded, false otherwise.</returns>
+    /// <returns>True if the entity exists and is not removed, false otherwise.</returns>
     Task<bool> ExistAsync(
         Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>Asynchronously finds entities with the specified ID that are not excluded.</summary>
+    /// <summary>Asynchronously finds entities with the specified ID that are not removed.</summary>
     /// <param name="id">The ID of the entities to find.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
-    /// <returns>A collection of entities that match the specified ID and are not excluded.</returns>
+    /// <returns>A collection of entities that match the specified ID and are not removed.</returns>
     Task<IEnumerable<TEntity>> FindManyAsync(
         Guid id,
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>Asynchronously finds entities that match the specified predicate and are not excluded.</summary>
+    /// <summary>Asynchronously finds entities that match the specified predicate and are not removed.</summary>
     /// <param name="predicate">The predicate to match the entities.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
-    /// <returns>A collection of entities that match the specified predicate and are not excluded.</returns>
+    /// <returns>A collection of entities that match the specified predicate and are not removed.</returns>
     Task<IEnumerable<TEntity>> FindManyAsync(
         Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>Asynchronously finds a single entity with the specified ID that is not excluded.</summary>
+    /// <summary>Asynchronously finds a single entity with the specified ID that is not removed.</summary>
     /// <param name="id">The ID of the entity to find.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
-    /// <returns>The entity that matches the specified ID and is not excluded, or null if no such entity exists.</returns>
+    /// <returns>The entity that matches the specified ID and is not removed, or null if no such entity exists.</returns>
     Task<TEntity?> FindOneAsync(
         Guid id,
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>Asynchronously finds a single entity that matches the specified predicate and is not excluded.</summary>
+    /// <summary>Asynchronously finds a single entity that matches the specified predicate and is not removed.</summary>
     /// <param name="predicate">The predicate to match the entity.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
-    /// <returns>The entity that matches the specified predicate and is not excluded, or null if no such entity exists.</returns>
+    /// <returns>The entity that matches the specified predicate and is not removed, or null if no such entity exists.</returns>
     Task<TEntity?> FindOneAsync(
         Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken = default
@@ -108,8 +108,8 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>Asynchronously marks an entity as excluded without deleting it from the database.</summary>
-    /// <param name="entity">The entity to be marked as excluded.</param>
+    /// <summary>Asynchronously marks an entity as removed without deleting it from the database.</summary>
+    /// <param name="entity">The entity to be marked as removed.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>
     Task RemoveSoftAsync(
         TEntity entity,

@@ -16,7 +16,7 @@ public abstract partial class BaseRepository<TEntity>
         CancellationToken cancellationToken = default
     )
     {
-        Expression<Func<TEntity, bool>> predicate = entity => entity.Id == id && !entity.ExcludedAt.HasValue;
+        Expression<Func<TEntity, bool>> predicate = entity => entity.Id == id && !entity.RemovedAt.HasValue;
 
         return await PaginateAsync(predicate, pageNumber, pageSize, cancellationToken);
     }
