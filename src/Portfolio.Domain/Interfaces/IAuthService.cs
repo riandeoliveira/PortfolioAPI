@@ -4,7 +4,7 @@ namespace Portfolio.Domain.Interfaces;
 
 public interface IAuthService
 {
-    string GenerateToken(UserDto user);
+    TokenDto GenerateToken(UserDto user);
 
     Guid GetLoggedInUserId();
 

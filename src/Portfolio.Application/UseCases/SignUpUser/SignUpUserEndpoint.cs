@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using Portfolio.Application.Endpoints;
+using Portfolio.Domain.Dtos;
 
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -21,7 +22,7 @@ public sealed class SignUpUserEndpoint(IMediator mediator) : UserEndpoint
     /// <param name="cancellationToken">A token to cancel the operation.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
     [HttpPost("sign-up")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SignUpUserResponse))]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TokenDto))]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
     [SwaggerOperation(
@@ -35,7 +36,7 @@ public sealed class SignUpUserEndpoint(IMediator mediator) : UserEndpoint
         {
             SignUpUserResponse response = await mediator.Send(request, cancellationToken);
 
-            return StatusCode(StatusCodes.Status200OK, response);
+            return StatusCode(StatusCodes.Status200OK, response.TokenDto);
         }
         catch (Exception exception)
         {

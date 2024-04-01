@@ -27,8 +27,8 @@ public sealed class SignUpUserHandler(
 
         await unitOfWork.CommitAsync(cancellationToken);
 
-        string token = authService.GenerateToken(createdUser.Adapt<UserDto>());
+        TokenDto tokenDto = authService.GenerateToken(createdUser.Adapt<UserDto>());
 
-        return new SignUpUserResponse(token, createdUser.Id);
+        return new SignUpUserResponse(tokenDto);
     }
 }

@@ -25,8 +25,8 @@ public sealed class SignInUserHandler(
             throw new BaseException(localizationService, LocalizationMessages.InvalidLoginCredentials);
         }
 
-        string token = authService.GenerateToken(user.Adapt<UserDto>());
+        TokenDto tokenDto = authService.GenerateToken(user.Adapt<UserDto>());
 
-        return new SignInUserResponse(token, user.Id);
+        return new SignInUserResponse(tokenDto);
     }
 }

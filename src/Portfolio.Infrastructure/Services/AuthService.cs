@@ -13,30 +13,39 @@ namespace Portfolio.Infrastructure.Services;
 
 public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAuthService
 {
-    private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
     private readonly JwtSecurityTokenHandler _tokenHandler = new();
-    private readonly SymmetricSecurityKey _securityKey = new(Encoding.ASCII.GetBytes(EnvironmentVariables.JWT_SECRET));
 
-    public string GenerateToken(UserDto user)
+    public TokenDto GenerateToken(UserDto user)
     {
         Claim[] claims =
         [
-            new("id", user.Id.ToString()),
-            new("email", user.Email)
+            new Claim("id", user.Id.ToString()),
+            new Claim("email", user.Email)
         ];
 
-        SigningCredentials credentials = new(_securityKey, SecurityAlgorithms.HmacSha256Signature);
+        SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(EnvironmentVariables.JWT_SECRET));
+        SigningCredentials credentials = new(key, SecurityAlgorithms.HmacSha256Signature);
+
+        DateTime expires = DateTime.UtcNow.AddHours(24);
 
         SecurityTokenDescriptor tokenDescriptor = new()
         {
+            Issuer = EnvironmentVariables.JWT_ISSUER,
+            Audience = EnvironmentVariables.JWT_AUDIENCE,
             Subject = new ClaimsIdentity(claims),
+            Expires = expires,
             SigningCredentials = credentials
         };
 
-        SecurityToken token = _tokenHandler.CreateToken(tokenDescriptor);
-        string result = _tokenHandler.WriteToken(token);
+        SecurityToken securityToken = _tokenHandler.CreateToken(tokenDescriptor);
+        string token = _tokenHandler.WriteToken(securityToken);
 
-        return $"Bearer {result}";
+        return new TokenDto(
+            Token: $"Bearer {token}",
+            RefreshToken: $"Bearer {token}",
+            Expires: new DateTimeOffset(expires).ToUnixTimeSeconds(),
+            UserId: user.Id
+        );
     }
 
     public Guid GetLoggedInUserId()
@@ -50,7 +59,7 @@ public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAut
 
     public string? GetToken()
     {
-        string? authorizationHeader = _httpContextAccessor.HttpContext?.Request.Headers.Authorization.ToString();
+        string? authorizationHeader = httpContextAccessor.HttpContext?.Request.Headers.Authorization.ToString();
 
         if (string.IsNullOrWhiteSpace(authorizationHeader)) return null;
 
