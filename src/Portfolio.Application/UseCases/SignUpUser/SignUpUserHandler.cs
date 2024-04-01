@@ -9,6 +9,7 @@ namespace Portfolio.Application.UseCases.SignUpUser;
 
 public sealed class SignUpUserHandler(
     IAuthService authService,
+    IUnitOfWork unitOfWork,
     IUserRepository userRepository
 ) : IRequestHandler<SignUpUserRequest, SignUpUserResponse>
 {
@@ -24,7 +25,7 @@ public sealed class SignUpUserHandler(
 
         User createdUser = await userRepository.CreateAsync(user, cancellationToken);
 
-        await userRepository.SaveChangesAsync(cancellationToken);
+        await unitOfWork.CommitAsync(cancellationToken);
 
         string token = authService.GenerateToken(createdUser.Adapt<UserDto>());
 

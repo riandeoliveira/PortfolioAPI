@@ -6,6 +6,7 @@ namespace Portfolio.Application.UseCases.RemoveUser;
 public sealed class RemoveUserHandler(
     IAuthorRepository authorRepository,
     IAuthService authService,
+    IUnitOfWork unitOfWork,
     IUserRepository userRepository
 ) : IRequestHandler<RemoveUserRequest, RemoveUserResponse>
 {
@@ -27,9 +28,7 @@ public sealed class RemoveUserHandler(
         }
 
         await userRepository.RemoveSoftAsync(user, cancellationToken);
-
-        await authorRepository.SaveChangesAsync(cancellationToken);
-        await userRepository.SaveChangesAsync(cancellationToken);
+        await unitOfWork.CommitAsync(cancellationToken);
 
         return new RemoveUserResponse();
     }

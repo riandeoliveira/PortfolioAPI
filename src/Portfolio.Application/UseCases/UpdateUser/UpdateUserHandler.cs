@@ -5,6 +5,7 @@ namespace Portfolio.Application.UseCases.UpdateUser;
 
 public sealed class UpdateUserHandler(
     IAuthService authService,
+    IUnitOfWork unitOfWork,
     IUserRepository userRepository
 ) : IRequestHandler<UpdateUserRequest, UpdateUserResponse>
 {
@@ -20,7 +21,7 @@ public sealed class UpdateUserHandler(
         user.Password = request.Password;
 
         await userRepository.UpdateAsync(user, cancellationToken);
-        await userRepository.SaveChangesAsync(cancellationToken);
+        await unitOfWork.CommitAsync(cancellationToken);
 
         return new UpdateUserResponse();
     }

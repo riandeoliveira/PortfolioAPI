@@ -116,12 +116,6 @@ public interface IBaseRepository<TEntity> where TEntity : BaseEntity
         CancellationToken cancellationToken = default
     );
 
-    /// <summary>Asynchronously saves all changes made in this context to the database.</summary>
-    /// <param name="cancellationToken">A token to cancel the operation.</param>
-    Task SaveChangesAsync(
-        CancellationToken cancellationToken = default
-    );
-
     /// <summary>Asynchronously updates an entity in the database.</summary>
     /// <param name="entity">The entity to be updated.</param>
     /// <param name="cancellationToken">A token to cancel the operation.</param>

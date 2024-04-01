@@ -4,7 +4,8 @@ using Portfolio.Domain.Interfaces;
 namespace Portfolio.Application.UseCases.UpdateAuthor;
 
 public sealed class UpdateAuthorHandler(
-    IAuthorRepository authorRepository
+    IAuthorRepository authorRepository,
+    IUnitOfWork unitOfWork
 ) : IRequestHandler<UpdateAuthorRequest, UpdateAuthorResponse>
 {
     public async Task<UpdateAuthorResponse> Handle(UpdateAuthorRequest request, CancellationToken cancellationToken = default)
@@ -19,7 +20,7 @@ public sealed class UpdateAuthorHandler(
         author.SpotifyAccountName = request.SpotifyAccountName;
 
         await authorRepository.UpdateAsync(author, cancellationToken);
-        await authorRepository.SaveChangesAsync(cancellationToken);
+        await unitOfWork.CommitAsync(cancellationToken);
 
         return new UpdateAuthorResponse();
     }

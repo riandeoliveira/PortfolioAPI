@@ -6,6 +6,7 @@ namespace Portfolio.Application.UseCases.ResetUserPassword;
 
 public sealed class ResetUserPasswordHandler(
     IAuthService authService,
+    IUnitOfWork unitOfWork,
     IUserRepository userRepository
 ) : IRequestHandler<ResetUserPasswordRequest, ResetUserPasswordResponse>
 {
@@ -18,7 +19,7 @@ public sealed class ResetUserPasswordHandler(
         user.Password = hashedPassword;
 
         await userRepository.UpdateAsync(user, cancellationToken);
-        await userRepository.SaveChangesAsync(cancellationToken);
+        await unitOfWork.CommitAsync(cancellationToken);
 
         return new ResetUserPasswordResponse();
     }

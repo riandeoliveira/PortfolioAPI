@@ -8,7 +8,8 @@ namespace Portfolio.Application.UseCases.CreateAuthor;
 
 public sealed class CreateAuthorHandler(
     IAuthorRepository authorRepository,
-    IAuthService authService
+    IAuthService authService,
+    IUnitOfWork unitOfWork
 ) : IRequestHandler<CreateAuthorRequest, CreateAuthorResponse>
 {
     public async Task<CreateAuthorResponse> Handle(CreateAuthorRequest request, CancellationToken cancellationToken = default)
@@ -26,7 +27,7 @@ public sealed class CreateAuthorHandler(
 
         Author createdAuthor = await authorRepository.CreateAsync(author, cancellationToken);
 
-        await authorRepository.SaveChangesAsync(cancellationToken);
+        await unitOfWork.CommitAsync(cancellationToken);
 
         return new CreateAuthorResponse(createdAuthor.Adapt<AuthorDto>());
     }

@@ -4,7 +4,8 @@ using Portfolio.Domain.Interfaces;
 namespace Portfolio.Application.UseCases.RemoveAuthor;
 
 public sealed class RemoveAuthorHandler(
-    IAuthorRepository authorRepository
+    IAuthorRepository authorRepository,
+    IUnitOfWork unitOfWork
 ) : IRequestHandler<RemoveAuthorRequest, RemoveAuthorResponse>
 {
     public async Task<RemoveAuthorResponse> Handle(RemoveAuthorRequest request, CancellationToken cancellationToken = default)
@@ -12,7 +13,7 @@ public sealed class RemoveAuthorHandler(
         Author author = await authorRepository.FindOneOrThrowAsync(request.Id, cancellationToken);
 
         await authorRepository.RemoveSoftAsync(author, cancellationToken);
-        await authorRepository.SaveChangesAsync(cancellationToken);
+        await unitOfWork.CommitAsync(cancellationToken);
 
         return new RemoveAuthorResponse();
     }
