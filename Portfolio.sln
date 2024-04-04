@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.WebApi", "src/Portfolio.WebApi/Portfolio.WebApi.csproj", "{5A6AAC9E-C3F8-46F6-A903-16F3FC3D25AB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.WebApi.IntegrationTests", "tests/Portfolio.WebApi.IntegrationTests/Portfolio.WebApi.IntegrationTests.csproj", "{FDDA0E9D-FF8A-4F64-8995-046430B4A2B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,11 @@ Global
 		{5A6AAC9E-C3F8-46F6-A903-16F3FC3D25AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A6AAC9E-C3F8-46F6-A903-16F3FC3D25AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A6AAC9E-C3F8-46F6-A903-16F3FC3D25AB}.Release|Any CPU.Build.0 = Release|Any CPU
+
+    {FDDA0E9D-FF8A-4F64-8995-046430B4A2B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDDA0E9D-FF8A-4F64-8995-046430B4A2B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDDA0E9D-FF8A-4F64-8995-046430B4A2B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDDA0E9D-FF8A-4F64-8995-046430B4A2B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
