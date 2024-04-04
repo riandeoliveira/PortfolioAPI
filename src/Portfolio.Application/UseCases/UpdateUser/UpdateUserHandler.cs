@@ -1,3 +1,4 @@
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
 
@@ -11,9 +12,11 @@ public sealed class UpdateUserHandler(
 {
     public async Task<UpdateUserResponse> Handle(UpdateUserRequest request, CancellationToken cancellationToken = default)
     {
+        UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
+
         User user = await userRepository.FindOneOrThrowAsync(
             user => user.Id == request.Id &&
-            user.Id == authService.GetLoggedInUserId(),
+            user.Id == userDto.Id,
             cancellationToken
         );
 

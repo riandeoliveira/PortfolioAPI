@@ -21,9 +21,9 @@ public sealed class ForgotUserPasswordHandler(
             cancellationToken
         );
 
-        TokenDto tokenDto = authService.GenerateToken(user.Adapt<UserDto>());
+        TokenDto tokenDto = await authService.GenerateTokenDataAsync(user.Adapt<UserDto>(), cancellationToken);
 
-        ForgotUserPasswordViewModel viewModel = new(user.Email, tokenDto.Token, EnvironmentVariables.CLIENT_URL);
+        ForgotUserPasswordViewModel viewModel = new(user.Email, tokenDto.AccessToken, EnvironmentVariables.CLIENT_URL);
         MailSenderDto mailSender = new(
             user.Email,
             LocalizationMessages.PasswordResetRequest,

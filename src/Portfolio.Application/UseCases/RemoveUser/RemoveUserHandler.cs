@@ -1,3 +1,4 @@
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
 
@@ -12,13 +13,15 @@ public sealed class RemoveUserHandler(
 {
     public async Task<RemoveUserResponse> Handle(RemoveUserRequest request, CancellationToken cancellationToken = default)
     {
+        UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
+
         User user = await userRepository.FindOneOrThrowAsync(
-            authService.GetLoggedInUserId(),
+            userDto.Id,
             cancellationToken
         );
 
         IEnumerable<Author> authors = await authorRepository.FindManyAsync(
-            author => author.UserId == authService.GetLoggedInUserId(),
+            author => author.UserId == userDto.Id,
             cancellationToken
         );
 

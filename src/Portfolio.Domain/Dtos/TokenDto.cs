@@ -1,7 +1,7 @@
 namespace Portfolio.Domain.Dtos;
 
 public sealed record TokenDto(
-    string Token,
+    string AccessToken,
     string RefreshToken,
     long Expires,
     Guid UserId

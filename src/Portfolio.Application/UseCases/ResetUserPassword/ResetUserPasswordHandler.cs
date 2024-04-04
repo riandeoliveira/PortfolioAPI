@@ -1,3 +1,4 @@
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Tools;
@@ -12,7 +13,8 @@ public sealed class ResetUserPasswordHandler(
 {
     public async Task<ResetUserPasswordResponse> Handle(ResetUserPasswordRequest request, CancellationToken cancellationToken = default)
     {
-        User user = await userRepository.FindOneOrThrowAsync(authService.GetLoggedInUserId(), cancellationToken);
+        UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
+        User user = await userRepository.FindOneOrThrowAsync(userDto.Id, cancellationToken);
 
         string hashedPassword = PasswordTool.Hash(request.Password);
 

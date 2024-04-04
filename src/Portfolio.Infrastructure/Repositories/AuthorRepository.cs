@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
 using Portfolio.Domain.Enums;
 using Portfolio.Domain.Exceptions;
@@ -17,9 +18,11 @@ public sealed class AuthorRepository(
 {
     public async Task<Author> FindOneOrThrowAsync(Guid id, CancellationToken cancellationToken = default)
     {
+        UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
+
         Author? author = await FindOneAsync(
             author => author.Id == id &&
-            author.UserId == authService.GetLoggedInUserId(),
+            author.UserId == userDto.Id,
             cancellationToken
         );
 
@@ -30,8 +33,9 @@ public sealed class AuthorRepository(
 
     public async Task<Author> FindOneOrThrowAsync(Expression<Func<Author, bool>> predicate, CancellationToken cancellationToken = default)
     {
-        Expression<Func<Author, bool>> userIdPredicate = author
-            => author.UserId == authService.GetLoggedInUserId();
+        UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
+
+        Expression<Func<Author, bool>> userIdPredicate = author => author.UserId == userDto.Id;
 
         Expression<Func<Author, bool>> combinedPredicate = Expression.Lambda<Func<Author, bool>>(
             Expression.AndAlso(predicate.Body, userIdPredicate.Body),

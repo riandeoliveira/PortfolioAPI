@@ -1,5 +1,6 @@
 using FluentValidation;
 
+using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Enums;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;
@@ -28,12 +29,17 @@ public sealed class UpdateUserValidator : AbstractValidator<UpdateUserRequest>
             .Message(localizationService, LocalizationMessages.InvalidEmail)
 
             .MustAsync(async (email, cancellationToken) =>
-                !await userRepository.ExistAsync(
+            {
+                UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
+
+                bool emailAlreadyExists = await userRepository.ExistAsync(
                     user => user.Email == email &&
-                    user.Id != authService.GetLoggedInUserId(),
+                    user.Id != userDto.Id,
                     cancellationToken
-                )
-            )
+                );
+
+                return !emailAlreadyExists;
+            })
             .Message(localizationService, LocalizationMessages.EmailAlreadyExists);
 
         RuleFor(request => request.Password)
