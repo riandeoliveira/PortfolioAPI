@@ -1,9 +1,9 @@
 using System.Net.Http.Json;
 using System.Text.Json;
 
-namespace Portfolio.WebApi.IntegrationTests.Extensions;
+namespace Portfolio.Domain.Tests.Extensions;
 
-public static class HttpResponseExtensions
+public static class HttpResponseExtension
 {
     public static async Task<TBody> GetBody<TBody>(this HttpResponseMessage response)
     {

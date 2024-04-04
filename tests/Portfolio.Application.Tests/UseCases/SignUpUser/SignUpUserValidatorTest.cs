@@ -4,10 +4,10 @@ using System.Net.Http.Json;
 using FluentAssertions;
 
 using Portfolio.Application.UseCases.SignUpUser;
-using Portfolio.WebApi.IntegrationTests.Common;
-using Portfolio.WebApi.IntegrationTests.Factories;
+using Portfolio.Domain.Tests.Common;
+using Portfolio.Domain.Tests.Factories;
 
-namespace Portfolio.WebApi.IntegrationTests.UseCaseTests.SignUpUser;
+namespace Portfolio.Application.Tests.UseCases.SignUpUser;
 
 public sealed class SignUpUserValidatorTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
 {
@@ -27,7 +27,7 @@ public sealed class SignUpUserValidatorTest(IntegrationTestWebAppFactory factory
         string message = await response.Content.ReadAsStringAsync();
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
-        message.Trim('"').Should().BeEquivalentTo(expectedMessage);
+        message.Trim('"').Should().Be(expectedMessage);
     }
 
     [InlineData("", "A 'senha' deve ser informada.")]
@@ -46,6 +46,6 @@ public sealed class SignUpUserValidatorTest(IntegrationTestWebAppFactory factory
         string message = await response.Content.ReadAsStringAsync();
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
-        message.Trim('"').Should().BeEquivalentTo(expectedMessage);
+        message.Trim('"').Should().Be(expectedMessage);
     }
 }

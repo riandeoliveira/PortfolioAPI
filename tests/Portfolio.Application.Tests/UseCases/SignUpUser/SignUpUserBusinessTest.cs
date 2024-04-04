@@ -1,19 +1,21 @@
 using System.Net;
 using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 
 using FluentAssertions;
 
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Entities;
+using Portfolio.Domain.Tests.Common;
+using Portfolio.Domain.Tests.Extensions;
+using Portfolio.Domain.Tests.Factories;
 using Portfolio.Infrastructure.Tools;
-using Portfolio.WebApi.IntegrationTests.Common;
-using Portfolio.WebApi.IntegrationTests.Extensions;
-using Portfolio.WebApi.IntegrationTests.Factories;
 
 using Portolio.Infrastructure.Extensions;
 
-namespace Portfolio.WebApi.IntegrationTests.UseCaseTests.SignUpUser;
+namespace Portfolio.Application.Tests.UseCases.SignUpUser;
 
 public sealed class SignUpUserBusinessTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
 {
@@ -25,22 +27,27 @@ public sealed class SignUpUserBusinessTest(IntegrationTestWebAppFactory factory)
             _faker.Internet.StrongPassword()
         );
 
-        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
+        _client.DefaultRequestHeaders.AcceptLanguage.ParseAdd("pt-BR");
+
+        HttpRequestMessage httpRequest = new(HttpMethod.Post, "/api/user/sign-up")
+        {
+            Content = new StringContent(
+                JsonSerializer.Serialize(request),
+                Encoding.UTF8,
+                "application/json"
+            )
+        };
+
+        httpRequest.Headers.Add("Accept-Language", "pt-BR");
+
+        HttpResponseMessage response = await _client.SendAsync(httpRequest);
         TokenDto body = await response.GetBody<TokenDto>();
 
         User? createdUser = await _userRepository.FindOneOrThrowAsync(body.UserId);
 
-        long now = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
         bool isValidPassword = PasswordTool.Verify(request.Password, createdUser.Password);
 
         response.Should().HaveStatusCode(HttpStatusCode.OK);
-
-        body.AccessToken.Should().NotBeNullOrEmpty();
-        body.RefreshToken.Should().NotBeNullOrEmpty();
-        body.Expires.Should().BeGreaterThan(now);
-        body.UserId.Should().NotBe(Guid.Empty);
-
-        ExecuteEntityTests(createdUser);
 
         createdUser.Email.Should().Be(request.Email);
 

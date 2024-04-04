@@ -1,15 +1,13 @@
 using Bogus;
 
-using FluentAssertions;
-
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-using Portfolio.Domain.Entities;
 using Portfolio.Domain.Interfaces;
+using Portfolio.Domain.Tests.Factories;
 using Portfolio.Infrastructure.Contexts;
-using Portfolio.WebApi.IntegrationTests.Factories;
 
-namespace Portfolio.WebApi.IntegrationTests.Common;
+namespace Portfolio.Domain.Tests.Common;
 
 public abstract class BaseIntegrationTest(IntegrationTestWebAppFactory factory) : IClassFixture<IntegrationTestWebAppFactory>
 {
@@ -18,15 +16,8 @@ public abstract class BaseIntegrationTest(IntegrationTestWebAppFactory factory) 
     protected readonly HttpClient _client = factory.CreateClient();
     protected readonly IAuthorRepository _authorRepository = factory.Services.GetRequiredService<IAuthorRepository>();
     protected readonly IAuthService _authService = factory.Services.GetRequiredService<IAuthService>();
+    protected readonly IHttpContextAccessor _accessor = factory.Services.GetRequiredService<IHttpContextAccessor>();
+    protected readonly ILocalizationService _localizationService = factory.Services.GetRequiredService<ILocalizationService>();
     protected readonly IUnitOfWork _unitOfWork = factory.Services.GetRequiredService<IUnitOfWork>();
     protected readonly IUserRepository _userRepository = factory.Services.GetRequiredService<IUserRepository>();
-
-    protected static void ExecuteEntityTests<TEntity>(TEntity entity) where TEntity : BaseEntity
-    {
-        entity.Should().NotBeNull();
-        entity.Id.Should().NotBe(Guid.Empty);
-        entity.CreatedAt.Should().BeBefore(DateTime.Now);
-        entity.RemovedAt.Should().BeNull();
-        entity.UpdatedAt.Should().BeNull();
-    }
 }

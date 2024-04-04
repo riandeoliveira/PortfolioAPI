@@ -7,7 +7,7 @@ using Portfolio.Infrastructure.Contexts;
 
 using Testcontainers.PostgreSql;
 
-namespace Portfolio.WebApi.IntegrationTests.Factories;
+namespace Portfolio.Domain.Tests.Factories;
 
 public sealed class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
