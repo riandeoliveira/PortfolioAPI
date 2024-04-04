@@ -41,4 +41,5 @@
   <data name="MaximumPageSizeLength" xml:space="preserve"><value>O 'tamanho da página' deve ser menor ou igual a 100.</value></data>
   <data name="PasswordResetRequest" xml:space="preserve"><value>Solicitação de redefinição de senha</value></data>
   <data name="UnauthorizedOperation" xml:space="preserve"><value>Você não possui permissão para realizar esta ação.</value></data>
+  <data name="AccessTokenIsRequired" xml:space="preserve"><value>O 'token de acesso' deve ser informado.</value></data>
 </root>

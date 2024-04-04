@@ -41,4 +41,5 @@
   <data name="MaximumPageSizeLength" xml:space="preserve"><value>The 'page size' must be less than or equal to 100.</value></data>
   <data name="PasswordResetRequest" xml:space="preserve"><value>Password reset request</value></data>
   <data name="UnauthorizedOperation" xml:space="preserve"><value>You do not have permission to perform this action.</value></data>
+  <data name="AccessTokenIsRequired" xml:space="preserve"><value>The 'access token' must be provided.</value></data>
 </root>

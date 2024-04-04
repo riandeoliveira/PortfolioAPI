@@ -2,6 +2,7 @@ namespace Portfolio.Domain.Enums;
 
 public enum LocalizationMessages
 {
+    AccessTokenIsRequired,
     AuthorNotFound,
     AvatarUrlIsRequired,
     DescriptionIsRequired,

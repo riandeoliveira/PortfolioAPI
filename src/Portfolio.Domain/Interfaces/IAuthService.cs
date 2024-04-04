@@ -8,9 +8,7 @@ public interface IAuthService
 
     Task<TokenDto> GenerateTokenDataAsync(UserDto user, CancellationToken cancellationToken = default);
 
-    Task<string> GetAccessTokenFromHeaderAsync(CancellationToken cancellationToken = default);
-
     Task<UserDto> GetCurrentUserAsync(CancellationToken cancellationToken = default);
 
-    Task<UserDto> GetUserFromTokenAsync(string accessToken, CancellationToken cancellationToken = default);
+    Task<UserDto> GetUserFromAccessTokenAsync(string accessToken, CancellationToken cancellationToken = default);
 }

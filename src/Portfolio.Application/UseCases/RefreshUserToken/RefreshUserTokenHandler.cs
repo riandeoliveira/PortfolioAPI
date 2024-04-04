@@ -11,7 +11,7 @@ public sealed class RefreshUserTokenHandler(
 {
     public async Task<RefreshUserTokenResponse> Handle(RefreshUserTokenRequest request, CancellationToken cancellationToken = default)
     {
-        UserDto user = await authService.GetUserFromTokenAsync(request.RefreshToken, cancellationToken);
+        UserDto user = await authService.GetUserFromAccessTokenAsync(request.RefreshToken, cancellationToken);
         TokenDto tokenDto = await authService.GenerateTokenDataAsync(user.Adapt<UserDto>(), cancellationToken);
 
         return new RefreshUserTokenResponse(tokenDto);

@@ -8,12 +8,16 @@ using Microsoft.IdentityModel.Tokens;
 
 using Portfolio.Domain.Constants;
 using Portfolio.Domain.Dtos;
+using Portfolio.Domain.Enums;
 using Portfolio.Domain.Exceptions;
 using Portfolio.Domain.Interfaces;
 
 namespace Portfolio.Infrastructure.Services;
 
-public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAuthService
+public sealed class AuthService(
+    IHttpContextAccessor httpContextAccessor,
+    ILocalizationService localizationService
+) : IAuthService
 {
     private readonly JwtSecurityTokenHandler _tokenHandler = new();
 
@@ -69,16 +73,16 @@ public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAut
         }, cancellationToken);
     }
 
-    public async Task<string> GetAccessTokenFromHeaderAsync(CancellationToken cancellationToken = default)
+    private async Task<string> GetAccessTokenFromHeaderAsync(CancellationToken cancellationToken = default)
     {
         return await Task.Run(() =>
         {
             string? authorizationHeader = httpContextAccessor.HttpContext?.Request.Headers.Authorization;
-            string? accessToken = authorizationHeader?.Split(" ").LastOrDefault();
+            string? accessToken = authorizationHeader?.Replace("Bearer ", "");
 
             return accessToken is not null
                 ? accessToken
-                : throw new BaseException("token não informado");
+                : throw new BaseException(localizationService.GetKey(LocalizationMessages.AccessTokenIsRequired));
         }, cancellationToken);
     }
 
@@ -88,40 +92,26 @@ public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAut
         {
             string accessToken = await GetAccessTokenFromHeaderAsync(cancellationToken);
 
-            JwtPayload payload = _tokenHandler.ReadJwtToken(accessToken).Payload;
-
-            string? userIdPayload = payload["id"] as string;
-            string? userEmailPayload = payload["email"] as string;
-
-            bool isValidId = Guid.TryParse(userIdPayload, out Guid userId);
-            bool isValidUser = isValidId && userEmailPayload is not null;
-
-            UserDto userDto = new(userId, userEmailPayload);
-
-            return isValidUser
-                ? userDto
-                : throw new BaseException("usuário não encontrado");
+            return ParseUserFromAccessToken(accessToken);
         }, cancellationToken);
     }
 
-    public async Task<UserDto> GetUserFromTokenAsync(string accessToken, CancellationToken cancellationToken = default)
+    public async Task<UserDto> GetUserFromAccessTokenAsync(string accessToken, CancellationToken cancellationToken = default)
     {
-        return await Task.Run(() =>
-        {
-            string jwtToken = accessToken.Replace("Bearer ", "");
+        return await Task.Run(() => ParseUserFromAccessToken(accessToken), cancellationToken);
+    }
 
-            JwtPayload payload = _tokenHandler.ReadJwtToken(jwtToken).Payload;
+    private UserDto ParseUserFromAccessToken(string accessToken)
+    {
+        string jwtToken = accessToken.Replace("Bearer ", "");
 
-            string? userIdPayload = payload["id"] as string;
-            string? userEmailPayload = payload["id"] as string;
+        JwtPayload payload = _tokenHandler.ReadJwtToken(jwtToken).Payload;
 
-            bool isValidId = Guid.TryParse(userIdPayload, out Guid userId);
+        string userIdPayload = (payload["id"] as string)!;
+        string userEmailPayload = (payload["email"] as string)!;
 
-            UserDto userDto = new(userId, userEmailPayload);
+        _ = Guid.TryParse(userIdPayload, out Guid userId);
 
-            return isValidId
-                ? userDto
-                : throw new BaseException("usuário não encontrado");
-        }, cancellationToken);
+        return new UserDto(userId, userEmailPayload);
     }
 }
