@@ -9,7 +9,7 @@ using Portfolio.Infrastructure.Contexts;
 
 namespace Portfolio.Domain.Tests.Common;
 
-public abstract class BaseIntegrationTest(IntegrationTestWebAppFactory factory) : IClassFixture<IntegrationTestWebAppFactory>
+public abstract class BaseTest(PortfolioWebApplicationFactory factory) : IClassFixture<PortfolioWebApplicationFactory>
 {
     protected readonly DatabaseContext _context = factory.Services.GetRequiredService<DatabaseContext>();
     protected readonly Faker _faker = new();
@@ -20,4 +20,6 @@ public abstract class BaseIntegrationTest(IntegrationTestWebAppFactory factory) 
     protected readonly ILocalizationService _localizationService = factory.Services.GetRequiredService<ILocalizationService>();
     protected readonly IUnitOfWork _unitOfWork = factory.Services.GetRequiredService<IUnitOfWork>();
     protected readonly IUserRepository _userRepository = factory.Services.GetRequiredService<IUserRepository>();
+
+    
 }

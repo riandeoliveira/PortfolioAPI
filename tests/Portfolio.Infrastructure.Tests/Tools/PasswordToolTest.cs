@@ -10,7 +10,7 @@ using Portolio.Infrastructure.Extensions;
 
 namespace Portfolio.Infrastructure.Tests.Tools;
 
-public sealed class PasswordToolTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
+public sealed class PasswordToolTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
     public void ShouldBeFalseForIncorrectPassword()

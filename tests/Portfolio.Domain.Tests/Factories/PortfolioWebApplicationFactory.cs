@@ -9,7 +9,7 @@ using Testcontainers.PostgreSql;
 
 namespace Portfolio.Domain.Tests.Factories;
 
-public sealed class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsyncLifetime
+public sealed class PortfolioWebApplicationFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _dbContainer = new PostgreSqlBuilder()
         .WithImage("postgres:latest")

@@ -8,7 +8,7 @@ using Portfolio.Domain.Tests.Factories;
 
 namespace Portfolio.Infrastructure.Tests.Services.Auth;
 
-public sealed class GetUserFromAccessTokenAsyncTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
+public sealed class GetUserFromAccessTokenAsyncTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
     public async Task ShouldGetValidUser()

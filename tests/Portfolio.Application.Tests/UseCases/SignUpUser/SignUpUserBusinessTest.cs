@@ -17,7 +17,7 @@ using Portolio.Infrastructure.Extensions;
 
 namespace Portfolio.Application.Tests.UseCases.SignUpUser;
 
-public sealed class SignUpUserBusinessTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
+public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
     public async Task ShouldCreateAnUser()

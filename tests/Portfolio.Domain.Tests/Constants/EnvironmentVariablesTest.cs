@@ -6,7 +6,7 @@ using Portfolio.Domain.Tests.Factories;
 
 namespace Portfolio.Domain.Tests.Constants;
 
-public sealed class EnvironmentVariablesTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
+public sealed class EnvironmentVariablesTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
     public static void ShouldHaveValidEnvironmentVariables()

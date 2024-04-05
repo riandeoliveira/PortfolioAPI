@@ -20,7 +20,7 @@ using Portolio.Infrastructure.Extensions;
 
 namespace Portfolio.Infrastructure.Tests.Services.Auth;
 
-public sealed class GetCurrentUserAsyncTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
+public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
     public async Task ShouldGetCurrentUser()

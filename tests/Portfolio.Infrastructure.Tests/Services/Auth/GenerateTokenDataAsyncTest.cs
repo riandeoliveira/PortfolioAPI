@@ -6,7 +6,7 @@ using Portfolio.Domain.Tests.Factories;
 
 namespace Portfolio.Infrastructure.Tests.Services.Auth;
 
-public sealed class GenerateTokenDataAsyncTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
+public sealed class GenerateTokenDataAsyncTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
     public async Task ShouldGenerateUniqueAccessTokens()

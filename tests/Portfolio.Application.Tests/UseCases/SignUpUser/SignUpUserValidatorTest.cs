@@ -9,7 +9,7 @@ using Portfolio.Domain.Tests.Factories;
 
 namespace Portfolio.Application.Tests.UseCases.SignUpUser;
 
-public sealed class SignUpUserValidatorTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
+public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [InlineData("", "O 'e-mail' deve ser informado.")]
     [InlineData("john", "O 'e-mail' deve possuir no mínimo 8 caracteres.")]
