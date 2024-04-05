@@ -15,7 +15,7 @@ public sealed class FindManyAuthorsHandler(
     {
         UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
 
-        PaginationDto<Author> response = await authorRepository.PaginateAsync(
+        PaginationDto<Author> paginationDto = await authorRepository.PaginateAsync(
             author => author.UserId == userDto.Id,
             request.PageNumber,
             request.PageSize,
@@ -23,10 +23,10 @@ public sealed class FindManyAuthorsHandler(
         );
 
         return new FindManyAuthorsResponse(
-            response.PageNumber,
-            response.PageSize,
-            response.TotalPages,
-            response.Entities.Adapt<IEnumerable<AuthorDto>>()
+            paginationDto.PageNumber,
+            paginationDto.PageSize,
+            paginationDto.TotalPages,
+            paginationDto.Entities.Adapt<IEnumerable<AuthorDto>>()
         );
     }
 }

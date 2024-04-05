@@ -18,6 +18,7 @@ public sealed class SignInUserHandler(
     public async Task<SignInUserResponse> Handle(SignInUserRequest request, CancellationToken cancellationToken = default)
     {
         User user = await userRepository.FindOneOrThrowAsync(user => user.Email == request.Email, cancellationToken);
+
         bool isValidPassword = PasswordTool.Verify(request.Password, user.Password);
 
         if (!isValidPassword)

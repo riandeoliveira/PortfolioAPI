@@ -24,14 +24,15 @@ public sealed class ForgotUserPasswordHandler(
         TokenDto tokenDto = await authService.GenerateTokenDataAsync(user.Adapt<UserDto>(), cancellationToken);
 
         ForgotUserPasswordViewModel viewModel = new(user.Email, tokenDto.AccessToken, EnvironmentVariables.CLIENT_URL);
-        MailSenderDto mailSender = new(
-            user.Email,
-            LocalizationMessages.PasswordResetRequest,
-            "ForgotUserPassword",
-            viewModel
+
+        MailSenderDto mailSenderDto = new(
+            Recipient: user.Email,
+            Subject: LocalizationMessages.PasswordResetRequest,
+            ViewName: "ForgotUserPassword",
+            ViewModel: viewModel
         );
 
-        await mailService.SendMailAsync(mailSender, cancellationToken);
+        await mailService.SendMailAsync(mailSenderDto, cancellationToken);
 
         return new ForgotUserPasswordResponse();
     }
