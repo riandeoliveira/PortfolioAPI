@@ -1009,33 +1009,33 @@ FNF:12
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Services/LocalizationService.cs
-FN:30,System.String Portfolio.Infrastructure.Services.LocalizationService::GetCultureName()
+FN:29,System.String Portfolio.Infrastructure.Services.LocalizationService::GetCultureName()
 FNDA:0,System.String Portfolio.Infrastructure.Services.LocalizationService::GetCultureName()
+DA:30,0
 DA:31,0
 DA:32,0
-DA:33,0
-BRDA:32,13,0,0
-BRDA:32,13,1,0
-BRDA:32,30,0,0
-BRDA:32,30,1,0
-FN:35,Microsoft.Extensions.Localization.LocalizedString Portfolio.Infrastructure.Services.LocalizationService::GetKey(Portfolio.Domain.Enums.LocalizationMessages)
+BRDA:31,13,0,0
+BRDA:31,13,1,0
+BRDA:31,30,0,0
+BRDA:31,30,1,0
+FN:34,Microsoft.Extensions.Localization.LocalizedString Portfolio.Infrastructure.Services.LocalizationService::GetKey(Portfolio.Domain.Enums.LocalizationMessages)
 FNDA:0,Microsoft.Extensions.Localization.LocalizedString Portfolio.Infrastructure.Services.LocalizationService::GetKey(Portfolio.Domain.Enums.LocalizationMessages)
+DA:35,0
 DA:36,0
 DA:37,0
-DA:38,0
-FN:19,System.Void Portfolio.Infrastructure.Services.LocalizationService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizerFactory)
+FN:18,System.Void Portfolio.Infrastructure.Services.LocalizationService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizerFactory)
 FNDA:0,System.Void Portfolio.Infrastructure.Services.LocalizationService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizerFactory)
+DA:19,0
 DA:20,0
 DA:21,0
-DA:22,0
+DA:23,0
 DA:24,0
-DA:25,0
+DA:26,0
 DA:27,0
-DA:28,0
-BRDA:25,43,0,0
-BRDA:25,43,1,0
-BRDA:27,71,0,0
-BRDA:27,71,1,0
+BRDA:24,43,0,0
+BRDA:24,43,1,0
+BRDA:26,71,0,0
+BRDA:26,71,1,0
 LF:13
 LH:0
 BRF:8

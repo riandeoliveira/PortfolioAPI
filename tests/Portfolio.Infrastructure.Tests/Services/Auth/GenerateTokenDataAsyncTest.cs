@@ -30,7 +30,7 @@ public sealed class GenerateTokenDataAsyncTest(IntegrationTestWebAppFactory fact
         long now = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
 
         tokenDto.AccessToken.Should().NotBeNullOrWhiteSpace();
-        tokenDto.AccessToken.Should().Contain("Bearer");
+        tokenDto.AccessToken.Should().StartWith("Bearer");
 
         tokenDto.RefreshToken.Should().NotBeNullOrWhiteSpace();
 

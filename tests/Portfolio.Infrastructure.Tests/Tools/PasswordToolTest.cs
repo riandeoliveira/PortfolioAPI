@@ -2,16 +2,16 @@ using Bogus;
 
 using FluentAssertions;
 
+using Portfolio.Domain.Tests.Common;
+using Portfolio.Domain.Tests.Factories;
 using Portfolio.Infrastructure.Tools;
 
 using Portolio.Infrastructure.Extensions;
 
 namespace Portfolio.Infrastructure.Tests.Tools;
 
-public sealed class PasswordToolTest
+public sealed class PasswordToolTest(IntegrationTestWebAppFactory factory) : BaseIntegrationTest(factory)
 {
-    private readonly Faker _faker = new();
-
     [Fact]
     public void ShouldBeFalseForIncorrectPassword()
     {
@@ -33,5 +33,15 @@ public sealed class PasswordToolTest
         bool isValidPassword = PasswordTool.Verify(password, hashedPassword);
 
         isValidPassword.Should().BeTrue();
+    }
+
+    [Fact]
+    public void ShouldGenerateUniqueHashes()
+    {
+        string password = _faker.Internet.StrongPassword();
+        string firstHashedPassword = PasswordTool.Hash(password);
+        string secondHashedPassword = PasswordTool.Hash(password);
+
+        firstHashedPassword.Should().NotBe(secondHashedPassword);
     }
 }
