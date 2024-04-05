@@ -3,15 +3,16 @@ using System.Net.Http.Json;
 
 using FluentAssertions;
 
+using Portfolio.Application.UseCases.SignInUser;
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
 
 using Portolio.Infrastructure.Extensions;
 
-namespace Portfolio.Application.Tests.UseCases.SignUpUser;
+namespace Portfolio.Application.Tests.UseCases.SignInUser;
 
-public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
+public sealed class SignInUserValidatorTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [InlineData("", "O 'e-mail' deve ser informado.")]
     [InlineData("john", "O 'e-mail' deve possuir no mínimo 8 caracteres.")]
@@ -20,12 +21,12 @@ public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory facto
     [Theory]
     public async Task EmailValidationTest(string email, string expectedMessage)
     {
-        SignUpUserRequest request = new(
+        SignInUserRequest request = new(
             Email: email,
             Password: _faker.Internet.StrongPassword()
         );
 
-        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
+        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-in", request);
         string message = await response.Content.ReadAsStringAsync();
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
@@ -39,12 +40,14 @@ public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory facto
     [Theory]
     public async Task PasswordValidationTest(string password, string expectedMessage)
     {
-        SignUpUserRequest request = new(
-            Email: _faker.Internet.Email(),
+        SignUpUserRequest signUpRequest = await AuthenticateAsync();
+
+        SignInUserRequest signInRequest = new(
+            Email: signUpRequest.Email,
             Password: password
         );
 
-        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
+        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-in", signInRequest);
         string message = await response.Content.ReadAsStringAsync();
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);

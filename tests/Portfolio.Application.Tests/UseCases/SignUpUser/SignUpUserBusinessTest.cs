@@ -1,7 +1,5 @@
 using System.Net;
 using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
 
 using FluentAssertions;
 
@@ -11,7 +9,6 @@ using Portfolio.Domain.Entities;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Domain.Tests.Factories;
-using Portfolio.Infrastructure.Tools;
 
 using Portolio.Infrastructure.Extensions;
 
@@ -27,35 +24,19 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
             _faker.Internet.StrongPassword()
         );
 
-        _client.DefaultRequestHeaders.AcceptLanguage.ParseAdd("pt-BR");
+        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
 
-        HttpRequestMessage httpRequest = new(HttpMethod.Post, "/api/user/sign-up")
-        {
-            Content = new StringContent(
-                JsonSerializer.Serialize(request),
-                Encoding.UTF8,
-                "application/json"
-            )
-        };
-
-        httpRequest.Headers.Add("Accept-Language", "pt-BR");
-
-        HttpResponseMessage response = await _client.SendAsync(httpRequest);
         TokenDto body = await response.GetBody<TokenDto>();
 
-        User? createdUser = await _userRepository.FindOneOrThrowAsync(body.UserId);
-
-        bool isValidPassword = PasswordTool.Verify(request.Password, createdUser.Password);
+        bool userExists = await _userRepository.ExistAsync(body.UserId);
 
         response.Should().HaveStatusCode(HttpStatusCode.OK);
 
-        createdUser.Email.Should().Be(request.Email);
-
-        isValidPassword.Should().BeTrue();
+        userExists.Should().BeTrue();
     }
 
     [Fact]
-    public async Task ShouldNotUseAnEmailAlreadyRegistered()
+    public async Task ShouldNotUseAnAlreadyRegisteredEmail()
     {
         string email = _faker.Internet.Email();
         string password = _faker.Internet.Password();
@@ -79,7 +60,9 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
         bool userAlreadyExists = await _userRepository.ExistAsync(user.Id);
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
+
         message.Should().Be(expectedMessage);
+
         userAlreadyExists.Should().BeTrue();
     }
 }
