@@ -4,7 +4,7 @@ using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
 using Portfolio.Infrastructure.Tools;
 
-using Portolio.Infrastructure.Extensions;
+using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Infrastructure.Tests.Tools;
 

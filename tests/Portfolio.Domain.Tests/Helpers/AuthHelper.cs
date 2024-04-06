@@ -12,7 +12,7 @@ using Portfolio.Domain.Interfaces;
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Infrastructure.Services;
 
-using Portolio.Infrastructure.Extensions;
+using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Domain.Tests.Helper;
 

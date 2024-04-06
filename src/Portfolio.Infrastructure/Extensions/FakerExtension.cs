@@ -1,6 +1,6 @@
 using Bogus.DataSets;
 
-namespace Portolio.Infrastructure.Extensions;
+namespace Portfolio.Infrastructure.Extensions;
 
 public static class FakerExtension
 {

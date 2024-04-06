@@ -616,8 +616,8 @@ FNF:14
 FNH:8
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Extensions/FakerExtension.cs
-FN:11,System.String Portolio.Infrastructure.Extensions.FakerExtension::StrongPassword(Bogus.DataSets.Internet)
-FNDA:1,System.String Portolio.Infrastructure.Extensions.FakerExtension::StrongPassword(Bogus.DataSets.Internet)
+FN:11,System.String Portfolio.Infrastructure.Extensions.FakerExtension::StrongPassword(Bogus.DataSets.Internet)
+FNDA:1,System.String Portfolio.Infrastructure.Extensions.FakerExtension::StrongPassword(Bogus.DataSets.Internet)
 DA:12,1
 DA:13,1
 DA:14,1

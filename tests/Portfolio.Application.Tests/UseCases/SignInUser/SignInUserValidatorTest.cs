@@ -9,7 +9,7 @@ using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
 using Portfolio.Domain.Tests.Helper;
 
-using Portolio.Infrastructure.Extensions;
+using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Application.Tests.UseCases.SignInUser;
 
