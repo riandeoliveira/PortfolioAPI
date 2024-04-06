@@ -5,14 +5,14 @@ namespace Portfolio.Domain.Tests.Extensions;
 
 public static class HttpResponseExtension
 {
+    private static JsonSerializerOptions Options => new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
+    };
+
     public static async Task<TBody> GetBodyAsync<TBody>(this HttpResponseMessage response)
     {
-        JsonSerializerOptions options = new()
-        {
-            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
-        };
-
-        TBody? body = await response.Content.ReadFromJsonAsync<TBody>(options);
+        TBody? body = await response.Content.ReadFromJsonAsync<TBody>(Options);
 
         return body ?? Activator.CreateInstance<TBody>();
     }
