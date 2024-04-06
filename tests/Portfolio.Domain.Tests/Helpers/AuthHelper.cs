@@ -13,6 +13,7 @@ using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Infrastructure.Services;
 
 using Portfolio.Infrastructure.Extensions;
+using System.Net.Http.Headers;
 
 namespace Portfolio.Domain.Tests.Helper;
 
@@ -56,21 +57,14 @@ public sealed class AuthHelper(HttpClient client)
         return (request, body);
     }
 
-    public string GetAccessTokenFromHeader()
-    {
-        return client.DefaultRequestHeaders.Authorization?.Parameter ?? "";
-    }
+    // public static string? GetAccessTokenFromHeader()
+    // {
+    //     return HttpContext.Request.Headers.Authorization;
+    // }
 
     public static async Task<UserDto> GetCurrentUserAsync()
     {
         return await AuthServiceMock.GetCurrentUserAsync();
-    }
-
-    public async Task<UserDto> GetUserFromAccessTokenAsync()
-    {
-        string accessToken = GetAccessTokenFromHeader();
-
-        return await AuthServiceMock.GetUserFromAccessTokenAsync(accessToken);
     }
 
     public static async Task<UserDto> GetUserFromAccessTokenAsync(string accessToken)
@@ -78,13 +72,10 @@ public sealed class AuthHelper(HttpClient client)
         return await AuthServiceMock.GetUserFromAccessTokenAsync(accessToken);
     }
 
-    public void SetAccessTokenInHeader()
+    public void SetAccessTokenInHeader(string? accessToken)
     {
-        HttpContext.Request.Headers.Authorization = GetAccessTokenFromHeader();
-    }
+        string? token = accessToken?.Replace("Bearer ", "");
 
-    public static void SetAccessTokenInHeader(string? accessToken)
-    {
-        HttpContext.Request.Headers.Authorization = accessToken;
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
 }

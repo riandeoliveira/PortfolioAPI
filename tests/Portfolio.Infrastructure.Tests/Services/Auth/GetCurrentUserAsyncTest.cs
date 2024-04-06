@@ -32,9 +32,11 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
     [Fact]
     public async Task ShouldThrowsWithInvalidAccessToken()
     {
+        AuthHelper authHelper = new(_client);
+
         string invalidAccessToken = _faker.Random.Word();
 
-        AuthHelper.SetAccessTokenInHeader(invalidAccessToken);
+        authHelper.SetAccessTokenInHeader(invalidAccessToken);
 
         Func<Task> action = async () => await AuthHelper.AuthServiceMock.GetCurrentUserAsync();
 
@@ -44,7 +46,9 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
     [Fact]
     public async Task ShouldThrowsWithoutAccessToken()
     {
-        AuthHelper.SetAccessTokenInHeader(null);
+        AuthHelper authHelper = new(_client);
+
+        authHelper.SetAccessTokenInHeader(null);
 
         Func<Task> action = async () => await AuthHelper.AuthServiceMock.GetCurrentUserAsync();
 
