@@ -3,6 +3,7 @@ using FluentAssertions;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
+using Portfolio.Domain.Tests.Helper;
 
 namespace Portfolio.Infrastructure.Tests.Services.Auth;
 
@@ -13,8 +14,8 @@ public sealed class GenerateRefreshTokenAsyncTest(PortfolioWebApplicationFactory
     {
         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        string firstRefreshToken = await _authService.GenerateRefreshTokenAsync(userDto);
-        string secondRefreshToken = await _authService.GenerateRefreshTokenAsync(userDto);
+        string firstRefreshToken = await AuthHelper.AuthServiceMock.GenerateRefreshTokenAsync(userDto);
+        string secondRefreshToken = await AuthHelper.AuthServiceMock.GenerateRefreshTokenAsync(userDto);
 
         firstRefreshToken.Should().NotBe(secondRefreshToken);
     }
@@ -24,7 +25,7 @@ public sealed class GenerateRefreshTokenAsyncTest(PortfolioWebApplicationFactory
     {
         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        string refreshToken = await _authService.GenerateRefreshTokenAsync(userDto);
+        string refreshToken = await AuthHelper.AuthServiceMock.GenerateRefreshTokenAsync(userDto);
 
         int expectedLength = 44;
 

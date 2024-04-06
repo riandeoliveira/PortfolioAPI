@@ -17,7 +17,7 @@ namespace Portfolio.Application.Tests.UseCases.SignUpUser;
 public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
-    public async Task ShouldCreateAnUser()
+    public async Task ShouldCreateUser()
     {
         SignUpUserRequest request = new(
             _faker.Internet.Email(),
@@ -26,7 +26,7 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
 
         HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
 
-        TokenDto body = await response.GetBody<TokenDto>();
+        TokenDto body = await response.GetBodyAsync<TokenDto>();
 
         bool userExists = await _userRepository.ExistAsync(body.UserId);
 
@@ -52,6 +52,7 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
         await _unitOfWork.CommitAsync();
 
         SignUpUserRequest request = new(email, password);
+
         HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
 
         string responseMessage = await response.Content.ReadAsStringAsync();

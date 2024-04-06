@@ -5,7 +5,7 @@ namespace Portfolio.Domain.Tests.Extensions;
 
 public static class HttpResponseExtension
 {
-    public static async Task<TBody> GetBody<TBody>(this HttpResponseMessage response)
+    public static async Task<TBody> GetBodyAsync<TBody>(this HttpResponseMessage response)
     {
         JsonSerializerOptions options = new()
         {

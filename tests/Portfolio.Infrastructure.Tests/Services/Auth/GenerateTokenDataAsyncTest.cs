@@ -3,6 +3,7 @@ using FluentAssertions;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
+using Portfolio.Domain.Tests.Helper;
 
 namespace Portfolio.Infrastructure.Tests.Services.Auth;
 
@@ -14,8 +15,8 @@ public sealed class GenerateTokenDataAsyncTest(PortfolioWebApplicationFactory fa
         UserDto firstUserDto = new(_faker.Random.Guid(), _faker.Internet.Email());
         UserDto secondUserDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        TokenDto firstTokenDto = await _authService.GenerateTokenDataAsync(firstUserDto);
-        TokenDto secondTokenDto = await _authService.GenerateTokenDataAsync(secondUserDto);
+        TokenDto firstTokenDto = await AuthHelper.AuthServiceMock.GenerateTokenDataAsync(firstUserDto);
+        TokenDto secondTokenDto = await AuthHelper.AuthServiceMock.GenerateTokenDataAsync(secondUserDto);
 
         firstTokenDto.AccessToken.Should().NotBe(secondTokenDto.AccessToken);
     }
@@ -25,7 +26,7 @@ public sealed class GenerateTokenDataAsyncTest(PortfolioWebApplicationFactory fa
     {
         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        TokenDto tokenDto = await _authService.GenerateTokenDataAsync(userDto);
+        TokenDto tokenDto = await AuthHelper.AuthServiceMock.GenerateTokenDataAsync(userDto);
 
         long now = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
 

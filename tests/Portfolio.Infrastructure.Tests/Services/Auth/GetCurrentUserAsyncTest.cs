@@ -1,22 +1,13 @@
-using System.Net.Http.Json;
-
 using FluentAssertions;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
-
-using Moq;
 
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Exceptions;
-using Portfolio.Domain.Interfaces;
 using Portfolio.Domain.Tests.Common;
-using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Domain.Tests.Factories;
-using Portfolio.Infrastructure.Services;
-
-using Portolio.Infrastructure.Extensions;
+using Portfolio.Domain.Tests.Helper;
 
 namespace Portfolio.Infrastructure.Tests.Services.Auth;
 
@@ -25,32 +16,11 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
     [Fact]
     public async Task ShouldGetCurrentUser()
     {
-        SignUpUserRequest request = new(
-            _faker.Internet.Email(),
-            _faker.Internet.StrongPassword()
-        );
+        AuthHelper authHelper = new(_client);
 
-        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
+        (SignUpUserRequest request, TokenDto body) = await authHelper.AuthenticateAsync();
 
-        TokenDto body = await response.GetBody<TokenDto>();
-
-        DefaultHttpContext httpContext = new();
-
-        string accessToken = body.AccessToken;
-
-        httpContext.Request.Headers.Authorization = accessToken;
-
-        Mock<IHttpContextAccessor> httpContextAccessorMock = new();
-        Mock<ILocalizationService> localizationServiceMock = new();
-
-        httpContextAccessorMock.Setup(accessor => accessor.HttpContext).Returns(httpContext);
-
-        AuthService authService = new(
-            httpContextAccessorMock.Object,
-            localizationServiceMock.Object
-        );
-
-        UserDto user = await authService.GetCurrentUserAsync();
+        UserDto user = await AuthHelper.AuthServiceMock.GetCurrentUserAsync();
 
         user.Id.Should().NotBe(Guid.Empty);
         user.Id.Should().Be(body.UserId);
@@ -62,23 +32,11 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
     [Fact]
     public async Task ShouldThrowsWithInvalidAccessToken()
     {
-        DefaultHttpContext httpContext = new();
-
         string invalidAccessToken = _faker.Random.Word();
 
-        httpContext.Request.Headers.Authorization = invalidAccessToken;
+        AuthHelper.SetAccessTokenInHeader(invalidAccessToken);
 
-        Mock<IHttpContextAccessor> httpContextAccessorMock = new();
-        Mock<ILocalizationService> localizationServiceMock = new();
-
-        httpContextAccessorMock.Setup(accessor => accessor.HttpContext).Returns(httpContext);
-
-        AuthService authService = new(
-            httpContextAccessorMock.Object,
-            localizationServiceMock.Object
-        );
-
-        Func<Task> action = async () => await authService.GetCurrentUserAsync();
+        Func<Task> action = async () => await AuthHelper.AuthServiceMock.GetCurrentUserAsync();
 
         await action.Should().ThrowAsync<SecurityTokenMalformedException>();
     }
@@ -86,19 +44,9 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
     [Fact]
     public async Task ShouldThrowsWithoutAccessToken()
     {
-        DefaultHttpContext httpContext = new();
+        AuthHelper.SetAccessTokenInHeader(null);
 
-        Mock<IHttpContextAccessor> httpContextAccessorMock = new();
-        Mock<ILocalizationService> localizationServiceMock = new();
-
-        httpContextAccessorMock.Setup(accessor => accessor.HttpContext).Returns(httpContext);
-
-        AuthService authService = new(
-            httpContextAccessorMock.Object,
-            localizationServiceMock.Object
-        );
-
-        Func<Task> action = async () => await authService.GetCurrentUserAsync();
+        Func<Task> action = async () => await AuthHelper.AuthServiceMock.GetCurrentUserAsync();
 
         await action.Should().ThrowAsync<BaseException>();
     }

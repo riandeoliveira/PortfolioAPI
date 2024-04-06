@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Http.Json;
-using System.Reflection;
 
 using FluentAssertions;
 
@@ -8,6 +7,7 @@ using Portfolio.Application.UseCases.SignInUser;
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
+using Portfolio.Domain.Tests.Helper;
 
 namespace Portfolio.Application.Tests.UseCases.SignInUser;
 
@@ -16,7 +16,9 @@ public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factor
     [Fact]
     public async Task ShouldAuthenticateUser()
     {
-        SignUpUserRequest signUpRequest = await AuthenticateAsync();
+        AuthHelper authHelper = new(_client);
+
+        (SignUpUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
 
         SignInUserRequest signInRequest = new(signUpRequest.Email, signUpRequest.Password);
 
@@ -33,6 +35,7 @@ public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factor
         string expectedMessage = "Este 'e-mail' não está registrado.";
 
         SignInUserRequest request = new(email, password);
+
         HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-in", request);
 
         string responseMessage = await response.Content.ReadAsStringAsync();

@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
+using Portfolio.Domain.Tests.Helper;
 
 namespace Portfolio.Infrastructure.Tests.Services.Auth;
 
@@ -15,9 +16,9 @@ public sealed class GetUserFromAccessTokenAsyncTest(PortfolioWebApplicationFacto
     {
         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        TokenDto tokenDto = await _authService.GenerateTokenDataAsync(userDto);
+        TokenDto tokenDto = await AuthHelper.AuthServiceMock.GenerateTokenDataAsync(userDto);
 
-        UserDto userFromToken = await _authService.GetUserFromAccessTokenAsync(tokenDto.AccessToken);
+        UserDto userFromToken = await AuthHelper.AuthServiceMock.GetUserFromAccessTokenAsync(tokenDto.AccessToken);
 
         userFromToken.Id.Should().NotBe(Guid.Empty);
         userFromToken.Id.Should().Be(userDto.Id);
@@ -31,7 +32,7 @@ public sealed class GetUserFromAccessTokenAsyncTest(PortfolioWebApplicationFacto
     {
         string invalidAccessToken = _faker.Random.Word();
 
-        Func<Task> action = async () => await _authService.GetUserFromAccessTokenAsync(invalidAccessToken);
+        Func<Task> action = async () => await AuthHelper.AuthServiceMock.GetUserFromAccessTokenAsync(invalidAccessToken);
 
         await action.Should().ThrowAsync<SecurityTokenMalformedException>();
     }

@@ -7,6 +7,7 @@ using Portfolio.Application.UseCases.SignInUser;
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
+using Portfolio.Domain.Tests.Helper;
 
 using Portolio.Infrastructure.Extensions;
 
@@ -27,9 +28,11 @@ public sealed class SignInUserValidatorTest(PortfolioWebApplicationFactory facto
         );
 
         HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-in", request);
+
         string message = await response.Content.ReadAsStringAsync();
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
+
         message.Trim('"').Should().Be(expectedMessage);
     }
 
@@ -40,7 +43,9 @@ public sealed class SignInUserValidatorTest(PortfolioWebApplicationFactory facto
     [Theory]
     public async Task PasswordValidationTest(string password, string expectedMessage)
     {
-        SignUpUserRequest signUpRequest = await AuthenticateAsync();
+        AuthHelper authHelper = new(_client);
+
+        (SignUpUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
 
         SignInUserRequest signInRequest = new(
             Email: signUpRequest.Email,
@@ -48,9 +53,11 @@ public sealed class SignInUserValidatorTest(PortfolioWebApplicationFactory facto
         );
 
         HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-in", signInRequest);
+
         string message = await response.Content.ReadAsStringAsync();
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
+
         message.Trim('"').Should().Be(expectedMessage);
     }
 }

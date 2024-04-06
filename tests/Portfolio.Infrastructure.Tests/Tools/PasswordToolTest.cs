@@ -1,5 +1,3 @@
-using Bogus;
-
 using FluentAssertions;
 
 using Portfolio.Domain.Tests.Common;
