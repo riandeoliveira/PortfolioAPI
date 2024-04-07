@@ -1,5 +1,3 @@
-using System.Net.Http.Json;
-
 using Bogus;
 
 using Microsoft.AspNetCore.Http;
@@ -48,7 +46,7 @@ public sealed class AuthHelper(HttpClient client)
             faker.Internet.StrongPassword()
         );
 
-        HttpResponseMessage response = await client.PostAsJsonAsync("/api/user/sign-up", request);
+        HttpResponseMessage response = await client.SendPostAsync("/api/user/sign-up", request);
 
         TokenDto body = await response.GetBodyAsync<TokenDto>();
 
@@ -56,11 +54,6 @@ public sealed class AuthHelper(HttpClient client)
 
         return (request, body);
     }
-
-    // public static string? GetAccessTokenFromHeader()
-    // {
-    //     return HttpContext.Request.Headers.Authorization;
-    // }
 
     public static async Task<UserDto> GetCurrentUserAsync()
     {
@@ -75,6 +68,8 @@ public sealed class AuthHelper(HttpClient client)
     public void SetAccessTokenInHeader(string? accessToken)
     {
         string? token = accessToken?.Replace("Bearer ", "");
+
+        HttpContext.Request.Headers.Authorization = accessToken;
 
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
