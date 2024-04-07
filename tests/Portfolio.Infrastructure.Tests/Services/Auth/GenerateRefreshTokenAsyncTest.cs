@@ -14,8 +14,8 @@ public sealed class GenerateRefreshTokenAsyncTest(PortfolioWebApplicationFactory
     {
         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        string firstRefreshToken = await AuthHelper.AuthServiceMock.GenerateRefreshTokenAsync(userDto);
-        string secondRefreshToken = await AuthHelper.AuthServiceMock.GenerateRefreshTokenAsync(userDto);
+        string firstRefreshToken = await AuthHelper.GenerateRefreshTokenAsync(userDto);
+        string secondRefreshToken = await AuthHelper.GenerateRefreshTokenAsync(userDto);
 
         firstRefreshToken.Should().NotBe(secondRefreshToken);
     }
@@ -25,7 +25,7 @@ public sealed class GenerateRefreshTokenAsyncTest(PortfolioWebApplicationFactory
     {
         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        string refreshToken = await AuthHelper.AuthServiceMock.GenerateRefreshTokenAsync(userDto);
+        string refreshToken = await AuthHelper.GenerateRefreshTokenAsync(userDto);
 
         int expectedLength = 44;
 

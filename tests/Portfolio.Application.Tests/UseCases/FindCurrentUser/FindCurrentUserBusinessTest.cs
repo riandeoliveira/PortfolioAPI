@@ -13,13 +13,13 @@ namespace Portfolio.Application.Tests.UseCases.FindCurrentUser;
 public sealed class FindCurrentUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
-    public async Task ShouldGetCurrentUser()
+    public async Task ShouldFindCurrentUser()
     {
         AuthHelper authHelper = new(_client);
 
-        (_, TokenDto authBody) = await authHelper.AuthenticateAsync();
+        await authHelper.AuthenticateAsync();
 
-        UserDto currentUser = await AuthHelper.GetUserFromAccessTokenAsync(authBody.AccessToken);
+        UserDto currentUser = await AuthHelper.GetCurrentUserAsync();
 
         HttpResponseMessage response = await _client.GetAsync("/api/user");
 

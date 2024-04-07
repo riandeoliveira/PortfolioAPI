@@ -16,26 +16,7 @@ namespace Portfolio.Application.Tests.UseCases.SignUpUser;
 public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
-    public async Task ShouldCreateUser()
-    {
-        SignUpUserRequest request = new(
-            _faker.Internet.Email(),
-            _faker.Internet.StrongPassword()
-        );
-
-        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-up", request);
-
-        TokenDto body = await response.GetBodyAsync<TokenDto>();
-
-        bool userExists = await _userRepository.ExistAsync(body.UserId);
-
-        response.Should().HaveStatusCode(HttpStatusCode.OK);
-
-        userExists.Should().BeTrue();
-    }
-
-    [Fact]
-    public async Task ShouldNotUseAnAlreadyRegisteredEmail()
+    public async Task ShouldNotSignUpUserWithAnAlreadyRegisteredEmail()
     {
         string email = _faker.Internet.Email();
         string password = _faker.Internet.StrongPassword();
@@ -64,5 +45,24 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
         message.Should().Be(expectedMessage);
 
         userAlreadyExists.Should().BeTrue();
+    }
+
+    [Fact]
+    public async Task ShouldSignUpUser()
+    {
+        SignUpUserRequest request = new(
+            _faker.Internet.Email(),
+            _faker.Internet.StrongPassword()
+        );
+
+        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-up", request);
+
+        TokenDto body = await response.GetBodyAsync<TokenDto>();
+
+        bool userExists = await _userRepository.ExistAsync(body.UserId);
+
+        response.Should().HaveStatusCode(HttpStatusCode.OK);
+
+        userExists.Should().BeTrue();
     }
 }

@@ -19,7 +19,7 @@ public sealed class AuthHelper(HttpClient client)
 {
     private static readonly DefaultHttpContext HttpContext = new();
 
-    public static IAuthService AuthServiceMock
+    private static AuthService AuthServiceMock
     {
         get
         {
@@ -53,6 +53,16 @@ public sealed class AuthHelper(HttpClient client)
         SetAccessTokenInHeader(body.AccessToken);
 
         return (request, body);
+    }
+
+    public static async Task<string> GenerateRefreshTokenAsync(UserDto userDto)
+    {
+        return await AuthServiceMock.GenerateRefreshTokenAsync(userDto);
+    }
+
+    public static async Task<TokenDto> GenerateTokenDataAsync(UserDto userDto)
+    {
+        return await AuthServiceMock.GenerateTokenDataAsync(userDto);
     }
 
     public static async Task<UserDto> GetCurrentUserAsync()

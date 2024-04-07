@@ -15,8 +15,8 @@ public sealed class GenerateTokenDataAsyncTest(PortfolioWebApplicationFactory fa
         UserDto firstUserDto = new(_faker.Random.Guid(), _faker.Internet.Email());
         UserDto secondUserDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        TokenDto firstTokenDto = await AuthHelper.AuthServiceMock.GenerateTokenDataAsync(firstUserDto);
-        TokenDto secondTokenDto = await AuthHelper.AuthServiceMock.GenerateTokenDataAsync(secondUserDto);
+        TokenDto firstTokenDto = await AuthHelper.GenerateTokenDataAsync(firstUserDto);
+        TokenDto secondTokenDto = await AuthHelper.GenerateTokenDataAsync(secondUserDto);
 
         firstTokenDto.AccessToken.Should().NotBe(secondTokenDto.AccessToken);
     }
@@ -26,7 +26,7 @@ public sealed class GenerateTokenDataAsyncTest(PortfolioWebApplicationFactory fa
     {
         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        TokenDto tokenDto = await AuthHelper.AuthServiceMock.GenerateTokenDataAsync(userDto);
+        TokenDto tokenDto = await AuthHelper.GenerateTokenDataAsync(userDto);
 
         long now = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
 

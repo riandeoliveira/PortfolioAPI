@@ -15,21 +15,7 @@ namespace Portfolio.Application.Tests.UseCases.SignInUser;
 public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
-    public async Task ShouldAuthenticateUser()
-    {
-        AuthHelper authHelper = new(_client);
-
-        (SignUpUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
-
-        SignInUserRequest signInRequest = new(signUpRequest.Email, signUpRequest.Password);
-
-        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-in", signInRequest);
-
-        response.Should().HaveStatusCode(HttpStatusCode.OK);
-    }
-
-    [Fact]
-    public async Task ShouldNotUseUnregisteredEmail()
+    public async Task ShouldNotSignInUserWithUnregisteredEmail()
     {
         string expectedMessage = "Este 'e-mail' não está registrado.";
 
@@ -46,5 +32,19 @@ public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factor
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
 
         message.Should().Be(expectedMessage);
+    }
+
+    [Fact]
+    public async Task ShouldSignInUser()
+    {
+        AuthHelper authHelper = new(_client);
+
+        (SignUpUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
+
+        SignInUserRequest signInRequest = new(signUpRequest.Email, signUpRequest.Password);
+
+        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-in", signInRequest);
+
+        response.Should().HaveStatusCode(HttpStatusCode.OK);
     }
 }

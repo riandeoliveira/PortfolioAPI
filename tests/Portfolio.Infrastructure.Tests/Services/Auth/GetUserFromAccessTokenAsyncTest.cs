@@ -16,9 +16,9 @@ public sealed class GetUserFromAccessTokenAsyncTest(PortfolioWebApplicationFacto
     {
         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        TokenDto tokenDto = await AuthHelper.AuthServiceMock.GenerateTokenDataAsync(userDto);
+        TokenDto tokenDto = await AuthHelper.GenerateTokenDataAsync(userDto);
 
-        UserDto userFromToken = await AuthHelper.AuthServiceMock.GetUserFromAccessTokenAsync(tokenDto.AccessToken);
+        UserDto userFromToken = await AuthHelper.GetUserFromAccessTokenAsync(tokenDto.AccessToken);
 
         userFromToken.Id.Should().NotBe(Guid.Empty);
         userFromToken.Id.Should().Be(userDto.Id);
@@ -32,7 +32,7 @@ public sealed class GetUserFromAccessTokenAsyncTest(PortfolioWebApplicationFacto
     {
         string invalidAccessToken = _faker.Random.Word();
 
-        Func<Task> action = async () => await AuthHelper.AuthServiceMock.GetUserFromAccessTokenAsync(invalidAccessToken);
+        Func<Task> action = async () => await AuthHelper.GetUserFromAccessTokenAsync(invalidAccessToken);
 
         await action.Should().ThrowAsync<SecurityTokenMalformedException>();
     }

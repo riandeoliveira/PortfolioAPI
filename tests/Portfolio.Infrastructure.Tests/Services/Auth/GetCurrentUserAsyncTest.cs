@@ -20,7 +20,7 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
 
         (SignUpUserRequest request, TokenDto body) = await authHelper.AuthenticateAsync();
 
-        UserDto user = await AuthHelper.AuthServiceMock.GetCurrentUserAsync();
+        UserDto user = await AuthHelper.GetCurrentUserAsync();
 
         user.Id.Should().NotBe(Guid.Empty);
         user.Id.Should().Be(body.UserId);
@@ -38,7 +38,7 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
 
         authHelper.SetAccessTokenInHeader(invalidAccessToken);
 
-        Func<Task> action = async () => await AuthHelper.AuthServiceMock.GetCurrentUserAsync();
+        Func<Task> action = AuthHelper.GetCurrentUserAsync;
 
         await action.Should().ThrowAsync<SecurityTokenMalformedException>();
     }
@@ -50,7 +50,7 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
 
         authHelper.SetAccessTokenInHeader(null);
 
-        Func<Task> action = async () => await AuthHelper.AuthServiceMock.GetCurrentUserAsync();
+        Func<Task> action = AuthHelper.GetCurrentUserAsync;
 
         await action.Should().ThrowAsync<BaseException>();
     }
