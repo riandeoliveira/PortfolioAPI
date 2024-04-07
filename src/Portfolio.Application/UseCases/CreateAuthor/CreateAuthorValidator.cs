@@ -36,7 +36,7 @@ public sealed class CreateAuthorValidator : AbstractValidator<CreateAuthorReques
             .Message(localizationService, LocalizationMessages.DescriptionIsRequired)
 
             .MaximumLength(1024)
-            .Message(localizationService, LocalizationMessages.MaximumPositionLength);
+            .Message(localizationService, LocalizationMessages.MaximumDescriptionLength);
 
         RuleFor(request => request.AvatarUrl)
             .NotEmpty()
