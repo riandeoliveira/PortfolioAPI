@@ -774,19 +774,6 @@ BRH:0
 FNF:1
 FNH:0
 end_of_record
-SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Extensions/FakerExtension.cs
-FN:11,System.String Portfolio.Infrastructure.Extensions.FakerExtension::StrongPassword(Bogus.DataSets.Internet)
-FNDA:0,System.String Portfolio.Infrastructure.Extensions.FakerExtension::StrongPassword(Bogus.DataSets.Internet)
-DA:12,0
-DA:13,0
-DA:14,0
-LF:3
-LH:0
-BRF:0
-BRH:0
-FNF:1
-FNH:0
-end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Validators/EmailValidator.cs
 FN:9,System.String Portfolio.Infrastructure.Validators.EmailValidator`2::get_Name()
 FNDA:0,System.String Portfolio.Infrastructure.Validators.EmailValidator`2::get_Name()
@@ -1751,6 +1738,19 @@ DA:26,0
 DA:27,0
 DA:28,0
 LF:15
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Extensions/FakerExtension.cs
+FN:11,System.String Portfolio.Infrastructure.Extensions.FakerExtension::StrongPassword(Bogus.DataSets.Internet)
+FNDA:0,System.String Portfolio.Infrastructure.Extensions.FakerExtension::StrongPassword(Bogus.DataSets.Internet)
+DA:12,0
+DA:13,0
+DA:14,0
+LF:3
 LH:0
 BRF:0
 BRH:0

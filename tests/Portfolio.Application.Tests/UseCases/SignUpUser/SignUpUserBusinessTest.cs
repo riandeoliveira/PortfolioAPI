@@ -1,5 +1,4 @@
 using System.Net;
-using System.Net.Http.Json;
 
 using FluentAssertions;
 
@@ -24,7 +23,7 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
             _faker.Internet.StrongPassword()
         );
 
-        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
+        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-up", request);
 
         TokenDto body = await response.GetBodyAsync<TokenDto>();
 
@@ -39,7 +38,7 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
     public async Task ShouldNotUseAnAlreadyRegisteredEmail()
     {
         string email = _faker.Internet.Email();
-        string password = _faker.Internet.Password();
+        string password = _faker.Internet.StrongPassword();
         string expectedMessage = "Este 'e-mail' já está sendo usado.";
 
         User user = new()
@@ -53,7 +52,7 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
 
         SignUpUserRequest request = new(email, password);
 
-        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
+        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-up", request);
 
         string responseMessage = await response.Content.ReadAsStringAsync();
         string message = responseMessage.Trim('"');

@@ -28,7 +28,6 @@ public sealed class FindCurrentUserBusinessTest(PortfolioWebApplicationFactory f
         currentUser.Should().NotBeNull();
 
         currentUser.Id.Should().NotBe(Guid.Empty);
-
         currentUser.Id.Should().Be(body.Id);
 
         currentUser.Email.Should().NotBeNullOrWhiteSpace();

@@ -1,8 +1,3 @@
-using System.Net;
-using System.Net.Http.Json;
-
-using FluentAssertions;
-
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
@@ -11,43 +6,27 @@ using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Application.Tests.UseCases.SignUpUser;
 
-public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
+public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory factory) : BaseValidationTest(factory)
 {
-    [InlineData("", "O 'e-mail' deve ser informado.")]
-    [InlineData("john", "O 'e-mail' deve possuir no mínimo 8 caracteres.")]
-    [InlineData("joooooooooooooooooooooooooooooooooooooooooooooooohn2000@email.com", "O 'e-mail' deve possuir no máximo 64 caracteres.")]
-    [InlineData("john@test", "O 'e-mail' deve ser válido.")]
-    [Theory]
-    public async Task EmailValidationTest(string email, string expectedMessage)
-    {
-        SignUpUserRequest request = new(
-            Email: email,
-            Password: _faker.Internet.StrongPassword()
+    public SignUpUserRequest CreateRequest(string? email = null, string? password = null) =>
+        new(
+            email ?? _faker.Internet.Email(),
+            password ?? _faker.Internet.StrongPassword()
         );
 
-        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
-        string message = await response.Content.ReadAsStringAsync();
-
-        response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
-        message.Trim('"').Should().Be(expectedMessage);
-    }
-
-    [InlineData("", "A 'senha' deve ser informada.")]
-    [InlineData("little", "A 'senha' deve possuir no mínimo 8 caracteres.")]
-    [InlineData("littlejoooooooooooooooooooooooooooooooooooooooooooooooooooohn2000", "A 'senha' deve possuir no máximo 64 caracteres.")]
-    [InlineData("littlejohn", "A 'senha' deve possuir pelo menos: uma letra maiúscula e um número.")]
+    [InlineData(EMPTY_STRING, "O 'e-mail' deve ser informado.")]
+    [InlineData(STRING_WITH_SIZE_7, "O 'e-mail' deve possuir no mínimo 8 caracteres.")]
+    [InlineData(STRING_WITH_SIZE_65, "O 'e-mail' deve possuir no máximo 64 caracteres.")]
+    [InlineData(INVALID_EMAIL, "O 'e-mail' deve ser válido.")]
     [Theory]
-    public async Task PasswordValidationTest(string password, string expectedMessage)
-    {
-        SignUpUserRequest request = new(
-            Email: _faker.Internet.Email(),
-            Password: password
-        );
+    public async Task EmailValidationTest(string email, string expectedMessage) =>
+        await ExecuteValidationTestAsync("/api/user/sign-up", CreateRequest(email: email), expectedMessage, false);
 
-        HttpResponseMessage response = await _client.PostAsJsonAsync("/api/user/sign-up", request);
-        string message = await response.Content.ReadAsStringAsync();
-
-        response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
-        message.Trim('"').Should().Be(expectedMessage);
-    }
+    [InlineData(EMPTY_STRING, "A 'senha' deve ser informada.")]
+    [InlineData(STRING_WITH_SIZE_7, "A 'senha' deve possuir no mínimo 8 caracteres.")]
+    [InlineData(STRING_WITH_SIZE_65, "A 'senha' deve possuir no máximo 64 caracteres.")]
+    [InlineData(WEAK_PASSWORD, "A 'senha' deve possuir pelo menos: uma letra maiúscula e um número.")]
+    [Theory]
+    public async Task PasswordValidationTest(string password, string expectedMessage) =>
+        await ExecuteValidationTestAsync("/api/user/sign-up", CreateRequest(password: password), expectedMessage, false);
 }
