@@ -2,7 +2,7 @@ using FluentAssertions;
 
 using Microsoft.IdentityModel.Tokens;
 
-using Portfolio.Application.UseCases.SignUpUser;
+using Portfolio.Application.UseCases.SignInUser;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Exceptions;
 using Portfolio.Domain.Tests.Common;
@@ -18,7 +18,7 @@ public sealed class GetCurrentUserAsyncTest(PortfolioWebApplicationFactory facto
     {
         AuthHelper authHelper = new(_client);
 
-        (SignUpUserRequest request, TokenDto body) = await authHelper.AuthenticateAsync();
+        (SignInUserRequest request, TokenDto body) = await authHelper.AuthenticateAsync();
 
         UserDto user = await AuthHelper.GetCurrentUserAsync();
 

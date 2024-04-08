@@ -52,5 +52,7 @@ public sealed class CreateAuthorBusinessTest : BaseTest
 
         body.AvatarUrl.Should().NotBeNullOrWhiteSpace();
         body.AvatarUrl.Should().Be(request.AvatarUrl);
+
+        body.SpotifyAccountName.Should().Be(request.SpotifyAccountName);
     }
 }

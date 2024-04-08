@@ -39,7 +39,7 @@ public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factor
     {
         AuthHelper authHelper = new(_client);
 
-        (SignUpUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
+        (SignInUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
 
         SignInUserRequest signInRequest = new(signUpRequest.Email, signUpRequest.Password);
 

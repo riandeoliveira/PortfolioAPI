@@ -1,17 +1,15 @@
-using Bogus;
-
 using Microsoft.AspNetCore.Http;
 
 using Moq;
 
-using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Infrastructure.Services;
 
-using Portfolio.Infrastructure.Extensions;
 using System.Net.Http.Headers;
+using Portfolio.Domain.Tests.Fixtures;
+using Portfolio.Application.UseCases.SignInUser;
 
 namespace Portfolio.Domain.Tests.Helper;
 
@@ -37,16 +35,14 @@ public sealed class AuthHelper(HttpClient client)
         }
     }
 
-    public async Task<(SignUpUserRequest request, TokenDto body)> AuthenticateAsync()
+    public async Task<(SignInUserRequest request, TokenDto body)> AuthenticateAsync()
     {
-        Faker faker = new();
-
-        SignUpUserRequest request = new(
-            faker.Internet.Email(),
-            faker.Internet.StrongPassword()
+        SignInUserRequest request = new(
+            DatabaseFixture.User.Email,
+            DatabaseFixture.User.Password
         );
 
-        HttpResponseMessage response = await client.SendPostAsync("/api/user/sign-up", request);
+        HttpResponseMessage response = await client.SendPostAsync("/api/user/sign-in", request);
 
         TokenDto body = await response.GetBodyAsync<TokenDto>();
 

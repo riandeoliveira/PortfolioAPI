@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
+using Portfolio.Domain.Entities;
+using Portfolio.Domain.Tests.Fixtures;
 using Portfolio.Infrastructure.Contexts;
+using Portfolio.Infrastructure.Tools;
 
 using Testcontainers.PostgreSql;
 
@@ -38,11 +41,6 @@ public sealed class PortfolioWebApplicationFactory : WebApplicationFactory<Progr
             });
     }
 
-    public new async Task DisposeAsync()
-    {
-        await StopContainer();
-    }
-
     public async Task InitializeAsync()
     {
         await StartContainer();
@@ -51,6 +49,13 @@ public sealed class PortfolioWebApplicationFactory : WebApplicationFactory<Progr
 
         await context.Database.EnsureCreatedAsync();
         await context.Database.OpenConnectionAsync();
+
+        await PopulateDatabase(context);
+    }
+
+    public new async Task DisposeAsync()
+    {
+        await StopContainer();
     }
 
     private async Task StartContainer()
@@ -61,5 +66,17 @@ public sealed class PortfolioWebApplicationFactory : WebApplicationFactory<Progr
     private async Task StopContainer()
     {
         await _dbContainer.StopAsync();
+    }
+
+    private static async Task PopulateDatabase(DatabaseContext databaseContext)
+    {
+        User user = DatabaseFixture.User;
+
+        user.Password = PasswordTool.Hash(DatabaseFixture.User.Password);
+
+        await databaseContext.Authors.AddAsync(DatabaseFixture.Author);
+        await databaseContext.Users.AddAsync(user);
+
+        await databaseContext.SaveChangesAsync();
     }
 }

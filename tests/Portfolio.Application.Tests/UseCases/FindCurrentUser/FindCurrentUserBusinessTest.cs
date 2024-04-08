@@ -25,6 +25,8 @@ public sealed class FindCurrentUserBusinessTest(PortfolioWebApplicationFactory f
 
         UserDto body = await response.GetBodyAsync<UserDto>();
 
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+
         currentUser.Should().NotBeNull();
 
         currentUser.Id.Should().NotBe(Guid.Empty);

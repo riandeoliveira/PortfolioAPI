@@ -33,7 +33,7 @@ public sealed class SignInUserValidatorTest(PortfolioWebApplicationFactory facto
     {
         AuthHelper authHelper = new(_client);
 
-        (SignUpUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
+        (SignInUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
 
         SignInUserRequest signInRequest = new(
             Email: signUpRequest.Email,

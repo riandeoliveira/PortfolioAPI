@@ -1,8 +1,10 @@
 using FluentAssertions;
 
-using Portfolio.Domain.Tests.Fixtures;
+using Portfolio.Domain.Entities;
 
 namespace Portfolio.Domain.Tests.Entities;
+
+public sealed class FakeEntity : BaseEntity;
 
 public sealed class BaseEntityTest
 {
