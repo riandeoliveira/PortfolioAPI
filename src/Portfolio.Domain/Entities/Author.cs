@@ -49,7 +49,6 @@ public sealed class Author : BaseEntity
 
     [Column("user_id")]
     [ForeignKey("User")]
-    [Key]
     [NotNull]
     [Required]
     public required Guid UserId { get; set; }

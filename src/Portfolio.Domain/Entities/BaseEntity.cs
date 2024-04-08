@@ -10,13 +10,13 @@ public abstract class BaseEntity
     [Key]
     [NotNull]
     [Required]
-    public Guid Id { get; private set; } = Guid.NewGuid();
+    public Guid Id { get; set; } = Guid.NewGuid();
 
     [Column("created_at")]
     [DataType(DataType.DateTime)]
     [NotNull]
     [Required]
-    public DateTime CreatedAt { get; private set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 
     [Column("updated_at")]
     [DataType(DataType.DateTime)]

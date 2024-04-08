@@ -14,7 +14,7 @@ public sealed class CreateAuthorHandler(
 {
     public async Task<CreateAuthorResponse> Handle(CreateAuthorRequest request, CancellationToken cancellationToken = default)
     {
-        UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
+        UserDto currentUser = await authService.GetCurrentUserAsync(cancellationToken);
 
         Author author = new()
         {
@@ -24,7 +24,7 @@ public sealed class CreateAuthorHandler(
             Description = request.Description,
             AvatarUrl = request.AvatarUrl,
             SpotifyAccountName = request.SpotifyAccountName,
-            UserId = userDto.Id
+            UserId = currentUser.Id
         };
 
         Author createdAuthor = await authorRepository.CreateAsync(author, cancellationToken);
