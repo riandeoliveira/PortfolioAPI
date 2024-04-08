@@ -10,8 +10,7 @@ using Portfolio.Infrastructure.Repositories.Base;
 namespace Portfolio.Infrastructure.Repositories;
 
 public sealed class UserRepository(
-    DatabaseContext databaseContext,
-    ILocalizationService localizationService
+    DatabaseContext databaseContext
 ) : BaseRepository<User>(databaseContext), IUserRepository
 {
     public async Task<User> FindOneOrThrowAsync(Guid id, CancellationToken cancellationToken = default)
@@ -20,7 +19,7 @@ public sealed class UserRepository(
 
         return user is not null
             ? user
-            : throw new BaseException(localizationService, LocalizationMessages.UserNotFound);
+            : throw new BaseException(Message.UserNotFound);
     }
 
     public async Task<User> FindOneOrThrowAsync(Expression<Func<User, bool>> predicate, CancellationToken cancellationToken = default)
@@ -29,6 +28,6 @@ public sealed class UserRepository(
 
         return user is not null
             ? user
-            : throw new BaseException(localizationService, LocalizationMessages.UserNotFound);
+            : throw new BaseException(Message.UserNotFound);
     }
 }

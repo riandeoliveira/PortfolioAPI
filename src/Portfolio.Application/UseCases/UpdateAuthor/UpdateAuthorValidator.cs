@@ -8,45 +8,45 @@ namespace Portfolio.Application.UseCases.UpdateAuthor;
 
 public sealed class UpdateAuthorValidator : AbstractValidator<UpdateAuthorRequest>
 {
-    public UpdateAuthorValidator(ILocalizationService localizationService)
+    public UpdateAuthorValidator()
     {
         RuleFor(request => request.Name)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.NameIsRequired)
+            .Message(Message.NameIsRequired)
 
             .MaximumLength(64)
-            .Message(localizationService, LocalizationMessages.MaximumNameLength);
+            .Message(Message.MaximumNameLength);
 
         RuleFor(request => request.FullName)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.FullNameIsRequired)
+            .Message(Message.FullNameIsRequired)
 
             .MaximumLength(128)
-            .Message(localizationService, LocalizationMessages.MaximumFullNameLength);
+            .Message(Message.MaximumFullNameLength);
 
         RuleFor(request => request.Position)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.PositionIsRequired)
+            .Message(Message.PositionIsRequired)
 
             .MaximumLength(64)
-            .Message(localizationService, LocalizationMessages.MaximumPositionLength);
+            .Message(Message.MaximumPositionLength);
 
         RuleFor(request => request.Description)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.DescriptionIsRequired)
+            .Message(Message.DescriptionIsRequired)
 
             .MaximumLength(1024)
-            .Message(localizationService, LocalizationMessages.MaximumPositionLength);
+            .Message(Message.MaximumPositionLength);
 
         RuleFor(request => request.AvatarUrl)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.AvatarUrlIsRequired)
+            .Message(Message.AvatarUrlIsRequired)
 
             .MaximumLength(512)
-            .Message(localizationService, LocalizationMessages.MaximumAvatarUrlLength);
+            .Message(Message.MaximumAvatarUrlLength);
 
         RuleFor(request => request.SpotifyAccountName)
             .MaximumLength(64)
-            .Message(localizationService, LocalizationMessages.MaximumSpotifyAccountNameLength);
+            .Message(Message.MaximumSpotifyAccountNameLength);
     }
 }

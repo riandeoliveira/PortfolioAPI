@@ -14,10 +14,7 @@ using Portfolio.Domain.Interfaces;
 
 namespace Portfolio.Infrastructure.Services;
 
-public sealed class AuthService(
-    IHttpContextAccessor httpContextAccessor,
-    ILocalizationService localizationService
-) : IAuthService
+public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAuthService
 {
     private readonly JwtSecurityTokenHandler _tokenHandler = new();
 
@@ -82,7 +79,7 @@ public sealed class AuthService(
 
             return accessToken is not null
                 ? accessToken
-                : throw new BaseException(localizationService.GetKey(LocalizationMessages.AccessTokenIsRequired));
+                : throw new BaseException(Message.AccessTokenIsRequired);
         }, cancellationToken);
     }
 

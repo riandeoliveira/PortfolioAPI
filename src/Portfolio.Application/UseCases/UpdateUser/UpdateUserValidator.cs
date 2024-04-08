@@ -11,22 +11,21 @@ public sealed class UpdateUserValidator : AbstractValidator<UpdateUserRequest>
 {
     public UpdateUserValidator(
         IAuthService authService,
-        ILocalizationService localizationService,
         IUserRepository userRepository
     )
     {
         RuleFor(request => request.Email)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.EmailIsRequired)
+            .Message(Message.EmailIsRequired)
 
             .MinimumLength(8)
-            .Message(localizationService, LocalizationMessages.MinimumEmailLength)
+            .Message(Message.MinimumEmailLength)
 
             .MaximumLength(64)
-            .Message(localizationService, LocalizationMessages.MaximumEmailLength)
+            .Message(Message.MaximumEmailLength)
 
             .EmailAddress()
-            .Message(localizationService, LocalizationMessages.InvalidEmail)
+            .Message(Message.InvalidEmail)
 
             .MustAsync(async (email, cancellationToken) =>
             {
@@ -40,19 +39,19 @@ public sealed class UpdateUserValidator : AbstractValidator<UpdateUserRequest>
 
                 return !emailAlreadyExists;
             })
-            .Message(localizationService, LocalizationMessages.EmailAlreadyExists);
+            .Message(Message.EmailAlreadyExists);
 
         RuleFor(request => request.Password)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.PasswordIsRequired)
+            .Message(Message.PasswordIsRequired)
 
             .MinimumLength(8)
-            .Message(localizationService, LocalizationMessages.MinimumPasswordLength)
+            .Message(Message.MinimumPasswordLength)
 
             .MaximumLength(64)
-            .Message(localizationService, LocalizationMessages.MaximumPasswordLength)
+            .Message(Message.MaximumPasswordLength)
 
             .StrongPassword()
-            .Message(localizationService, LocalizationMessages.StrongPassword);
+            .Message(Message.StrongPassword);
     }
 }

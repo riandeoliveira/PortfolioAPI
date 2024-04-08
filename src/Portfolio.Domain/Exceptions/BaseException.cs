@@ -1,11 +1,11 @@
 using Portfolio.Domain.Enums;
-using Portfolio.Domain.Interfaces;
+using Portfolio.Domain.Services;
 
 namespace Portfolio.Domain.Exceptions;
 
 public sealed class BaseException : Exception
 {
-    public BaseException(ILocalizationService localizationService, LocalizationMessages key) : base(localizationService.GetKey(key))
+    public BaseException(Message key) : base(LocalizationService.GetMessage(key))
     {
     }
 

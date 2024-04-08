@@ -1,19 +1,23 @@
 namespace Portfolio.Domain.Enums;
 
-public enum LocalizationMessages
+public enum Message
 {
     AccessTokenIsRequired,
     AuthorNotFound,
     AvatarUrlIsRequired,
     DescriptionIsRequired,
+
     EmailAlreadyExists,
     EmailIsNotRegistered,
     EmailIsRequired,
+
     EntityNotFound,
     EquivalentPasswords,
     FullNameIsRequired,
+
     InvalidEmail,
     InvalidLoginCredentials,
+
     MaximumAvatarUrlLength,
     MaximumDescriptionLength,
     MaximumEmailLength,
@@ -24,11 +28,15 @@ public enum LocalizationMessages
     MaximumPasswordLength,
     MaximumPositionLength,
     MaximumSpotifyAccountNameLength,
+
     MinimumEmailLength,
     MinimumPasswordLength,
+
     NameIsRequired,
+
     PasswordIsRequired,
     PasswordResetRequest,
+
     PositionIsRequired,
     StrongPassword,
     UnauthorizedOperation,

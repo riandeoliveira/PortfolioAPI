@@ -11,7 +11,6 @@ namespace Portfolio.Application.UseCases.SignInUser;
 
 public sealed class SignInUserHandler(
     IAuthService authService,
-    ILocalizationService localizationService,
     IUserRepository userRepository
 ) : IRequestHandler<SignInUserRequest, SignInUserResponse>
 {
@@ -21,10 +20,7 @@ public sealed class SignInUserHandler(
 
         bool isValidPassword = PasswordTool.Verify(request.Password, user.Password);
 
-        if (!isValidPassword)
-        {
-            throw new BaseException(localizationService, LocalizationMessages.InvalidLoginCredentials);
-        }
+        if (!isValidPassword) throw new BaseException(Message.InvalidLoginCredentials);
 
         TokenDto tokenDto = await authService.GenerateTokenDataAsync(user.Adapt<UserDto>(), cancellationToken);
 

@@ -15,7 +15,6 @@ internal static class DependenciesExtension
         builder.Services
             .AddScoped<IAuthorRepository, AuthorRepository>()
             .AddScoped<IAuthService, AuthService>()
-            .AddScoped<ILocalizationService, LocalizationService>()
             .AddScoped<IMailService, MailService>()
             .AddScoped<IUnitOfWork, UnitOfWork>()
             .AddScoped<IUserRepository, UserRepository>()

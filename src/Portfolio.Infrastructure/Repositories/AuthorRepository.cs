@@ -12,8 +12,7 @@ namespace Portfolio.Infrastructure.Repositories;
 
 public sealed class AuthorRepository(
     DatabaseContext databaseContext,
-    IAuthService authService,
-    ILocalizationService localizationService
+    IAuthService authService
 ) : BaseRepository<Author>(databaseContext), IAuthorRepository
 {
     public async Task<Author> FindOneOrThrowAsync(Guid id, CancellationToken cancellationToken = default)
@@ -28,7 +27,7 @@ public sealed class AuthorRepository(
 
         return author is not null
             ? author
-            : throw new BaseException(localizationService, LocalizationMessages.AuthorNotFound);
+            : throw new BaseException(Message.AuthorNotFound);
     }
 
     public async Task<Author> FindOneOrThrowAsync(Expression<Func<Author, bool>> predicate, CancellationToken cancellationToken = default)
@@ -46,6 +45,6 @@ public sealed class AuthorRepository(
 
         return author is not null
             ? author
-            : throw new BaseException(localizationService, LocalizationMessages.AuthorNotFound);
+            : throw new BaseException(Message.AuthorNotFound);
     }
 }

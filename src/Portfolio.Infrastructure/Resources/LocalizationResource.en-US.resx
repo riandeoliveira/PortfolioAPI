@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- Email -->
-  <data name="EmailAlreadyExists" xml:space="preserve"><value>This 'email' is already being used.</value></data>
-  <data name="EmailIsNotRegistered" xml:space="preserve"><value>This 'email' is not registered.</value></data>
-  <data name="EmailIsRequired" xml:space="preserve"><value>The 'email' must be provided.</value></data>
-  <data name="InvalidEmail" xml:space="preserve"><value>The 'email' must be valid.</value></data>
-  <data name="MaximumEmailLength" xml:space="preserve"><value>The 'email' must have a maximum of 64 characters.</value></data>
-  <data name="MinimumEmailLength" xml:space="preserve"><value>The 'email' must have a minimum of 8 characters.</value></data>
+  <data name="AccessTokenIsRequired" xml:space="preserve"><value>Messages_EN_US.AccessTokenIsRequired</value></data>
+  <data name="AuthorNotFound" xml:space="preserve"><value>Messages_EN_US.AuthorNotFound</value></data>
+  <data name="AvatarUrlIsRequired" xml:space="preserve"><value>Messages_EN_US.AvatarUrlIsRequired</value></data>
+  <data name="DescriptionIsRequired" xml:space="preserve"><value>Messages_EN_US.DescriptionIsRequired</value></data>
 
-  <!-- Login -->
-  <data name="InvalidLoginCredentials" xml:space="preserve"><value>The 'email' or 'password' is invalid.</value></data>
+  <data name="EmailAlreadyExists" xml:space="preserve"><value>Messages_EN_US.EmailAlreadyExists</value></data>
+  <data name="EmailIsNotRegistered" xml:space="preserve"><value>Messages_EN_US.EmailIsNotRegistered</value></data>
+  <data name="EmailIsRequired" xml:space="preserve"><value>Messages_EN_US.EmailIsRequired</value></data>
 
-  <!-- Password -->
-  <data name="EquivalentPasswords" xml:space="preserve"><value>The 'passwords' must be equivalent.</value></data>
-  <data name="MaximumPasswordLength" xml:space="preserve"><value>The 'password' must have a maximum of 64 characters.</value></data>
-  <data name="MinimumPasswordLength" xml:space="preserve"><value>The 'password' must have a minimum of 8 characters.</value></data>
-  <data name="PasswordIsRequired" xml:space="preserve"><value>The 'password' must be provided.</value></data>
-  <data name="StrongPassword" xml:space="preserve"><value>The 'password' must have at least: one capital letter and one number.</value></data>
+  <data name="EntityNotFound" xml:space="preserve"><value>Messages_EN_US.EntityNotFound</value></data>
+  <data name="EquivalentPasswords" xml:space="preserve"><value>Messages_EN_US.EquivalentPasswords</value></data>
+  <data name="FullNameIsRequired" xml:space="preserve"><value>Messages_EN_US.FullNameIsRequired</value></data>
 
-  <!-- User -->
-  <data name="UserNotFound" xml:space="preserve"><value>No 'user' found.</value></data>
+  <data name="InvalidEmail" xml:space="preserve"><value>Messages_EN_US.InvalidEmail</value></data>
+  <data name="InvalidLoginCredentials" xml:space="preserve"><value>Messages_EN_US.InvalidLoginCredentials</value></data>
 
-  <!-- Author -->
-  <data name="AuthorNotFound" xml:space="preserve"><value>No 'author' found.</value></data>
-  <data name="AvatarUrlIsRequired" xml:space="preserve"><value>The 'avatar url' must be provided.</value></data>
-  <data name="DescriptionIsRequired" xml:space="preserve"><value>The 'description' must be provided.</value></data>
-  <data name="FullNameIsRequired" xml:space="preserve"><value>The 'full name' must be provided.</value></data>
-  <data name="MaximumAvatarUrlLength" xml:space="preserve"><value>The 'avatar url' must have a maximum of 512 characters.</value></data>
-  <data name="MaximumDescriptionLength" xml:space="preserve"><value>The 'description' must have a maximum of 1024 characters.</value></data>
-  <data name="MaximumFullNameLength" xml:space="preserve"><value>The 'full name' must have a maximum of 128 characters.</value></data>
-  <data name="MaximumNameLength" xml:space="preserve"><value>The 'name' must have a maximum of 64 characters.</value></data>
-  <data name="MaximumPositionLength" xml:space="preserve"><value>The 'position' must have a maximum of 64 characters.</value></data>
-  <data name="MaximumSpotifyAccountNameLength" xml:space="preserve"><value>The 'Spotify account name' must have a maximum of 64 characters.</value></data>
-  <data name="NameIsRequired" xml:space="preserve"><value>The 'name' must be provided.</value></data>
-  <data name="PositionIsRequired" xml:space="preserve"><value>The 'position' must be provided.</value></data>
+  <data name="MaximumAvatarUrlLength" xml:space="preserve"><value>Messages_EN_US.MaximumAvatarUrlLength</value></data>
+  <data name="MaximumDescriptionLength" xml:space="preserve"><value>Messages_EN_US.MaximumDescriptionLength</value></data>
+  <data name="MaximumEmailLength" xml:space="preserve"><value>Messages_EN_US.MaximumEmailLength</value></data>
+  <data name="MaximumFullNameLength" xml:space="preserve"><value>Messages_EN_US.MaximumFullNameLength</value></data>
+  <data name="MaximumNameLength" xml:space="preserve"><value>Messages_EN_US.MaximumNameLength</value></data>
+  <data name="MaximumPageNumberLength" xml:space="preserve"><value>Messages_EN_US.MaximumPageNumberLength</value></data>
+  <data name="MaximumPageSizeLength" xml:space="preserve"><value>Messages_EN_US.MaximumPageSizeLength</value></data>
+  <data name="MaximumPasswordLength" xml:space="preserve"><value>Messages_EN_US.MaximumPasswordLength</value></data>
+  <data name="MaximumPositionLength" xml:space="preserve"><value>Messages_EN_US.MaximumPositionLength</value></data>
+  <data name="MaximumSpotifyAccountNameLength" xml:space="preserve"><value>Messages_EN_US.MaximumSpotifyAccountNameLength</value></data>
 
-  <!-- Others -->
-  <data name="EntityNotFound" xml:space="preserve"><value>No entity found.</value></data>
-  <data name="MaximumPageNumberLength" xml:space="preserve"><value>The 'page number' must be less than or equal to 100.</value></data>
-  <data name="MaximumPageSizeLength" xml:space="preserve"><value>The 'page size' must be less than or equal to 100.</value></data>
-  <data name="PasswordResetRequest" xml:space="preserve"><value>Password reset request</value></data>
-  <data name="UnauthorizedOperation" xml:space="preserve"><value>You do not have permission to perform this action.</value></data>
-  <data name="AccessTokenIsRequired" xml:space="preserve"><value>The 'access token' must be provided.</value></data>
+  <data name="MinimumEmailLength" xml:space="preserve"><value>Messages_EN_US.MinimumEmailLength</value></data>
+  <data name="MinimumPasswordLength" xml:space="preserve"><value>Messages_EN_US.MinimumPasswordLength</value></data>
+
+  <data name="NameIsRequired" xml:space="preserve"><value>Messages_EN_US.NameIsRequired</value></data>
+
+  <data name="PasswordIsRequired" xml:space="preserve"><value>Messages_EN_US.PasswordIsRequired</value></data>
+  <data name="PasswordResetRequest" xml:space="preserve"><value>Messages_EN_US.PasswordResetRequest</value></data>
+
+  <data name="PositionIsRequired" xml:space="preserve"><value>Messages_EN_US.PositionIsRequired</value></data>
+  <data name="StrongPassword" xml:space="preserve"><value>Messages_EN_US.StrongPassword</value></data>
+  <data name="UnauthorizedOperation" xml:space="preserve"><value>Messages_EN_US.UnauthorizedOperation</value></data>
+  <data name="UserNotFound" xml:space="preserve"><value>Messages_EN_US.UserNotFound</value></data>
 </root>

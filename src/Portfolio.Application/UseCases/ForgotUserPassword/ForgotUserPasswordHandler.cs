@@ -27,7 +27,7 @@ public sealed class ForgotUserPasswordHandler(
 
         MailSenderDto mailSenderDto = new(
             Recipient: user.Email,
-            Subject: LocalizationMessages.PasswordResetRequest,
+            Subject: Message.PasswordResetRequest,
             ViewName: "ForgotUserPassword",
             ViewModel: viewModel
         );

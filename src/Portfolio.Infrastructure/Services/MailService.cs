@@ -4,12 +4,13 @@ using System.Net.Mail;
 using Portfolio.Domain.Constants;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Interfaces;
+using Portfolio.Domain.Services;
 
 using Razor.Templating.Core;
 
 namespace Portfolio.Infrastructure.Services;
 
-public sealed class MailService(ILocalizationService localizationService) : IMailService
+public sealed class MailService : IMailService
 {
     public async Task SendMailAsync(MailSenderDto mailSender, CancellationToken cancellationToken = default)
     {
@@ -21,7 +22,7 @@ public sealed class MailService(ILocalizationService localizationService) : IMai
             Port = int.Parse(EnvironmentVariables.MAIL_PORT)
         };
 
-        string? culture = localizationService.GetCultureName();
+        string? culture = LocalizationService.GetCultureName();
         string? html = await RazorTemplateEngine.RenderAsync($"/Views/{culture}/{mailSender.ViewName}.cshtml", mailSender.ViewModel);
 
         MailMessage mailMessage = new()
@@ -29,7 +30,7 @@ public sealed class MailService(ILocalizationService localizationService) : IMai
             Body = html,
             From = new MailAddress(EnvironmentVariables.MAIL_SENDER),
             IsBodyHtml = true,
-            Subject = localizationService.GetKey(mailSender.Subject),
+            Subject = LocalizationService.GetMessage(mailSender.Subject),
         };
 
         mailMessage.To.Add(mailSender.Recipient);

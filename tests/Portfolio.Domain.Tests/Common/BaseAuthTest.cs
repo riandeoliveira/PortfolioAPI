@@ -23,13 +23,11 @@ public abstract class BaseAuthTest(PortfolioWebApplicationFactory factory) : Bas
         get
         {
             Mock<IHttpContextAccessor> httpContextAccessorMock = new();
-            Mock<ILocalizationService> localizationServiceMock = new();
 
             httpContextAccessorMock.Setup(accessor => accessor.HttpContext).Returns(HttpContext);
 
             AuthService authService = new(
-                httpContextAccessorMock.Object,
-                localizationServiceMock.Object
+                httpContextAccessorMock.Object
             );
 
             return authService;

@@ -3,6 +3,7 @@ using System.Net;
 using FluentAssertions;
 
 using Portfolio.Application.UseCases.SignInUser;
+using Portfolio.Domain.Messages;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Domain.Tests.Factories;
@@ -35,7 +36,7 @@ public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factor
 
         string responseMessage = await response.Content.ReadAsStringAsync();
         string message = responseMessage.Trim('"');
-        string expectedMessage = "Este 'e-mail' não está registrado.";
+        string expectedMessage = Messages_PT_BR.EmailIsNotRegistered;
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
 

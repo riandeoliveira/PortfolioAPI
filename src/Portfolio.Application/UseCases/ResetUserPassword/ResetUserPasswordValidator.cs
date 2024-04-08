@@ -1,43 +1,42 @@
 using FluentValidation;
 
 using Portfolio.Domain.Enums;
-using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Application.UseCases.ResetUserPassword;
 
 public sealed class ResetUserPasswordValidator : AbstractValidator<ResetUserPasswordRequest>
 {
-    public ResetUserPasswordValidator(ILocalizationService localizationService)
+    public ResetUserPasswordValidator()
     {
         RuleFor(request => request)
             .Must(request => request.Password == request.PasswordConfirmation)
-            .Message(localizationService, LocalizationMessages.EquivalentPasswords);
+            .Message(Message.EquivalentPasswords);
 
         RuleFor(request => request.Password)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.PasswordIsRequired)
+            .Message(Message.PasswordIsRequired)
 
             .MinimumLength(8)
-            .Message(localizationService, LocalizationMessages.MinimumPasswordLength)
+            .Message(Message.MinimumPasswordLength)
 
             .MaximumLength(64)
-            .Message(localizationService, LocalizationMessages.MaximumPasswordLength)
+            .Message(Message.MaximumPasswordLength)
 
             .StrongPassword()
-            .Message(localizationService, LocalizationMessages.StrongPassword);
+            .Message(Message.StrongPassword);
 
         RuleFor(request => request.PasswordConfirmation)
             .NotEmpty()
-            .Message(localizationService, LocalizationMessages.PasswordIsRequired)
+            .Message(Message.PasswordIsRequired)
 
             .MinimumLength(8)
-            .Message(localizationService, LocalizationMessages.MinimumPasswordLength)
+            .Message(Message.MinimumPasswordLength)
 
             .MaximumLength(64)
-            .Message(localizationService, LocalizationMessages.MaximumPasswordLength)
+            .Message(Message.MaximumPasswordLength)
 
             .StrongPassword()
-            .Message(localizationService, LocalizationMessages.StrongPassword);
+            .Message(Message.StrongPassword);
     }
 }

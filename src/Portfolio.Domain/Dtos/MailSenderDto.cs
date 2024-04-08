@@ -4,7 +4,7 @@ namespace Portfolio.Domain.Dtos;
 
 public sealed record MailSenderDto(
     string Recipient,
-    LocalizationMessages Subject,
+    Message Subject,
     string? ViewName,
     object? ViewModel
 );

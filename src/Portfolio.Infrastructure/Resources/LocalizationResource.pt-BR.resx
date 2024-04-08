@@ -1,45 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- Email -->
-  <data name="EmailAlreadyExists" xml:space="preserve"><value>Este 'e-mail' já está sendo usado.</value></data>
-  <data name="EmailIsNotRegistered" xml:space="preserve"><value>Este 'e-mail' não está registrado.</value></data>
-  <data name="EmailIsRequired" xml:space="preserve"><value>O 'e-mail' deve ser informado.</value></data>
-  <data name="InvalidEmail" xml:space="preserve"><value>O 'e-mail' deve ser válido.</value></data>
-  <data name="MaximumEmailLength" xml:space="preserve"><value>O 'e-mail' deve possuir no máximo 64 caracteres.</value></data>
-  <data name="MinimumEmailLength" xml:space="preserve"><value>O 'e-mail' deve possuir no mínimo 8 caracteres.</value></data>
+  <data name="AccessTokenIsRequired" xml:space="preserve"><value>Messages_PT_BR.AccessTokenIsRequired</value></data>
+  <data name="AuthorNotFound" xml:space="preserve"><value>Messages_PT_BR.AuthorNotFound</value></data>
+  <data name="AvatarUrlIsRequired" xml:space="preserve"><value>Messages_PT_BR.AvatarUrlIsRequired</value></data>
+  <data name="DescriptionIsRequired" xml:space="preserve"><value>Messages_PT_BR.DescriptionIsRequired</value></data>
 
-  <!-- Login -->
-  <data name="InvalidLoginCredentials" xml:space="preserve"><value>O 'e-mail' ou 'senha' são inválidos.</value></data>
+  <data name="EmailAlreadyExists" xml:space="preserve"><value>Messages_PT_BR.EmailAlreadyExists</value></data>
+  <data name="EmailIsNotRegistered" xml:space="preserve"><value>Messages_PT_BR.EmailIsNotRegistered</value></data>
+  <data name="EmailIsRequired" xml:space="preserve"><value>Messages_PT_BR.EmailIsRequired</value></data>
 
-  <!-- Password -->
-  <data name="EquivalentPasswords" xml:space="preserve"><value>As 'senhas' devem ser equivalentes.</value></data>
-  <data name="MaximumPasswordLength" xml:space="preserve"><value>A 'senha' deve possuir no máximo 64 caracteres.</value></data>
-  <data name="MinimumPasswordLength" xml:space="preserve"><value>A 'senha' deve possuir no mínimo 8 caracteres.</value></data>
-  <data name="PasswordIsRequired" xml:space="preserve"><value>A 'senha' deve ser informada.</value></data>
-  <data name="StrongPassword" xml:space="preserve"><value>A 'senha' deve possuir pelo menos: uma letra maiúscula e um número.</value></data>
+  <data name="EntityNotFound" xml:space="preserve"><value>Messages_PT_BR.EntityNotFound</value></data>
+  <data name="EquivalentPasswords" xml:space="preserve"><value>Messages_PT_BR.EquivalentPasswords</value></data>
+  <data name="FullNameIsRequired" xml:space="preserve"><value>Messages_PT_BR.FullNameIsRequired</value></data>
 
-  <!-- User -->
-  <data name="UserNotFound" xml:space="preserve"><value>Nenhum 'usuário' encontrado.</value></data>
+  <data name="InvalidEmail" xml:space="preserve"><value>Messages_PT_BR.InvalidEmail</value></data>
+  <data name="InvalidLoginCredentials" xml:space="preserve"><value>Messages_PT_BR.InvalidLoginCredentials</value></data>
 
-  <!-- Author -->
-  <data name="AuthorNotFound" xml:space="preserve"><value>Nenhum 'autor' encontrado.</value></data>
-  <data name="AvatarUrlIsRequired" xml:space="preserve"><value>A 'url do avatar' deve ser informada.</value></data>
-  <data name="DescriptionIsRequired" xml:space="preserve"><value>A 'descrição' deve ser informada.</value></data>
-  <data name="FullNameIsRequired" xml:space="preserve"><value>O 'nome completo' deve ser informado.</value></data>
-  <data name="MaximumAvatarUrlLength" xml:space="preserve"><value>A 'url do avatar' deve possuir no máximo 512 caracteres.</value></data>
-  <data name="MaximumDescriptionLength" xml:space="preserve"><value>A 'descrição' deve possuir no máximo 1024 caracteres.</value></data>
-  <data name="MaximumFullNameLength" xml:space="preserve"><value>O 'nome completo' deve possuir no máximo 128 caracteres.</value></data>
-  <data name="MaximumNameLength" xml:space="preserve"><value>O 'nome' deve possuir no máximo 64 caracteres.</value></data>
-  <data name="MaximumPositionLength" xml:space="preserve"><value>O 'cargo' deve possuir no máximo 64 caracteres.</value></data>
-  <data name="MaximumSpotifyAccountNameLength" xml:space="preserve"><value>O 'nome da conta do Spotify' deve possuir no máximo 64 caracteres.</value></data>
-  <data name="NameIsRequired" xml:space="preserve"><value>O 'nome' deve ser informado.</value></data>
-  <data name="PositionIsRequired" xml:space="preserve"><value>O 'cargo' deve ser informado.</value></data>
+  <data name="MaximumAvatarUrlLength" xml:space="preserve"><value>Messages_PT_BR.MaximumAvatarUrlLength</value></data>
+  <data name="MaximumDescriptionLength" xml:space="preserve"><value>Messages_PT_BR.MaximumDescriptionLength</value></data>
+  <data name="MaximumEmailLength" xml:space="preserve"><value>Messages_PT_BR.MaximumEmailLength</value></data>
+  <data name="MaximumFullNameLength" xml:space="preserve"><value>Messages_PT_BR.MaximumFullNameLength</value></data>
+  <data name="MaximumNameLength" xml:space="preserve"><value>Messages_PT_BR.MaximumNameLength</value></data>
+  <data name="MaximumPageNumberLength" xml:space="preserve"><value>Messages_PT_BR.MaximumPageNumberLength</value></data>
+  <data name="MaximumPageSizeLength" xml:space="preserve"><value>Messages_PT_BR.MaximumPageSizeLength</value></data>
+  <data name="MaximumPasswordLength" xml:space="preserve"><value>Messages_PT_BR.MaximumPasswordLength</value></data>
+  <data name="MaximumPositionLength" xml:space="preserve"><value>Messages_PT_BR.MaximumPositionLength</value></data>
+  <data name="MaximumSpotifyAccountNameLength" xml:space="preserve"><value>Messages_PT_BR.MaximumSpotifyAccountNameLength</value></data>
 
-  <!-- Others -->
-  <data name="EntityNotFound" xml:space="preserve"><value>Nenhuma entidade encontrada.</value></data>
-  <data name="MaximumPageNumberLength" xml:space="preserve"><value>O 'número da página' deve ser menor ou igual a 100.</value></data>
-  <data name="MaximumPageSizeLength" xml:space="preserve"><value>O 'tamanho da página' deve ser menor ou igual a 100.</value></data>
-  <data name="PasswordResetRequest" xml:space="preserve"><value>Solicitação de redefinição de senha</value></data>
-  <data name="UnauthorizedOperation" xml:space="preserve"><value>Você não possui permissão para realizar esta ação.</value></data>
-  <data name="AccessTokenIsRequired" xml:space="preserve"><value>O 'token de acesso' deve ser informado.</value></data>
+  <data name="MinimumEmailLength" xml:space="preserve"><value>Messages_PT_BR.MinimumEmailLength</value></data>
+  <data name="MinimumPasswordLength" xml:space="preserve"><value>Messages_PT_BR.MinimumPasswordLength</value></data>
+
+  <data name="NameIsRequired" xml:space="preserve"><value>Messages_PT_BR.NameIsRequired</value></data>
+
+  <data name="PasswordIsRequired" xml:space="preserve"><value>Messages_PT_BR.PasswordIsRequired</value></data>
+  <data name="PasswordResetRequest" xml:space="preserve"><value>Messages_PT_BR.PasswordResetRequest</value></data>
+
+  <data name="PositionIsRequired" xml:space="preserve"><value>Messages_PT_BR.PositionIsRequired</value></data>
+  <data name="StrongPassword" xml:space="preserve"><value>Messages_PT_BR.StrongPassword</value></data>
+  <data name="UnauthorizedOperation" xml:space="preserve"><value>Messages_PT_BR.UnauthorizedOperation</value></data>
+  <data name="UserNotFound" xml:space="preserve"><value>Messages_PT_BR.UserNotFound</value></data>
 </root>

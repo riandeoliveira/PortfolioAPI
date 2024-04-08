@@ -4,6 +4,7 @@ using FluentAssertions;
 
 using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Dtos;
+using Portfolio.Domain.Messages;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Domain.Tests.Factories;
@@ -45,7 +46,7 @@ public sealed class SignUpUserBusinessTest(PortfolioWebApplicationFactory factor
 
         string responseMessage = await response.Content.ReadAsStringAsync();
         string message = responseMessage.Trim('"');
-        string expectedMessage = "Este 'e-mail' já está sendo usado.";
+        string expectedMessage = Messages_PT_BR.EmailAlreadyExists;
 
         bool userAlreadyExists = await _userRepository.ExistAsync(DatabaseFixture.User_2.Id);
 

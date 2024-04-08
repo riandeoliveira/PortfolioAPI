@@ -3,6 +3,7 @@ using System.Net;
 using FluentAssertions;
 
 using Portfolio.Domain.Dtos;
+using Portfolio.Domain.Messages;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Domain.Tests.Factories;
@@ -56,7 +57,7 @@ public sealed class FindOneAuthorBusinessTest(PortfolioWebApplicationFactory fac
 
         string responseMessage = await response.Content.ReadAsStringAsync();
         string message = responseMessage.Trim('"');
-        string expectedMessage = "Nenhum 'autor' encontrado.";
+        string expectedMessage = Messages_PT_BR.AuthorNotFound;
 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -74,7 +75,7 @@ public sealed class FindOneAuthorBusinessTest(PortfolioWebApplicationFactory fac
 
         string responseMessage = await response.Content.ReadAsStringAsync();
         string message = responseMessage.Trim('"');
-        string expectedMessage = "Nenhum 'autor' encontrado.";
+        string expectedMessage = Messages_PT_BR.AuthorNotFound;
 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
