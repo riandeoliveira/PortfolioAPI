@@ -3,22 +3,29 @@ using System.Net;
 using FluentAssertions;
 
 using Portfolio.Application.UseCases.SignInUser;
-using Portfolio.Application.UseCases.SignUpUser;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Domain.Tests.Factories;
-using Portfolio.Domain.Tests.Helper;
+using Portfolio.Domain.Tests.Fixtures;
 using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Application.Tests.UseCases.SignInUser;
 
-public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
+public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseAuthTest(factory)
 {
     [Fact]
-    public async Task ShouldNotSignInUserWithUnregisteredEmail()
+    public async Task Should_SignInUser()
     {
-        string expectedMessage = "Este 'e-mail' não está registrado.";
+        SignInUserRequest signInRequest = new(DatabaseFixture.User_1.Email, DatabaseFixture.User_1.Password);
 
+        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-in", signInRequest);
+
+        response.Should().HaveStatusCode(HttpStatusCode.OK);
+    }
+
+    [Fact]
+    public async Task ShouldNot_SignInUser_WithUnregisteredEmail()
+    {
         SignInUserRequest request = new(
             _faker.Internet.Email(),
             _faker.Internet.StrongPassword()
@@ -28,23 +35,10 @@ public sealed class SignInUserBusinessTest(PortfolioWebApplicationFactory factor
 
         string responseMessage = await response.Content.ReadAsStringAsync();
         string message = responseMessage.Trim('"');
+        string expectedMessage = "Este 'e-mail' não está registrado.";
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
 
         message.Should().Be(expectedMessage);
-    }
-
-    [Fact]
-    public async Task ShouldSignInUser()
-    {
-        AuthHelper authHelper = new(_client);
-
-        (SignInUserRequest signUpRequest, _) = await authHelper.AuthenticateAsync();
-
-        SignInUserRequest signInRequest = new(signUpRequest.Email, signUpRequest.Password);
-
-        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-in", signInRequest);
-
-        response.Should().HaveStatusCode(HttpStatusCode.OK);
     }
 }

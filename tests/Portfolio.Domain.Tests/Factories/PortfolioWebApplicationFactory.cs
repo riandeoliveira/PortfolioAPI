@@ -70,12 +70,17 @@ public sealed class PortfolioWebApplicationFactory : WebApplicationFactory<Progr
 
     private static async Task PopulateDatabase(DatabaseContext databaseContext)
     {
-        User user = DatabaseFixture.User;
+        User user1 = DatabaseFixture.User_1;
+        User user2 = DatabaseFixture.User_2;
 
-        user.Password = PasswordTool.Hash(DatabaseFixture.User.Password);
+        user1.Password = PasswordTool.Hash(DatabaseFixture.User_1.Password);
+        user2.Password = PasswordTool.Hash(DatabaseFixture.User_2.Password);
 
-        await databaseContext.Authors.AddAsync(DatabaseFixture.Author);
-        await databaseContext.Users.AddAsync(user);
+        await databaseContext.Authors.AddAsync(DatabaseFixture.Author_1);
+        await databaseContext.Authors.AddAsync(DatabaseFixture.Author_2);
+
+        await databaseContext.Users.AddAsync(user1);
+        await databaseContext.Users.AddAsync(user2);
 
         await databaseContext.SaveChangesAsync();
     }

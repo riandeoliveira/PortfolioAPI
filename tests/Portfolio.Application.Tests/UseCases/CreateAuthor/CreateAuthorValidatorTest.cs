@@ -25,35 +25,35 @@ public sealed class CreateAuthorValidatorTest(PortfolioWebApplicationFactory fac
     [InlineData(EMPTY_STRING, "O 'nome' deve ser informado.")]
     [InlineData(STRING_WITH_SIZE_65, "O 'nome' deve possuir no máximo 64 caracteres.")]
     [Theory]
-    public async Task NameValidationTest(string name, string expectedMessage) =>
-        await ExecuteValidationTestAsync("/api/author", CreateRequest(name: name), expectedMessage);
+    public async Task Name_ValidationTest(string name, string expectedMessage) =>
+        await ExecuteAsync("/api/author", CreateRequest(name: name), expectedMessage);
 
     [InlineData(EMPTY_STRING, "O 'nome completo' deve ser informado.")]
     [InlineData(STRING_WITH_SIZE_129, "O 'nome completo' deve possuir no máximo 128 caracteres.")]
     [Theory]
-    public async Task FullNameValidationTest(string fullName, string expectedMessage) =>
-        await ExecuteValidationTestAsync("/api/author", CreateRequest(fullName: fullName), expectedMessage);
+    public async Task FullName_ValidationTest(string fullName, string expectedMessage) =>
+        await ExecuteAsync("/api/author", CreateRequest(fullName: fullName), expectedMessage);
 
     [InlineData(EMPTY_STRING, "O 'cargo' deve ser informado.")]
     [InlineData(STRING_WITH_SIZE_65, "O 'cargo' deve possuir no máximo 64 caracteres.")]
     [Theory]
-    public async Task PositionValidationTest(string position, string expectedMessage) =>
-        await ExecuteValidationTestAsync("/api/author", CreateRequest(position: position), expectedMessage);
+    public async Task Position_ValidationTest(string position, string expectedMessage) =>
+        await ExecuteAsync("/api/author", CreateRequest(position: position), expectedMessage);
 
     [InlineData(EMPTY_STRING, "A 'descrição' deve ser informada.")]
     [InlineData(STRING_WITH_SIZE_1025, "A 'descrição' deve possuir no máximo 1024 caracteres.")]
     [Theory]
-    public async Task DescriptionValidationTest(string description, string expectedMessage) =>
-        await ExecuteValidationTestAsync("/api/author", CreateRequest(description: description), expectedMessage);
+    public async Task Description_ValidationTest(string description, string expectedMessage) =>
+        await ExecuteAsync("/api/author", CreateRequest(description: description), expectedMessage);
 
     [InlineData(EMPTY_STRING, "A 'url do avatar' deve ser informada.")]
     [InlineData(STRING_WITH_SIZE_513, "A 'url do avatar' deve possuir no máximo 512 caracteres.")]
     [Theory]
-    public async Task AvatarUrlValidationTest(string avatarUrl, string expectedMessage) =>
-        await ExecuteValidationTestAsync("/api/author", CreateRequest(avatarUrl: avatarUrl), expectedMessage);
+    public async Task AvatarUrl_ValidationTest(string avatarUrl, string expectedMessage) =>
+        await ExecuteAsync("/api/author", CreateRequest(avatarUrl: avatarUrl), expectedMessage);
 
     [InlineData(STRING_WITH_SIZE_65, "O 'nome da conta do Spotify' deve possuir no máximo 64 caracteres.")]
     [Theory]
-    public async Task SpotifyAccountNameValidationTest(string spotifyAccountName, string expectedMessage) =>
-        await ExecuteValidationTestAsync("/api/author", CreateRequest(spotifyAccountName: spotifyAccountName), expectedMessage);
+    public async Task SpotifyAccountName_ValidationTest(string spotifyAccountName, string expectedMessage) =>
+        await ExecuteAsync("/api/author", CreateRequest(spotifyAccountName: spotifyAccountName), expectedMessage);
 }

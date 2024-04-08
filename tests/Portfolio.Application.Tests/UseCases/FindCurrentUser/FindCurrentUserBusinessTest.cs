@@ -6,20 +6,17 @@ using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Domain.Tests.Factories;
-using Portfolio.Domain.Tests.Helper;
 
 namespace Portfolio.Application.Tests.UseCases.FindCurrentUser;
 
-public sealed class FindCurrentUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
+public sealed class FindCurrentUserBusinessTest(PortfolioWebApplicationFactory factory) : BaseAuthTest(factory)
 {
     [Fact]
-    public async Task ShouldFindCurrentUser()
+    public async Task Should_FindCurrentUser()
     {
-        AuthHelper authHelper = new(_client);
+        await AuthenticateAsync();
 
-        await authHelper.AuthenticateAsync();
-
-        UserDto currentUser = await AuthHelper.GetCurrentUserAsync();
+        UserDto currentUser = await GetCurrentUserAsync();
 
         HttpResponseMessage response = await _client.GetAsync("/api/user");
 
@@ -37,7 +34,7 @@ public sealed class FindCurrentUserBusinessTest(PortfolioWebApplicationFactory f
     }
 
     [Fact]
-    public async Task ShouldNotAccessWithoutAuthentication()
+    public async Task ShouldNot_FindCurrentUser_WithoutAuthentication()
     {
         HttpResponseMessage response = await _client.GetAsync("/api/user");
 

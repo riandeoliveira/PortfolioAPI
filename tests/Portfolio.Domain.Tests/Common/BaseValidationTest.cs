@@ -4,11 +4,10 @@ using FluentAssertions;
 
 using Portfolio.Domain.Tests.Extensions;
 using Portfolio.Domain.Tests.Factories;
-using Portfolio.Domain.Tests.Helper;
 
 namespace Portfolio.Domain.Tests.Common;
 
-public abstract class BaseValidationTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
+public abstract class BaseValidationTest(PortfolioWebApplicationFactory factory) : BaseAuthTest(factory)
 {
     public const string EMPTY_STRING = "";
 
@@ -26,19 +25,14 @@ public abstract class BaseValidationTest(PortfolioWebApplicationFactory factory)
 
     public const string WEAK_PASSWORD = "littlejohn";
 
-    public async Task ExecuteValidationTestAsync<TRequest>(
+    public async Task ExecuteAsync<TRequest>(
         string requestUri,
         TRequest request,
         string expectedMessage,
         bool requireAuthentication = true
     )
     {
-        if (requireAuthentication)
-        {
-            AuthHelper authHelper = new(_client);
-
-            await authHelper.AuthenticateAsync();
-        }
+        if (requireAuthentication) await AuthenticateAsync();
 
         HttpResponseMessage response = await _client.SendPostAsync(requestUri, request);
 

@@ -1,19 +1,20 @@
+using System.Net.Http.Headers;
+
 using Microsoft.AspNetCore.Http;
 
 using Moq;
 
+using Portfolio.Application.UseCases.SignInUser;
 using Portfolio.Domain.Dtos;
 using Portfolio.Domain.Interfaces;
 using Portfolio.Domain.Tests.Extensions;
+using Portfolio.Domain.Tests.Factories;
+using Portfolio.Domain.Tests.Fixtures;
 using Portfolio.Infrastructure.Services;
 
-using System.Net.Http.Headers;
-using Portfolio.Domain.Tests.Fixtures;
-using Portfolio.Application.UseCases.SignInUser;
+namespace Portfolio.Domain.Tests.Common;
 
-namespace Portfolio.Domain.Tests.Helper;
-
-public sealed class AuthHelper(HttpClient client)
+public abstract class BaseAuthTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     private static readonly DefaultHttpContext HttpContext = new();
 
@@ -35,48 +36,46 @@ public sealed class AuthHelper(HttpClient client)
         }
     }
 
-    public async Task<(SignInUserRequest request, TokenDto body)> AuthenticateAsync()
+    protected async Task AuthenticateAsync()
     {
         SignInUserRequest request = new(
-            DatabaseFixture.User.Email,
-            DatabaseFixture.User.Password
+            DatabaseFixture.User_1.Email,
+            DatabaseFixture.User_1.Password
         );
 
-        HttpResponseMessage response = await client.SendPostAsync("/api/user/sign-in", request);
+        HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-in", request);
 
         TokenDto body = await response.GetBodyAsync<TokenDto>();
 
         SetAccessTokenInHeader(body.AccessToken);
-
-        return (request, body);
     }
 
-    public static async Task<string> GenerateRefreshTokenAsync(UserDto userDto)
+    protected static async Task<string> GenerateRefreshTokenAsync(UserDto userDto)
     {
         return await AuthServiceMock.GenerateRefreshTokenAsync(userDto);
     }
 
-    public static async Task<TokenDto> GenerateTokenDataAsync(UserDto userDto)
+    protected static async Task<TokenDto> GenerateTokenDataAsync(UserDto userDto)
     {
         return await AuthServiceMock.GenerateTokenDataAsync(userDto);
     }
 
-    public static async Task<UserDto> GetCurrentUserAsync()
+    protected static async Task<UserDto> GetCurrentUserAsync()
     {
         return await AuthServiceMock.GetCurrentUserAsync();
     }
 
-    public static async Task<UserDto> GetUserFromAccessTokenAsync(string accessToken)
+    protected static async Task<UserDto> GetUserFromAccessTokenAsync(string accessToken)
     {
         return await AuthServiceMock.GetUserFromAccessTokenAsync(accessToken);
     }
 
-    public void SetAccessTokenInHeader(string? accessToken)
+    protected void SetAccessTokenInHeader(string? accessToken)
     {
         string? token = accessToken?.Replace("Bearer ", "");
 
         HttpContext.Request.Headers.Authorization = accessToken;
 
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
 }

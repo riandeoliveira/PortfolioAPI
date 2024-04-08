@@ -11,7 +11,7 @@ namespace Portfolio.Infrastructure.Tests.Tools;
 public sealed class PasswordToolTest(PortfolioWebApplicationFactory factory) : BaseTest(factory)
 {
     [Fact]
-    public void ShouldBeFalseForIncorrectPassword()
+    public void ShouldBeFalse_ForIncorrectPassword()
     {
         string password = _faker.Internet.StrongPassword();
         string hashedPassword = PasswordTool.Hash(password);
@@ -23,7 +23,7 @@ public sealed class PasswordToolTest(PortfolioWebApplicationFactory factory) : B
     }
 
     [Fact]
-    public void ShouldBeTrueForCorrectPassword()
+    public void ShouldBeTrue_ForCorrectPassword()
     {
         string password = _faker.Internet.StrongPassword();
         string hashedPassword = PasswordTool.Hash(password);
@@ -34,7 +34,7 @@ public sealed class PasswordToolTest(PortfolioWebApplicationFactory factory) : B
     }
 
     [Fact]
-    public void ShouldGenerateUniqueHashes()
+    public void ShouldGenerate_UniqueHashes()
     {
         string password = _faker.Internet.StrongPassword();
         string firstHashedPassword = PasswordTool.Hash(password);
