@@ -1,18 +1,17 @@
-using Portfolio.Application.UseCases.SignUpUser;
+using Portfolio.Application.UseCases.UpdateUser;
 using Portfolio.Domain.Messages;
 using Portfolio.Domain.Tests.Common;
 using Portfolio.Domain.Tests.Factories;
+using Portfolio.Domain.Tests.Fixtures;
 
-using Portfolio.Infrastructure.Extensions;
+namespace Portfolio.Application.Tests.UseCases.UpdateUser;
 
-namespace Portfolio.Application.Tests.UseCases.SignUpUser;
-
-public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory factory) : BaseValidationTest(factory)
+public sealed class UpdateUserValidatorTest(PortfolioWebApplicationFactory factory) : BaseValidationTest(factory)
 {
-    public SignUpUserRequest CreateRequest(string? email = null, string? password = null) =>
+    public static UpdateUserRequest CreateRequest(string? email = null, string? password = null) =>
         new(
-            email ?? _faker.Internet.Email(),
-            password ?? _faker.Internet.StrongPassword()
+            email ?? DatabaseFixture.User_1.Email,
+            password ?? DatabaseFixture.User_1.Password
         );
 
     [InlineData(EMPTY_STRING, Messages_PT_BR.EmailIsRequired)]
@@ -21,7 +20,7 @@ public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory facto
     [InlineData(INVALID_EMAIL, Messages_PT_BR.InvalidEmail)]
     [Theory]
     public async Task Email_ValidationTest(string email, string expectedMessage) =>
-        await PostAsync("/api/user/sign-up", CreateRequest(email: email), expectedMessage, false);
+        await PutAsync("/api/user", CreateRequest(email: email), expectedMessage);
 
     [InlineData(EMPTY_STRING, Messages_PT_BR.PasswordIsRequired)]
     [InlineData(STRING_WITH_SIZE_7, Messages_PT_BR.MinimumPasswordLength)]
@@ -29,5 +28,5 @@ public sealed class SignUpUserValidatorTest(PortfolioWebApplicationFactory facto
     [InlineData(WEAK_PASSWORD, Messages_PT_BR.StrongPassword)]
     [Theory]
     public async Task Password_ValidationTest(string password, string expectedMessage) =>
-        await PostAsync("/api/user/sign-up", CreateRequest(password: password), expectedMessage, false);
+        await PutAsync("/api/user", CreateRequest(password: password), expectedMessage);
 }

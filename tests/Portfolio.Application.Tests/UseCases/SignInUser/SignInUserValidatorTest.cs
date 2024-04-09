@@ -22,7 +22,7 @@ public sealed class SignInUserValidatorTest(PortfolioWebApplicationFactory facto
     [InlineData(INVALID_EMAIL, Messages_PT_BR.InvalidEmail)]
     [Theory]
     public async Task Email_ValidationTest(string email, string expectedMessage) =>
-        await ExecuteAsync("/api/user/sign-in", CreateRequest(email: email), expectedMessage, false);
+        await PostAsync("/api/user/sign-in", CreateRequest(email: email), expectedMessage, false);
 
     [InlineData(EMPTY_STRING, Messages_PT_BR.PasswordIsRequired)]
     [InlineData(STRING_WITH_SIZE_7, Messages_PT_BR.MinimumPasswordLength)]
@@ -36,6 +36,6 @@ public sealed class SignInUserValidatorTest(PortfolioWebApplicationFactory facto
             Password: password
         );
 
-        await ExecuteAsync("/api/user/sign-in", signInRequest, expectedMessage, false);
+        await PostAsync("/api/user/sign-in", signInRequest, expectedMessage, false);
     }
 }

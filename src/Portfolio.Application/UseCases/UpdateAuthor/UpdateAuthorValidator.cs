@@ -1,7 +1,6 @@
 using FluentValidation;
 
 using Portfolio.Domain.Enums;
-using Portfolio.Domain.Interfaces;
 using Portfolio.Infrastructure.Extensions;
 
 namespace Portfolio.Application.UseCases.UpdateAuthor;

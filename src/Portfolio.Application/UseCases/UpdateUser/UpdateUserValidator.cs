@@ -29,11 +29,11 @@ public sealed class UpdateUserValidator : AbstractValidator<UpdateUserRequest>
 
             .MustAsync(async (email, cancellationToken) =>
             {
-                UserDto userDto = await authService.GetCurrentUserAsync(cancellationToken);
+                UserDto currentUser = await authService.GetCurrentUserAsync(cancellationToken);
 
                 bool emailAlreadyExists = await userRepository.ExistAsync(
                     user => user.Email == email &&
-                    user.Id != userDto.Id,
+                    user.Id != currentUser.Id,
                     cancellationToken
                 );
 

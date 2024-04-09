@@ -15,4 +15,10 @@ public static class HttpClientExtension
         string requestUri,
         TRequest request
     ) => await client.PostAsJsonAsync(requestUri, request, Options);
+
+    public static async Task<HttpResponseMessage> SendPutAsync<TRequest>(
+        this HttpClient client,
+        string requestUri,
+        TRequest request
+    ) => await client.PutAsJsonAsync(requestUri, request, Options);
 }

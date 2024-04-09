@@ -1,24 +1,24 @@
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Program.cs
 FN:2,System.Void Program/<<Main>$>d__0::MoveNext()
-FNDA:0,System.Void Program/<<Main>$>d__0::MoveNext()
-DA:3,0
-DA:4,0
-DA:5,0
-DA:6,0
-DA:7,0
-DA:8,0
-DA:9,0
-DA:10,0
-DA:11,0
-DA:12,0
-DA:13,0
-DA:14,0
+FNDA:1,System.Void Program/<<Main>$>d__0::MoveNext()
+DA:3,1
+DA:4,1
+DA:5,1
+DA:6,1
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,1
+DA:11,1
+DA:12,1
+DA:13,1
+DA:14,1
 LF:12
-LH:0
+LH:12
 BRF:0
 BRH:0
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Views/en-US/ForgotUserPassword.cshtml
 FN:1,System.Void AspNetCoreGeneratedDocument.Views_en_US_ForgotUserPassword/<ExecuteAsync>d__0::MoveNext()
@@ -93,50 +93,50 @@ FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Extensions/ApplicationExtension.cs
 FN:12,Microsoft.AspNetCore.Builder.WebApplication Portfolio.WebApi.Extensions.ApplicationExtension::ConfigureApplication(Microsoft.AspNetCore.Builder.WebApplication)
-FNDA:0,Microsoft.AspNetCore.Builder.WebApplication Portfolio.WebApi.Extensions.ApplicationExtension::ConfigureApplication(Microsoft.AspNetCore.Builder.WebApplication)
-DA:13,0
-DA:14,0
+FNDA:1,Microsoft.AspNetCore.Builder.WebApplication Portfolio.WebApi.Extensions.ApplicationExtension::ConfigureApplication(Microsoft.AspNetCore.Builder.WebApplication)
+DA:13,1
+DA:14,1
 DA:15,0
 DA:16,0
 DA:17,0
 DA:18,0
-DA:20,0
-DA:21,0
-DA:22,0
-DA:23,0
-DA:25,0
-DA:26,0
-DA:27,0
-DA:28,0
-DA:29,0
-DA:30,0
-DA:31,0
-DA:32,0
-DA:33,0
-DA:35,0
-DA:36,0
+DA:20,1
+DA:21,1
+DA:22,1
+DA:23,1
+DA:25,1
+DA:26,1
+DA:27,1
+DA:28,1
+DA:29,1
+DA:30,1
+DA:31,1
+DA:32,1
+DA:33,1
+DA:35,1
+DA:36,1
 BRDA:14,14,0,0
-BRDA:14,14,1,0
+BRDA:14,14,1,1
 LF:21
-LH:0
+LH:17
 BRF:2
-BRH:0
+BRH:1
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Extensions/AuthenticationExtension.cs
 FN:12,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.AuthenticationExtension::ConfigureAuthentication(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.AuthenticationExtension::ConfigureAuthentication(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-DA:13,0
-DA:14,0
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
+FNDA:1,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.AuthenticationExtension::ConfigureAuthentication(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+DA:13,1
+DA:14,1
+DA:15,1
+DA:16,1
+DA:17,1
+DA:18,1
+DA:19,1
+DA:20,1
+DA:21,1
+DA:22,1
 DA:23,0
 DA:24,0
 DA:25,0
@@ -151,75 +151,74 @@ DA:33,0
 DA:34,0
 DA:35,0
 DA:36,0
-DA:37,0
-DA:39,0
-DA:40,0
+DA:37,1
+DA:39,1
+DA:40,1
 LF:27
-LH:0
+LH:13
 BRF:0
 BRH:0
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Extensions/ContextExtension.cs
 FN:10,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.ContextExtension::ConfigureContext(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.ContextExtension::ConfigureContext(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-DA:11,0
-DA:12,0
-DA:21,0
-DA:22,0
+FNDA:1,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.ContextExtension::ConfigureContext(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+DA:11,1
+DA:12,1
+DA:21,1
+DA:22,1
 LF:4
-LH:0
+LH:4
 BRF:0
 BRH:0
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Extensions/ControllersExtension.cs
 FN:14,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.ControllerExtension::ConfigureControllers(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.ControllerExtension::ConfigureControllers(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:23,0
-DA:25,0
-DA:27,0
-DA:28,0
+FNDA:1,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.ControllerExtension::ConfigureControllers(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+DA:15,1
+DA:16,1
+DA:17,1
+DA:18,1
+DA:19,1
+DA:20,1
+DA:21,2
+DA:23,1
+DA:25,2
+DA:27,1
+DA:28,1
 LF:11
-LH:0
+LH:11
 BRF:0
 BRH:0
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Extensions/DependenciesExtension.cs
 FN:13,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.DependenciesExtension::ConfigureDependencies(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.DependenciesExtension::ConfigureDependencies(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-DA:14,0
-DA:15,0
-DA:16,0
-DA:17,0
-DA:18,0
-DA:19,0
-DA:20,0
-DA:21,0
-DA:22,0
-DA:23,0
-DA:24,0
-DA:25,0
-DA:26,0
-DA:28,0
-DA:29,0
-LF:15
-LH:0
+FNDA:1,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.DependenciesExtension::ConfigureDependencies(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+DA:14,1
+DA:15,1
+DA:16,1
+DA:17,1
+DA:18,1
+DA:19,1
+DA:20,1
+DA:21,1
+DA:22,1
+DA:23,1
+DA:24,1
+DA:25,1
+DA:27,1
+DA:28,1
+LF:14
+LH:14
 BRF:0
 BRH:0
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Extensions/DocumentationExtension.cs
 FN:12,System.Void Portfolio.WebApi.Extensions.AddHeaderParameter::Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)
@@ -241,69 +240,91 @@ DA:27,0
 BRDA:14,9,0,0
 BRDA:14,9,1,0
 FN:32,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.DocumentationExtension::ConfigureDocumentation(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.DocumentationExtension::ConfigureDocumentation(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-DA:33,0
-DA:34,0
-DA:35,0
-DA:36,0
-DA:37,0
-DA:38,0
-DA:39,0
-DA:40,0
-DA:41,0
-DA:42,0
-DA:44,0
-DA:45,0
-DA:46,0
-DA:47,0
-DA:48,0
-DA:50,0
-DA:51,0
-DA:52,0
-DA:53,0
-DA:54,0
-DA:55,0
-DA:56,0
-DA:58,0
-DA:59,0
-DA:60,0
+FNDA:1,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.DocumentationExtension::ConfigureDocumentation(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+DA:33,1
+DA:34,1
+DA:35,1
+DA:36,1
+DA:37,1
+DA:38,1
+DA:39,1
+DA:40,1
+DA:41,1
+DA:42,1
+DA:44,1
+DA:45,1
+DA:46,1
+DA:47,1
+DA:48,1
+DA:50,1
+DA:51,1
+DA:52,1
+DA:53,1
+DA:54,1
+DA:55,1
+DA:56,1
+DA:58,1
+DA:59,1
+DA:60,1
 DA:61,0
 DA:62,0
 DA:63,0
 DA:64,0
 DA:65,0
 DA:66,0
-DA:67,0
-DA:69,0
-DA:70,0
+DA:67,1
+DA:69,1
+DA:70,1
 LF:48
-LH:0
+LH:28
 BRF:2
 BRH:0
 FNF:2
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Extensions/EnvironmentExtension.cs
 FN:7,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.EnvironmentExtension::ConfigureEnvironment(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.EnvironmentExtension::ConfigureEnvironment(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-DA:8,0
-DA:9,0
-DA:11,0
-DA:12,0
+FNDA:1,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.EnvironmentExtension::ConfigureEnvironment(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+DA:8,1
+DA:9,1
+DA:11,1
+DA:12,1
 LF:4
-LH:0
+LH:4
 BRF:0
 BRH:0
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.WebApi/Extensions/LocalizationExtension.cs
 FN:9,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.LocalizationExtension::ConfigureLocalization(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-FNDA:0,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.LocalizationExtension::ConfigureLocalization(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
-DA:10,0
+FNDA:1,Microsoft.AspNetCore.Builder.WebApplicationBuilder Portfolio.WebApi.Extensions.LocalizationExtension::ConfigureLocalization(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+DA:10,1
+DA:11,1
+DA:12,1
+DA:13,1
+DA:14,1
+DA:15,1
+DA:16,1
+DA:17,1
+DA:18,1
+DA:19,1
+DA:20,2
+DA:22,1
+DA:23,1
+LF:13
+LH:13
+BRF:0
+BRH:0
+FNF:1
+FNH:1
+end_of_record
+SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Services/LocalizationService.cs
+FN:10,System.String Portfolio.Domain.Services.LocalizationService::GetCultureName()
+FNDA:0,System.String Portfolio.Domain.Services.LocalizationService::GetCultureName()
 DA:11,0
-DA:12,0
-DA:13,0
+FN:13,System.String Portfolio.Domain.Services.LocalizationService::GetMessage(Portfolio.Domain.Enums.Message)
+FNDA:0,System.String Portfolio.Domain.Services.LocalizationService::GetMessage(Portfolio.Domain.Enums.Message)
 DA:14,0
 DA:15,0
 DA:16,0
@@ -311,18 +332,31 @@ DA:17,0
 DA:18,0
 DA:19,0
 DA:20,0
-DA:22,0
-DA:23,0
+DA:21,0
+BRDA:15,27,0,0
+BRDA:15,27,1,0
+BRDA:15,40,1,0
+BRDA:15,40,0,0
+FN:23,System.String Portfolio.Domain.Services.LocalizationService::GetMessageFromResource(Portfolio.Domain.Enums.Message)
+FNDA:0,System.String Portfolio.Domain.Services.LocalizationService::GetMessageFromResource(Portfolio.Domain.Enums.Message)
+DA:24,0
+DA:25,0
+DA:27,0
+DA:28,0
+BRDA:27,31,0,0
+BRDA:27,31,1,0
+BRDA:27,44,0,0
+BRDA:27,44,1,0
 LF:13
 LH:0
-BRF:0
+BRF:8
 BRH:0
-FNF:1
+FNF:3
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Exceptions/BaseException.cs
-FN:7,System.Void Portfolio.Domain.Exceptions.BaseException::.ctor(Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Enums.LocalizationMessages)
-FNDA:0,System.Void Portfolio.Domain.Exceptions.BaseException::.ctor(Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Enums.LocalizationMessages)
+FN:7,System.Void Portfolio.Domain.Exceptions.BaseException::.ctor(Portfolio.Domain.Enums.Message)
+FNDA:0,System.Void Portfolio.Domain.Exceptions.BaseException::.ctor(Portfolio.Domain.Enums.Message)
 DA:8,0
 DA:9,0
 DA:10,0
@@ -340,69 +374,69 @@ FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Entities/Author.cs
 FN:14,System.String Portfolio.Domain.Entities.Author::get_Name()
-FNDA:0,System.String Portfolio.Domain.Entities.Author::get_Name()
-DA:15,0
+FNDA:2,System.String Portfolio.Domain.Entities.Author::get_Name()
+DA:15,2
 FN:21,System.String Portfolio.Domain.Entities.Author::get_FullName()
-FNDA:0,System.String Portfolio.Domain.Entities.Author::get_FullName()
-DA:22,0
+FNDA:2,System.String Portfolio.Domain.Entities.Author::get_FullName()
+DA:22,2
 FN:28,System.String Portfolio.Domain.Entities.Author::get_Position()
-FNDA:0,System.String Portfolio.Domain.Entities.Author::get_Position()
-DA:29,0
+FNDA:2,System.String Portfolio.Domain.Entities.Author::get_Position()
+DA:29,2
 FN:35,System.String Portfolio.Domain.Entities.Author::get_Description()
-FNDA:0,System.String Portfolio.Domain.Entities.Author::get_Description()
-DA:36,0
+FNDA:2,System.String Portfolio.Domain.Entities.Author::get_Description()
+DA:36,2
 FN:42,System.String Portfolio.Domain.Entities.Author::get_AvatarUrl()
-FNDA:0,System.String Portfolio.Domain.Entities.Author::get_AvatarUrl()
-DA:43,0
+FNDA:2,System.String Portfolio.Domain.Entities.Author::get_AvatarUrl()
+DA:43,2
 FN:47,System.String Portfolio.Domain.Entities.Author::get_SpotifyAccountName()
-FNDA:0,System.String Portfolio.Domain.Entities.Author::get_SpotifyAccountName()
-DA:48,0
+FNDA:2,System.String Portfolio.Domain.Entities.Author::get_SpotifyAccountName()
+DA:48,2
 FN:53,System.Guid Portfolio.Domain.Entities.Author::get_UserId()
-FNDA:0,System.Guid Portfolio.Domain.Entities.Author::get_UserId()
-DA:54,0
+FNDA:2,System.Guid Portfolio.Domain.Entities.Author::get_UserId()
+DA:54,2
 FN:55,Portfolio.Domain.Entities.User Portfolio.Domain.Entities.Author::get_User()
 FNDA:0,Portfolio.Domain.Entities.User Portfolio.Domain.Entities.Author::get_User()
 DA:56,0
 LF:8
-LH:0
+LH:7
 BRF:0
 BRH:0
 FNF:8
-FNH:0
+FNH:7
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Entities/BaseEntity.cs
 FN:12,System.Guid Portfolio.Domain.Entities.BaseEntity::get_Id()
-FNDA:0,System.Guid Portfolio.Domain.Entities.BaseEntity::get_Id()
-DA:13,0
+FNDA:20,System.Guid Portfolio.Domain.Entities.BaseEntity::get_Id()
+DA:13,20
 FN:18,System.DateTime Portfolio.Domain.Entities.BaseEntity::get_CreatedAt()
-FNDA:0,System.DateTime Portfolio.Domain.Entities.BaseEntity::get_CreatedAt()
-DA:19,0
+FNDA:18,System.DateTime Portfolio.Domain.Entities.BaseEntity::get_CreatedAt()
+DA:19,18
 FN:22,System.Nullable`1<System.DateTime> Portfolio.Domain.Entities.BaseEntity::get_UpdatedAt()
-FNDA:0,System.Nullable`1<System.DateTime> Portfolio.Domain.Entities.BaseEntity::get_UpdatedAt()
-DA:23,0
+FNDA:10,System.Nullable`1<System.DateTime> Portfolio.Domain.Entities.BaseEntity::get_UpdatedAt()
+DA:23,10
 FN:26,System.Nullable`1<System.DateTime> Portfolio.Domain.Entities.BaseEntity::get_RemovedAt()
-FNDA:0,System.Nullable`1<System.DateTime> Portfolio.Domain.Entities.BaseEntity::get_RemovedAt()
-DA:27,0
+FNDA:10,System.Nullable`1<System.DateTime> Portfolio.Domain.Entities.BaseEntity::get_RemovedAt()
+DA:27,10
 LF:4
-LH:0
+LH:4
 BRF:0
 BRH:0
 FNF:4
-FNH:0
+FNH:4
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Entities/User.cs
 FN:16,System.String Portfolio.Domain.Entities.User::get_Email()
-FNDA:0,System.String Portfolio.Domain.Entities.User::get_Email()
-DA:17,0
+FNDA:6,System.String Portfolio.Domain.Entities.User::get_Email()
+DA:17,6
 FN:24,System.String Portfolio.Domain.Entities.User::get_Password()
-FNDA:0,System.String Portfolio.Domain.Entities.User::get_Password()
-DA:25,0
+FNDA:10,System.String Portfolio.Domain.Entities.User::get_Password()
+DA:25,10
 LF:2
-LH:0
+LH:2
 BRF:0
 BRH:0
 FNF:2
-FNH:0
+FNH:2
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Dtos/AuthorDto.cs
 FN:3,System.Guid Portfolio.Domain.Dtos.AuthorDto::get_Id()
@@ -441,8 +475,8 @@ SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Dtos/MailSende
 FN:5,System.String Portfolio.Domain.Dtos.MailSenderDto::get_Recipient()
 FNDA:0,System.String Portfolio.Domain.Dtos.MailSenderDto::get_Recipient()
 DA:6,0
-FN:6,Portfolio.Domain.Enums.LocalizationMessages Portfolio.Domain.Dtos.MailSenderDto::get_Subject()
-FNDA:0,Portfolio.Domain.Enums.LocalizationMessages Portfolio.Domain.Dtos.MailSenderDto::get_Subject()
+FN:6,Portfolio.Domain.Enums.Message Portfolio.Domain.Dtos.MailSenderDto::get_Subject()
+FNDA:0,Portfolio.Domain.Enums.Message Portfolio.Domain.Dtos.MailSenderDto::get_Subject()
 DA:7,0
 FN:7,System.String Portfolio.Domain.Dtos.MailSenderDto::get_ViewName()
 FNDA:0,System.String Portfolio.Domain.Dtos.MailSenderDto::get_ViewName()
@@ -450,8 +484,8 @@ DA:8,0
 FN:8,System.Object Portfolio.Domain.Dtos.MailSenderDto::get_ViewModel()
 FNDA:0,System.Object Portfolio.Domain.Dtos.MailSenderDto::get_ViewModel()
 DA:9,0
-FN:4,System.Void Portfolio.Domain.Dtos.MailSenderDto::.ctor(System.String,Portfolio.Domain.Enums.LocalizationMessages,System.String,System.Object)
-FNDA:0,System.Void Portfolio.Domain.Dtos.MailSenderDto::.ctor(System.String,Portfolio.Domain.Enums.LocalizationMessages,System.String,System.Object)
+FN:4,System.Void Portfolio.Domain.Dtos.MailSenderDto::.ctor(System.String,Portfolio.Domain.Enums.Message,System.String,System.Object)
+FNDA:0,System.Void Portfolio.Domain.Dtos.MailSenderDto::.ctor(System.String,Portfolio.Domain.Enums.Message,System.String,System.Object)
 DA:5,0
 DA:10,0
 LF:6
@@ -522,98 +556,98 @@ FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Constants/Database.cs
 FN:5,System.String Portfolio.Domain.Constants.Database::get_CONNECTION_STRING()
-FNDA:0,System.String Portfolio.Domain.Constants.Database::get_CONNECTION_STRING()
-DA:6,0
-DA:7,0
-DA:8,0
-DA:9,0
-DA:10,0
-DA:11,0
-DA:12,0
+FNDA:1,System.String Portfolio.Domain.Constants.Database::get_CONNECTION_STRING()
+DA:6,1
+DA:7,1
+DA:8,1
+DA:9,1
+DA:10,1
+DA:11,1
+DA:12,1
 LF:7
-LH:0
+LH:7
 BRF:0
 BRH:0
 FNF:1
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Domain/Constants/EnvironmentVariables.cs
 FN:5,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_CLIENT_URL()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_CLIENT_URL()
-DA:6,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_CLIENT_URL()
+DA:6,1
 BRDA:6,11,0,0
-BRDA:6,11,1,0
+BRDA:6,11,1,1
 FN:8,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_HOST()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_HOST()
-DA:9,0
+FNDA:2,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_HOST()
+DA:9,2
 BRDA:9,11,0,0
-BRDA:9,11,1,0
+BRDA:9,11,1,2
 FN:9,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_NAME()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_NAME()
-DA:10,0
+FNDA:2,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_NAME()
+DA:10,2
 BRDA:10,11,0,0
-BRDA:10,11,1,0
+BRDA:10,11,1,2
 FN:10,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_PASSWORD()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_PASSWORD()
-DA:11,0
+FNDA:2,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_PASSWORD()
+DA:11,2
 BRDA:11,11,0,0
-BRDA:11,11,1,0
+BRDA:11,11,1,2
 FN:11,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_PORT()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_PORT()
-DA:12,0
+FNDA:2,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_PORT()
+DA:12,2
 BRDA:12,11,0,0
-BRDA:12,11,1,0
+BRDA:12,11,1,2
 FN:12,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_USER()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_USER()
-DA:13,0
+FNDA:2,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_DATABASE_USER()
+DA:13,2
 BRDA:13,11,0,0
-BRDA:13,11,1,0
+BRDA:13,11,1,2
 FN:15,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_HOST()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_HOST()
-DA:16,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_HOST()
+DA:16,1
 BRDA:16,11,0,0
-BRDA:16,11,1,0
+BRDA:16,11,1,1
 FN:16,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_PASSWORD()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_PASSWORD()
-DA:17,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_PASSWORD()
+DA:17,1
 BRDA:17,11,0,0
-BRDA:17,11,1,0
+BRDA:17,11,1,1
 FN:17,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_PORT()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_PORT()
-DA:18,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_PORT()
+DA:18,1
 BRDA:18,11,0,0
-BRDA:18,11,1,0
+BRDA:18,11,1,1
 FN:18,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_SENDER()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_SENDER()
-DA:19,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_SENDER()
+DA:19,1
 BRDA:19,11,0,0
-BRDA:19,11,1,0
+BRDA:19,11,1,1
 FN:19,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_USERNAME()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_USERNAME()
-DA:20,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_MAIL_USERNAME()
+DA:20,1
 BRDA:20,11,0,0
-BRDA:20,11,1,0
+BRDA:20,11,1,1
 FN:22,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_AUDIENCE()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_AUDIENCE()
-DA:23,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_AUDIENCE()
+DA:23,1
 BRDA:23,11,0,0
-BRDA:23,11,1,0
+BRDA:23,11,1,1
 FN:23,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_ISSUER()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_ISSUER()
-DA:24,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_ISSUER()
+DA:24,1
 BRDA:24,11,0,0
-BRDA:24,11,1,0
+BRDA:24,11,1,1
 FN:24,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_SECRET()
-FNDA:0,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_SECRET()
-DA:25,0
+FNDA:1,System.String Portfolio.Domain.Constants.EnvironmentVariables::get_JWT_SECRET()
+DA:25,1
 BRDA:25,11,0,0
-BRDA:25,11,1,0
+BRDA:25,11,1,1
 LF:14
-LH:0
+LH:14
 BRF:28
-BRH:0
+BRH:14
 FNF:14
-FNH:0
+FNH:14
 end_of_record
 SF:/home/riandeoliveira/.nuget/packages/microsoft.net.test.sdk/17.8.0/build/netcoreapp3.1/Microsoft.NET.Test.Sdk.Program.cs
 FN:3,System.Void AutoGeneratedProgram::Main(System.String[])
@@ -856,187 +890,145 @@ FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Tools/PasswordTool.cs
 FN:5,System.String Portfolio.Infrastructure.Tools.PasswordTool::Hash(System.String)
-FNDA:0,System.String Portfolio.Infrastructure.Tools.PasswordTool::Hash(System.String)
-DA:6,0
-DA:7,0
-DA:8,0
+FNDA:2,System.String Portfolio.Infrastructure.Tools.PasswordTool::Hash(System.String)
+DA:6,2
+DA:7,2
+DA:8,2
 FN:10,System.Boolean Portfolio.Infrastructure.Tools.PasswordTool::Verify(System.String,System.String)
 FNDA:0,System.Boolean Portfolio.Infrastructure.Tools.PasswordTool::Verify(System.String,System.String)
 DA:11,0
 DA:12,0
 DA:13,0
 LF:6
-LH:0
+LH:3
 BRF:0
 BRH:0
 FNF:2
-FNH:0
+FNH:1
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Services/AuthService.cs
-FN:104,Portfolio.Domain.Dtos.UserDto Portfolio.Infrastructure.Services.AuthService::ParseUserFromAccessToken(System.String)
+FN:101,Portfolio.Domain.Dtos.UserDto Portfolio.Infrastructure.Services.AuthService::ParseUserFromAccessToken(System.String)
 FNDA:0,Portfolio.Domain.Dtos.UserDto Portfolio.Infrastructure.Services.AuthService::ParseUserFromAccessToken(System.String)
+DA:102,0
+DA:103,0
 DA:105,0
-DA:106,0
+DA:107,0
 DA:108,0
 DA:110,0
-DA:111,0
+DA:112,0
 DA:113,0
-DA:115,0
-DA:116,0
-FN:78,System.String Portfolio.Infrastructure.Services.AuthService::<GetAccessTokenFromHeaderAsync>b__6_0()
-FNDA:0,System.String Portfolio.Infrastructure.Services.AuthService::<GetAccessTokenFromHeaderAsync>b__6_0()
-DA:79,0
+FN:75,System.String Portfolio.Infrastructure.Services.AuthService::<GetAccessTokenFromHeaderAsync>b__5_0()
+FNDA:0,System.String Portfolio.Infrastructure.Services.AuthService::<GetAccessTokenFromHeaderAsync>b__5_0()
+DA:76,0
+DA:77,0
+DA:78,0
 DA:80,0
 DA:81,0
+DA:82,0
 DA:83,0
-DA:84,0
-DA:85,0
-DA:86,0
-BRDA:80,13,0,0
-BRDA:80,13,1,0
-BRDA:80,55,0,0
-BRDA:80,55,1,0
-BRDA:81,74,0,0
-BRDA:81,74,1,0
-BRDA:83,97,0,0
-BRDA:83,97,1,0
-FN:16,System.Void Portfolio.Infrastructure.Services.AuthService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Portfolio.Domain.Interfaces.ILocalizationService)
+BRDA:77,13,0,0
+BRDA:77,13,1,0
+BRDA:77,55,0,0
+BRDA:77,55,1,0
+BRDA:78,74,0,0
+BRDA:78,74,1,0
+BRDA:80,97,0,0
+BRDA:80,97,1,0
+FN:16,System.Void Portfolio.Infrastructure.Services.AuthService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)
+FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)
 DA:17,0
-DA:18,0
 DA:19,0
-DA:20,0
-DA:22,0
-FN:26,System.String Portfolio.Infrastructure.Services.AuthService/<>c::<GenerateRefreshTokenAsync>b__4_0()
-FNDA:0,System.String Portfolio.Infrastructure.Services.AuthService/<>c::<GenerateRefreshTokenAsync>b__4_0()
+FN:23,System.String Portfolio.Infrastructure.Services.AuthService/<>c::<GenerateRefreshTokenAsync>b__3_0()
+FNDA:0,System.String Portfolio.Infrastructure.Services.AuthService/<>c::<GenerateRefreshTokenAsync>b__3_0()
+DA:24,0
+DA:25,0
 DA:27,0
-DA:28,0
-DA:30,0
+DA:29,0
+DA:31,0
 DA:32,0
-DA:34,0
-DA:35,0
-FN:40,System.Void Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass5_0/<<GenerateTokenDataAsync>b__0>d::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass5_0/<<GenerateTokenDataAsync>b__0>d::MoveNext()
+FN:37,System.Void Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass4_0/<<GenerateTokenDataAsync>b__0>d::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass4_0/<<GenerateTokenDataAsync>b__0>d::MoveNext()
+DA:38,0
+DA:39,0
+DA:40,0
 DA:41,0
 DA:42,0
 DA:43,0
-DA:44,0
 DA:45,0
 DA:46,0
 DA:48,0
-DA:49,0
+DA:50,0
 DA:51,0
+DA:52,0
 DA:53,0
 DA:54,0
 DA:55,0
 DA:56,0
 DA:57,0
-DA:58,0
 DA:59,0
-DA:60,0
+DA:61,0
 DA:62,0
 DA:64,0
 DA:65,0
+DA:66,0
 DA:67,0
 DA:68,0
 DA:69,0
 DA:70,0
-DA:71,0
-DA:72,0
-DA:73,0
-FN:91,System.Void Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass7_0/<<GetCurrentUserAsync>b__0>d::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass7_0/<<GetCurrentUserAsync>b__0>d::MoveNext()
+FN:88,System.Void Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass6_0/<<GetCurrentUserAsync>b__0>d::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass6_0/<<GetCurrentUserAsync>b__0>d::MoveNext()
+DA:89,0
+DA:90,0
 DA:92,0
 DA:93,0
-DA:95,0
-DA:96,0
-FN:100,Portfolio.Domain.Dtos.UserDto Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass8_0::<GetUserFromAccessTokenAsync>b__0()
-FNDA:0,Portfolio.Domain.Dtos.UserDto Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass8_0::<GetUserFromAccessTokenAsync>b__0()
-DA:101,0
-FN:24,System.Void Portfolio.Infrastructure.Services.AuthService/<GenerateRefreshTokenAsync>d__4::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GenerateRefreshTokenAsync>d__4::MoveNext()
-DA:25,0
+FN:97,Portfolio.Domain.Dtos.UserDto Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass7_0::<GetUserFromAccessTokenAsync>b__0()
+FNDA:0,Portfolio.Domain.Dtos.UserDto Portfolio.Infrastructure.Services.AuthService/<>c__DisplayClass7_0::<GetUserFromAccessTokenAsync>b__0()
+DA:98,0
+FN:21,System.Void Portfolio.Infrastructure.Services.AuthService/<GenerateRefreshTokenAsync>d__3::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GenerateRefreshTokenAsync>d__3::MoveNext()
+DA:22,0
+DA:23,0
 DA:26,0
-DA:29,0
-DA:31,0
+DA:28,0
+DA:30,0
 DA:33,0
+FN:35,System.Void Portfolio.Infrastructure.Services.AuthService/<GenerateTokenDataAsync>d__4::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GenerateTokenDataAsync>d__4::MoveNext()
 DA:36,0
-FN:38,System.Void Portfolio.Infrastructure.Services.AuthService/<GenerateTokenDataAsync>d__5::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GenerateTokenDataAsync>d__5::MoveNext()
-DA:39,0
-DA:40,0
+DA:37,0
+DA:44,0
 DA:47,0
-DA:50,0
-DA:52,0
-DA:61,0
+DA:49,0
+DA:58,0
+DA:60,0
 DA:63,0
-DA:66,0
+DA:71,0
+FN:73,System.Void Portfolio.Infrastructure.Services.AuthService/<GetAccessTokenFromHeaderAsync>d__5::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GetAccessTokenFromHeaderAsync>d__5::MoveNext()
 DA:74,0
-FN:76,System.Void Portfolio.Infrastructure.Services.AuthService/<GetAccessTokenFromHeaderAsync>d__6::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GetAccessTokenFromHeaderAsync>d__6::MoveNext()
-DA:77,0
-DA:78,0
-DA:82,0
+DA:75,0
+DA:79,0
+DA:84,0
+FN:86,System.Void Portfolio.Infrastructure.Services.AuthService/<GetCurrentUserAsync>d__6::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GetCurrentUserAsync>d__6::MoveNext()
 DA:87,0
-FN:89,System.Void Portfolio.Infrastructure.Services.AuthService/<GetCurrentUserAsync>d__7::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GetCurrentUserAsync>d__7::MoveNext()
-DA:90,0
+DA:88,0
 DA:91,0
 DA:94,0
+FN:96,System.Void Portfolio.Infrastructure.Services.AuthService/<GetUserFromAccessTokenAsync>d__7::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GetUserFromAccessTokenAsync>d__7::MoveNext()
 DA:97,0
-FN:99,System.Void Portfolio.Infrastructure.Services.AuthService/<GetUserFromAccessTokenAsync>d__8::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Services.AuthService/<GetUserFromAccessTokenAsync>d__8::MoveNext()
-DA:100,0
-DA:102,0
-LF:83
+DA:99,0
+LF:80
 LH:0
 BRF:8
 BRH:0
 FNF:12
 FNH:0
 end_of_record
-SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Services/LocalizationService.cs
-FN:29,System.String Portfolio.Infrastructure.Services.LocalizationService::GetCultureName()
-FNDA:0,System.String Portfolio.Infrastructure.Services.LocalizationService::GetCultureName()
-DA:30,0
-DA:31,0
-DA:32,0
-BRDA:31,13,0,0
-BRDA:31,13,1,0
-BRDA:31,30,0,0
-BRDA:31,30,1,0
-FN:34,Microsoft.Extensions.Localization.LocalizedString Portfolio.Infrastructure.Services.LocalizationService::GetKey(Portfolio.Domain.Enums.LocalizationMessages)
-FNDA:0,Microsoft.Extensions.Localization.LocalizedString Portfolio.Infrastructure.Services.LocalizationService::GetKey(Portfolio.Domain.Enums.LocalizationMessages)
-DA:35,0
-DA:36,0
-DA:37,0
-FN:18,System.Void Portfolio.Infrastructure.Services.LocalizationService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizerFactory)
-FNDA:0,System.Void Portfolio.Infrastructure.Services.LocalizationService::.ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Localization.IStringLocalizerFactory)
-DA:19,0
-DA:20,0
-DA:21,0
-DA:23,0
-DA:24,0
-DA:26,0
-DA:27,0
-BRDA:24,43,0,0
-BRDA:24,43,1,0
-BRDA:26,71,0,0
-BRDA:26,71,1,0
-LF:13
-LH:0
-BRF:8
-BRH:0
-FNF:3
-FNH:0
-end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Services/MailService.cs
-FN:11,System.Void Portfolio.Infrastructure.Services.MailService::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Infrastructure.Services.MailService::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
-DA:12,0
-FN:14,System.Void Portfolio.Infrastructure.Services.MailService/<SendMailAsync>d__2::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Services.MailService/<SendMailAsync>d__2::MoveNext()
-DA:15,0
+FN:15,System.Void Portfolio.Infrastructure.Services.MailService/<SendMailAsync>d__0::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Services.MailService/<SendMailAsync>d__0::MoveNext()
 DA:16,0
 DA:17,0
 DA:18,0
@@ -1044,23 +1036,24 @@ DA:19,0
 DA:20,0
 DA:21,0
 DA:22,0
-DA:24,0
+DA:23,0
 DA:25,0
-DA:27,0
+DA:26,0
 DA:28,0
 DA:29,0
 DA:30,0
 DA:31,0
 DA:32,0
 DA:33,0
-DA:35,0
-DA:37,0
+DA:34,0
+DA:36,0
 DA:38,0
-LF:21
+DA:39,0
+LF:20
 LH:0
 BRF:0
 BRH:0
-FNF:2
+FNF:1
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/SeedWork/UnitOfWork.cs
@@ -1080,40 +1073,40 @@ FNF:2
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Repositories/AuthorRepository.cs
-FN:16,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository::.ctor(Portfolio.Infrastructure.Contexts.DatabaseContext,Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository::.ctor(Portfolio.Infrastructure.Contexts.DatabaseContext,Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.ILocalizationService)
-DA:17,0
-FN:19,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository/<FindOneOrThrowAsync>d__3::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository/<FindOneOrThrowAsync>d__3::MoveNext()
+FN:15,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository::.ctor(Portfolio.Infrastructure.Contexts.DatabaseContext,Portfolio.Domain.Interfaces.IAuthService)
+FNDA:0,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository::.ctor(Portfolio.Infrastructure.Contexts.DatabaseContext,Portfolio.Domain.Interfaces.IAuthService)
+DA:16,0
+FN:18,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository/<FindOneOrThrowAsync>d__2::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository/<FindOneOrThrowAsync>d__2::MoveNext()
+DA:19,0
 DA:20,0
-DA:21,0
+DA:22,0
 DA:23,0
 DA:24,0
 DA:25,0
 DA:26,0
-DA:27,0
+DA:28,0
 DA:29,0
 DA:30,0
 DA:31,0
-DA:32,0
-BRDA:29,556,0,0
-BRDA:29,556,1,0
-FN:34,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository/<FindOneOrThrowAsync>d__4::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository/<FindOneOrThrowAsync>d__4::MoveNext()
+BRDA:28,556,0,0
+BRDA:28,556,1,0
+FN:33,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository/<FindOneOrThrowAsync>d__3::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Repositories.AuthorRepository/<FindOneOrThrowAsync>d__3::MoveNext()
+DA:34,0
 DA:35,0
-DA:36,0
-DA:38,0
+DA:37,0
+DA:39,0
 DA:40,0
 DA:41,0
 DA:42,0
-DA:43,0
-DA:45,0
+DA:44,0
+DA:46,0
 DA:47,0
 DA:48,0
 DA:49,0
-DA:50,0
-BRDA:47,516,0,0
-BRDA:47,516,1,0
+BRDA:46,516,0,0
+BRDA:46,516,1,0
 LF:24
 LH:0
 BRF:4
@@ -1122,29 +1115,29 @@ FNF:3
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Repositories/UserRepository.cs
-FN:14,System.Void Portfolio.Infrastructure.Repositories.UserRepository::.ctor(Portfolio.Infrastructure.Contexts.DatabaseContext,Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Infrastructure.Repositories.UserRepository::.ctor(Portfolio.Infrastructure.Contexts.DatabaseContext,Portfolio.Domain.Interfaces.ILocalizationService)
-DA:15,0
-FN:17,System.Void Portfolio.Infrastructure.Repositories.UserRepository/<FindOneOrThrowAsync>d__2::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Repositories.UserRepository/<FindOneOrThrowAsync>d__2::MoveNext()
+FN:13,System.Void Portfolio.Infrastructure.Repositories.UserRepository::.ctor(Portfolio.Infrastructure.Contexts.DatabaseContext)
+FNDA:0,System.Void Portfolio.Infrastructure.Repositories.UserRepository::.ctor(Portfolio.Infrastructure.Contexts.DatabaseContext)
+DA:14,0
+FN:16,System.Void Portfolio.Infrastructure.Repositories.UserRepository/<FindOneOrThrowAsync>d__1::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Repositories.UserRepository/<FindOneOrThrowAsync>d__1::MoveNext()
+DA:17,0
 DA:18,0
-DA:19,0
+DA:20,0
 DA:21,0
 DA:22,0
 DA:23,0
-DA:24,0
-BRDA:21,158,0,0
-BRDA:21,158,1,0
-FN:26,System.Void Portfolio.Infrastructure.Repositories.UserRepository/<FindOneOrThrowAsync>d__3::MoveNext()
-FNDA:0,System.Void Portfolio.Infrastructure.Repositories.UserRepository/<FindOneOrThrowAsync>d__3::MoveNext()
+BRDA:20,158,0,0
+BRDA:20,158,1,0
+FN:25,System.Void Portfolio.Infrastructure.Repositories.UserRepository/<FindOneOrThrowAsync>d__2::MoveNext()
+FNDA:0,System.Void Portfolio.Infrastructure.Repositories.UserRepository/<FindOneOrThrowAsync>d__2::MoveNext()
+DA:26,0
 DA:27,0
-DA:28,0
+DA:29,0
 DA:30,0
 DA:31,0
 DA:32,0
-DA:33,0
-BRDA:30,158,0,0
-BRDA:30,158,1,0
+BRDA:29,158,0,0
+BRDA:29,158,1,0
 LF:13
 LH:0
 BRF:4
@@ -1763,16 +1756,16 @@ FNDA:0,FluentValidation.IRuleBuilderOptions`2<T,TProperty> Portfolio.Infrastruct
 DA:14,0
 DA:15,0
 DA:16,0
-FN:22,FluentValidation.IRuleBuilderOptions`2<T,TProperty> Portfolio.Infrastructure.Extensions.ValidatorExtension::Message(FluentValidation.IRuleBuilderOptions`2<T,TProperty>,Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Enums.LocalizationMessages)
-FNDA:0,FluentValidation.IRuleBuilderOptions`2<T,TProperty> Portfolio.Infrastructure.Extensions.ValidatorExtension::Message(FluentValidation.IRuleBuilderOptions`2<T,TProperty>,Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Enums.LocalizationMessages)
+FN:21,FluentValidation.IRuleBuilderOptions`2<T,TProperty> Portfolio.Infrastructure.Extensions.ValidatorExtension::Message(FluentValidation.IRuleBuilderOptions`2<T,TProperty>,Portfolio.Domain.Enums.Message)
+FNDA:0,FluentValidation.IRuleBuilderOptions`2<T,TProperty> Portfolio.Infrastructure.Extensions.ValidatorExtension::Message(FluentValidation.IRuleBuilderOptions`2<T,TProperty>,Portfolio.Domain.Enums.Message)
+DA:22,0
 DA:23,0
 DA:24,0
-DA:25,0
-FN:29,FluentValidation.IRuleBuilderOptions`2<T,TProperty> Portfolio.Infrastructure.Extensions.ValidatorExtension::StrongPassword(FluentValidation.IRuleBuilder`2<T,TProperty>)
+FN:28,FluentValidation.IRuleBuilderOptions`2<T,TProperty> Portfolio.Infrastructure.Extensions.ValidatorExtension::StrongPassword(FluentValidation.IRuleBuilder`2<T,TProperty>)
 FNDA:0,FluentValidation.IRuleBuilderOptions`2<T,TProperty> Portfolio.Infrastructure.Extensions.ValidatorExtension::StrongPassword(FluentValidation.IRuleBuilder`2<T,TProperty>)
+DA:29,0
 DA:30,0
 DA:31,0
-DA:32,0
 LF:9
 LH:0
 BRF:0
@@ -1782,23 +1775,23 @@ FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Contexts/DatabaseContext.cs
 FN:8,Microsoft.EntityFrameworkCore.DbSet`1<Portfolio.Domain.Entities.Author> Portfolio.Infrastructure.Contexts.DatabaseContext::get_Authors()
-FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Portfolio.Domain.Entities.Author> Portfolio.Infrastructure.Contexts.DatabaseContext::get_Authors()
-DA:9,0
+FNDA:2,Microsoft.EntityFrameworkCore.DbSet`1<Portfolio.Domain.Entities.Author> Portfolio.Infrastructure.Contexts.DatabaseContext::get_Authors()
+DA:9,2
 FN:9,Microsoft.EntityFrameworkCore.DbSet`1<Portfolio.Domain.Entities.User> Portfolio.Infrastructure.Contexts.DatabaseContext::get_Users()
-FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Portfolio.Domain.Entities.User> Portfolio.Infrastructure.Contexts.DatabaseContext::get_Users()
-DA:10,0
+FNDA:2,Microsoft.EntityFrameworkCore.DbSet`1<Portfolio.Domain.Entities.User> Portfolio.Infrastructure.Contexts.DatabaseContext::get_Users()
+DA:10,2
 FN:6,System.Void Portfolio.Infrastructure.Contexts.DatabaseContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Portfolio.Infrastructure.Contexts.DatabaseContext>)
-FNDA:0,System.Void Portfolio.Infrastructure.Contexts.DatabaseContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Portfolio.Infrastructure.Contexts.DatabaseContext>)
-DA:7,0
+FNDA:1,System.Void Portfolio.Infrastructure.Contexts.DatabaseContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Portfolio.Infrastructure.Contexts.DatabaseContext>)
+DA:7,1
 FN:11,System.Void Portfolio.Infrastructure.Contexts.DatabaseContext::.cctor()
-FNDA:0,System.Void Portfolio.Infrastructure.Contexts.DatabaseContext::.cctor()
-DA:12,0
+FNDA:1,System.Void Portfolio.Infrastructure.Contexts.DatabaseContext::.cctor()
+DA:12,1
 LF:4
-LH:0
+LH:4
 BRF:0
 BRH:0
 FNF:4
-FNH:0
+FNH:4
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Infrastructure/Behaviors/ConversionBehavior.cs
 FN:20,System.Void Portfolio.Infrastructure.Behaviors.ConversionBehavior`2::TrimAllStringProperties(TRequest)
@@ -1910,17 +1903,13 @@ FNDA:0,System.Void Portfolio.Application.UseCases.UpdateUser.UpdateUserHandler/<
 DA:14,0
 DA:15,0
 DA:17,0
-DA:18,0
 DA:19,0
 DA:20,0
-DA:21,0
+DA:22,0
 DA:23,0
-DA:24,0
+DA:25,0
 DA:26,0
-DA:27,0
-DA:29,0
-DA:30,0
-LF:18
+LF:14
 LH:0
 BRF:0
 BRH:0
@@ -1928,29 +1917,19 @@ FNF:2
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/UpdateUser/UpdateUserRequest.cs
-FN:5,System.Guid Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::get_Id()
-FNDA:0,System.Guid Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::get_Id()
-DA:6,0
-FN:6,System.String Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::get_Email()
+FN:4,System.String Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::get_Email()
 FNDA:0,System.String Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::get_Email()
-DA:7,0
-FN:7,System.String Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::get_Password()
-FNDA:0,System.String Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::get_Password()
-DA:8,0
-FN:4,System.Void Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::.ctor(System.Guid,System.String,System.String)
-FNDA:0,System.Void Portfolio.Application.UseCases.UpdateUser.UpdateUserRequest::.ctor(System.Guid,System.String,System.String)
 DA:5,0
-DA:9,0
-LF:5
+LF:1
 LH:0
 BRF:0
 BRH:0
-FNF:4
+FNF:1
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/UpdateUser/UpdateUserValidator.cs
-FN:11,System.Void Portfolio.Application.UseCases.UpdateUser.UpdateUserValidator::.ctor(Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Interfaces.IUserRepository)
-FNDA:0,System.Void Portfolio.Application.UseCases.UpdateUser.UpdateUserValidator::.ctor(Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Interfaces.IUserRepository)
+FN:11,System.Void Portfolio.Application.UseCases.UpdateUser.UpdateUserValidator::.ctor(Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.IUserRepository)
+FNDA:0,System.Void Portfolio.Application.UseCases.UpdateUser.UpdateUserValidator::.ctor(Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.IUserRepository)
 DA:12,0
 DA:13,0
 DA:14,0
@@ -1982,7 +1961,7 @@ DA:39,0
 DA:40,0
 DA:41,0
 DA:42,0
-DA:43,0
+DA:44,0
 DA:45,0
 DA:46,0
 DA:47,0
@@ -1995,8 +1974,7 @@ DA:53,0
 DA:54,0
 DA:55,0
 DA:56,0
-DA:57,0
-LF:45
+LF:44
 LH:0
 BRF:0
 BRH:0
@@ -2086,8 +2064,8 @@ FNF:8
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/UpdateAuthor/UpdateAuthorValidator.cs
-FN:10,System.Void Portfolio.Application.UseCases.UpdateAuthor.UpdateAuthorValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Application.UseCases.UpdateAuthor.UpdateAuthorValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
+FN:10,System.Void Portfolio.Application.UseCases.UpdateAuthor.UpdateAuthorValidator::.ctor()
+FNDA:0,System.Void Portfolio.Application.UseCases.UpdateAuthor.UpdateAuthorValidator::.ctor()
 DA:11,0
 DA:12,0
 DA:13,0
@@ -2207,8 +2185,8 @@ FNF:1
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/SignUpUser/SignUpUserValidator.cs
-FN:10,System.Void Portfolio.Application.UseCases.SignUpUser.SignUpUserValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Interfaces.IUserRepository)
-FNDA:0,System.Void Portfolio.Application.UseCases.SignUpUser.SignUpUserValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Interfaces.IUserRepository)
+FN:10,System.Void Portfolio.Application.UseCases.SignUpUser.SignUpUserValidator::.ctor(Portfolio.Domain.Interfaces.IUserRepository)
+FNDA:0,System.Void Portfolio.Application.UseCases.SignUpUser.SignUpUserValidator::.ctor(Portfolio.Domain.Interfaces.IUserRepository)
 DA:11,0
 DA:12,0
 DA:13,0
@@ -2270,27 +2248,24 @@ FNF:2
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/SignInUser/SignInUserHandler.cs
-FN:11,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserHandler::.ctor(Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Interfaces.IUserRepository)
-FNDA:0,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserHandler::.ctor(Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Interfaces.IUserRepository)
+FN:11,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserHandler::.ctor(Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.IUserRepository)
+FNDA:0,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserHandler::.ctor(Portfolio.Domain.Interfaces.IAuthService,Portfolio.Domain.Interfaces.IUserRepository)
 DA:12,0
 DA:13,0
 DA:14,0
 DA:15,0
-DA:16,0
-FN:18,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserHandler/<Handle>d__4::MoveNext()
-FNDA:0,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserHandler/<Handle>d__4::MoveNext()
+FN:17,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserHandler/<Handle>d__3::MoveNext()
+FNDA:0,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserHandler/<Handle>d__3::MoveNext()
+DA:18,0
 DA:19,0
-DA:20,0
-DA:22,0
-DA:24,0
+DA:21,0
+DA:23,0
 DA:25,0
-DA:26,0
-DA:29,0
-DA:31,0
-DA:32,0
-BRDA:24,363,0,0
-BRDA:24,363,1,0
-LF:14
+DA:27,0
+DA:28,0
+BRDA:23,363,0,0
+BRDA:23,363,1,0
+LF:11
 LH:0
 BRF:2
 BRH:0
@@ -2320,8 +2295,8 @@ FNF:1
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/SignInUser/SignInUserValidator.cs
-FN:10,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Interfaces.IUserRepository)
-FNDA:0,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService,Portfolio.Domain.Interfaces.IUserRepository)
+FN:10,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserValidator::.ctor(Portfolio.Domain.Interfaces.IUserRepository)
+FNDA:0,System.Void Portfolio.Application.UseCases.SignInUser.SignInUserValidator::.ctor(Portfolio.Domain.Interfaces.IUserRepository)
 DA:11,0
 DA:12,0
 DA:13,0
@@ -2438,13 +2413,14 @@ FNF:1
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/ResetUserPassword/ResetUserPasswordValidator.cs
-FN:10,System.Void Portfolio.Application.UseCases.ResetUserPassword.ResetUserPasswordValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Application.UseCases.ResetUserPassword.ResetUserPasswordValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
+FN:9,System.Void Portfolio.Application.UseCases.ResetUserPassword.ResetUserPasswordValidator::.ctor()
+FNDA:0,System.Void Portfolio.Application.UseCases.ResetUserPassword.ResetUserPasswordValidator::.ctor()
+DA:10,0
 DA:11,0
 DA:12,0
 DA:13,0
 DA:14,0
-DA:15,0
+DA:16,0
 DA:17,0
 DA:18,0
 DA:19,0
@@ -2456,7 +2432,7 @@ DA:24,0
 DA:25,0
 DA:26,0
 DA:27,0
-DA:28,0
+DA:29,0
 DA:30,0
 DA:31,0
 DA:32,0
@@ -2469,7 +2445,6 @@ DA:38,0
 DA:39,0
 DA:40,0
 DA:41,0
-DA:42,0
 LF:30
 LH:0
 BRF:0
@@ -2758,8 +2733,9 @@ FNF:1
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/ForgotUserPassword/ForgotUserPasswordValidator.cs
-FN:10,System.Void Portfolio.Application.UseCases.ForgotUserPassword.ForgotUserPasswordValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Application.UseCases.ForgotUserPassword.ForgotUserPasswordValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
+FN:9,System.Void Portfolio.Application.UseCases.ForgotUserPassword.ForgotUserPasswordValidator::.ctor()
+FNDA:0,System.Void Portfolio.Application.UseCases.ForgotUserPassword.ForgotUserPasswordValidator::.ctor()
+DA:10,0
 DA:11,0
 DA:12,0
 DA:13,0
@@ -2772,7 +2748,6 @@ DA:19,0
 DA:20,0
 DA:21,0
 DA:22,0
-DA:23,0
 LF:13
 LH:0
 BRF:0
@@ -2954,17 +2929,17 @@ FNF:5
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/FindManyAuthors/FindManyAuthorsValidator.cs
-FN:10,System.Void Portfolio.Application.UseCases.FindManyAuthors.FindManyAuthorsValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Application.UseCases.FindManyAuthors.FindManyAuthorsValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
+FN:9,System.Void Portfolio.Application.UseCases.FindManyAuthors.FindManyAuthorsValidator::.ctor()
+FNDA:0,System.Void Portfolio.Application.UseCases.FindManyAuthors.FindManyAuthorsValidator::.ctor()
+DA:10,0
 DA:11,0
 DA:12,0
 DA:13,0
 DA:14,0
-DA:15,0
+DA:16,0
 DA:17,0
 DA:18,0
 DA:19,0
-DA:20,0
 LF:9
 LH:0
 BRF:0
@@ -3132,8 +3107,9 @@ FNF:1
 FNH:0
 end_of_record
 SF:/home/riandeoliveira/coding/portfolio-api/src/Portfolio.Application/UseCases/CreateAuthor/CreateAuthorValidator.cs
-FN:10,System.Void Portfolio.Application.UseCases.CreateAuthor.CreateAuthorValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
-FNDA:0,System.Void Portfolio.Application.UseCases.CreateAuthor.CreateAuthorValidator::.ctor(Portfolio.Domain.Interfaces.ILocalizationService)
+FN:9,System.Void Portfolio.Application.UseCases.CreateAuthor.CreateAuthorValidator::.ctor()
+FNDA:0,System.Void Portfolio.Application.UseCases.CreateAuthor.CreateAuthorValidator::.ctor()
+DA:10,0
 DA:11,0
 DA:12,0
 DA:13,0
@@ -3141,35 +3117,34 @@ DA:14,0
 DA:15,0
 DA:16,0
 DA:17,0
-DA:18,0
+DA:19,0
 DA:20,0
 DA:21,0
 DA:22,0
 DA:23,0
 DA:24,0
-DA:25,0
+DA:26,0
 DA:27,0
 DA:28,0
 DA:29,0
 DA:30,0
 DA:31,0
-DA:32,0
+DA:33,0
 DA:34,0
 DA:35,0
 DA:36,0
 DA:37,0
 DA:38,0
-DA:39,0
+DA:40,0
 DA:41,0
 DA:42,0
 DA:43,0
 DA:44,0
 DA:45,0
-DA:46,0
+DA:47,0
 DA:48,0
 DA:49,0
 DA:50,0
-DA:51,0
 LF:36
 LH:0
 BRF:0

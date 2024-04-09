@@ -25,7 +25,16 @@ public abstract class BaseValidationTest(PortfolioWebApplicationFactory factory)
 
     public const string WEAK_PASSWORD = "littlejohn";
 
-    public async Task ExecuteAsync<TRequest>(
+    private static async Task ExecuteAsync(HttpResponseMessage response, string expectedMessage)
+    {
+        string message = await response.Content.ReadAsStringAsync();
+
+        response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
+
+        message.Trim('"').Should().Be(expectedMessage);
+    }
+
+    public async Task PostAsync<TRequest>(
         string requestUri,
         TRequest request,
         string expectedMessage,
@@ -36,10 +45,20 @@ public abstract class BaseValidationTest(PortfolioWebApplicationFactory factory)
 
         HttpResponseMessage response = await _client.SendPostAsync(requestUri, request);
 
-        string message = await response.Content.ReadAsStringAsync();
+        await ExecuteAsync(response, expectedMessage);
+    }
 
-        response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
+    public async Task PutAsync<TRequest>(
+        string requestUri,
+        TRequest request,
+        string expectedMessage,
+        bool requireAuthentication = true
+    )
+    {
+        if (requireAuthentication) await AuthenticateAsync();
 
-        message.Trim('"').Should().Be(expectedMessage);
+        HttpResponseMessage response = await _client.SendPutAsync(requestUri, request);
+
+        await ExecuteAsync(response, expectedMessage);
     }
 }
