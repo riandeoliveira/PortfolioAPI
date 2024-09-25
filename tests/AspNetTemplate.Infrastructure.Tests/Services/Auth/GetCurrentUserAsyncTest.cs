@@ -48,6 +48,6 @@ public sealed class GetCurrentUserAsyncTest(AspNetTemplateWebApplicationFactory 
 
         Func<Task> action = GetCurrentUserAsync;
 
-        await action.Should().ThrowAsync<BaseException>();
+        await action.Should().ThrowAsync<BadRequestException>();
     }
 }

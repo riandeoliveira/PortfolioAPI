@@ -1,3 +1,5 @@
+using AspNetTemplate.Infrastructure.Middlewares;
+
 using HealthChecks.UI.Client;
 
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -24,7 +26,8 @@ internal static class ApplicationExtension
 
         application.UseRequestLocalization(application.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
         application.UseStatusCodePages();
-        application.UseExceptionHandler();
+        application.UseMiddleware<ExceptionHandlingMiddleware>();
+        application.UseMiddleware<CookieAuthenticationMiddleware>();
         application.UseSerilogRequestLogging();
         application.UseHttpsRedirection();
         application.MapHealthChecks("health", healthCheckOptions);

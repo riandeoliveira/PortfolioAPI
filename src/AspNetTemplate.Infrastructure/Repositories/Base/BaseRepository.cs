@@ -5,7 +5,7 @@ using AspNetTemplate.Infrastructure.Contexts;
 namespace AspNetTemplate.Infrastructure.Repositories.Base;
 
 public abstract partial class BaseRepository<TEntity>(
-    DatabaseContext databaseContext
+    ApplicationDbContext context
 ) : IBaseRepository<TEntity> where TEntity : BaseEntity
 {
 }

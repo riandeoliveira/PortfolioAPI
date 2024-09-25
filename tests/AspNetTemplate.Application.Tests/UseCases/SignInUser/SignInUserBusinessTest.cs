@@ -36,7 +36,7 @@ public sealed class SignInUserBusinessTest(AspNetTemplateWebApplicationFactory f
 
         string responseMessage = await response.Content.ReadAsStringAsync();
         string message = responseMessage.Trim('"');
-        string expectedMessage = Messages_PT_BR.EmailIsNotRegistered;
+        string expectedMessage = Messages_PT_BR.InvalidCredentials;
 
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
 

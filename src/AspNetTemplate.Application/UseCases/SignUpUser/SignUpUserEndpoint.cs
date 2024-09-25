@@ -4,37 +4,30 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using AspNetTemplate.Application.Endpoints;
-using AspNetTemplate.Domain.Dtos;
 
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
+using AspNetTemplate.Domain.Dtos;
 
 namespace AspNetTemplate.Application.UseCases.SignUpUser;
 
 public sealed class SignUpUserEndpoint(IMediator mediator) : UserEndpoint
 {
     [HttpPost("sign-up")]
-    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TokenDto))]
-    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetailsDto))]
+    [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(ProblemDetailsDto))]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetailsDto))]
     [SwaggerOperation(
         Description = "",
         OperationId = "SignUpUser",
         Tags = ["User"]
     )]
+    [SwaggerRequestExample(typeof(SignUpUserRequest), typeof(SignUpUserRequestExample))]
     public async Task<IActionResult> Handle([FromBody] SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            SignUpUserResponse response = await mediator.Send(request, cancellationToken);
+        await mediator.Send(request, cancellationToken);
 
-            return StatusCode(StatusCodes.Status200OK, response.TokenDto);
-        }
-        catch (Exception exception)
-        {
-            return BadRequest(new 
-            {
-                message = exception.Message,
-            });
-        }
+        return StatusCode(StatusCodes.Status201Created);
     }
 }

@@ -4,18 +4,18 @@ public enum Message
 {
     AccessTokenIsRequired,
     AvatarUrlIsRequired,
+
     DescriptionIsRequired,
 
     EmailAlreadyExists,
-    EmailIsNotRegistered,
     EmailIsRequired,
-
+    EmailIsValid,
     EntityNotFound,
     EquivalentPasswords,
+
     FullNameIsRequired,
 
-    InvalidEmail,
-    InvalidLoginCredentials,
+    InvalidCredentials,
 
     MaximumAvatarUrlLength,
     MaximumDescriptionLength,
@@ -27,7 +27,6 @@ public enum Message
     MaximumPasswordLength,
     MaximumPositionLength,
     MaximumSpotifyAccountNameLength,
-
     MinimumEmailLength,
     MinimumPasswordLength,
 
@@ -35,9 +34,11 @@ public enum Message
 
     PasswordIsRequired,
     PasswordResetRequest,
-
     PositionIsRequired,
+
     StrongPassword,
+
     UnauthorizedOperation,
+    UnexpectedError,
     UserNotFound,
 }

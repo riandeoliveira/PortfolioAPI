@@ -1,9 +1,9 @@
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
-using AspNetTemplate.Application.Endpoints;
-
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Swashbuckle.AspNetCore.Filters;
+using System.Reflection;
 
 namespace AspNetTemplate.WebApi.Extensions;
 
@@ -31,40 +31,19 @@ internal static class DocumentationExtension
 {
     internal static WebApplicationBuilder ConfigureDocumentation(this WebApplicationBuilder builder)
     {
-        OpenApiSecurityScheme openApiSecurityScheme = new()
-        {
-            In = ParameterLocation.Header,
-            Description = "Please enter a valid token.",
-            Name = "Authorization",
-            Type = SecuritySchemeType.Http,
-            BearerFormat = "JWT",
-            Scheme = "Bearer"
-        };
-
-        OpenApiReference openApiReference = new()
-        {
-            Type = ReferenceType.SecurityScheme,
-            Id = "Bearer"
-        };
-
-        OpenApiSecurityRequirement openApiSecurityRequirement = new()
-        {
-            {
-                new OpenApiSecurityScheme { Reference = openApiReference },
-                Array.Empty<string>()
-            }
-        };
-
         builder.Services
             .AddEndpointsApiExplorer()
             .AddSwaggerGen(option =>
             {
-                option.AddSecurityDefinition("Bearer", openApiSecurityScheme);
-                option.AddSecurityRequirement(openApiSecurityRequirement);
                 option.EnableAnnotations();
                 option.OperationFilter<AddHeaderParameter>();
                 option.SwaggerDoc("v1", new OpenApiInfo { Title = "AspNetTemplate API", Version = "v1" });
+                option.ExampleFilters();
             });
+
+        Assembly? applicationAssembly = Assembly.Load("AspNetTemplate.Application");
+
+        builder.Services.AddSwaggerExamplesFromAssemblies(applicationAssembly);
 
         return builder;
     }

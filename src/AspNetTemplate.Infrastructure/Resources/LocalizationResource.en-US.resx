@@ -5,14 +5,13 @@
   <data name="DescriptionIsRequired" xml:space="preserve"><value>Messages_EN_US.DescriptionIsRequired</value></data>
 
   <data name="EmailAlreadyExists" xml:space="preserve"><value>Messages_EN_US.EmailAlreadyExists</value></data>
-  <data name="EmailIsNotRegistered" xml:space="preserve"><value>Messages_EN_US.EmailIsNotRegistered</value></data>
   <data name="EmailIsRequired" xml:space="preserve"><value>Messages_EN_US.EmailIsRequired</value></data>
 
   <data name="EntityNotFound" xml:space="preserve"><value>Messages_EN_US.EntityNotFound</value></data>
   <data name="EquivalentPasswords" xml:space="preserve"><value>Messages_EN_US.EquivalentPasswords</value></data>
   <data name="FullNameIsRequired" xml:space="preserve"><value>Messages_EN_US.FullNameIsRequired</value></data>
 
-  <data name="InvalidEmail" xml:space="preserve"><value>Messages_EN_US.InvalidEmail</value></data>
+  <data name="EmailIsValid" xml:space="preserve"><value>Messages_EN_US.EmailIsValid</value></data>
   <data name="InvalidLoginCredentials" xml:space="preserve"><value>Messages_EN_US.InvalidLoginCredentials</value></data>
 
   <data name="MaximumAvatarUrlLength" xml:space="preserve"><value>Messages_EN_US.MaximumAvatarUrlLength</value></data>

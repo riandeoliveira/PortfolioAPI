@@ -1,14 +1,13 @@
 using FluentValidation;
 
 using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Domain.Interfaces;
 using AspNetTemplate.Infrastructure.Extensions;
 
 namespace AspNetTemplate.Application.UseCases.SignUpUser;
 
 public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
 {
-    public SignUpUserValidator(IUserRepository userRepository)
+    public SignUpUserValidator()
     {
         RuleFor(request => request.Email)
             .NotEmpty()
@@ -21,12 +20,7 @@ public sealed class SignUpUserValidator : AbstractValidator<SignUpUserRequest>
             .Message(Message.MaximumEmailLength)
 
             .EmailAddress()
-            .Message(Message.InvalidEmail)
-
-            .MustAsync(async (email, cancellationToken) =>
-                !await userRepository.ExistAsync(user => user.Email == email, cancellationToken)
-            )
-            .Message(Message.EmailAlreadyExists);
+            .Message(Message.EmailIsValid);
 
         RuleFor(request => request.Password)
             .NotEmpty()

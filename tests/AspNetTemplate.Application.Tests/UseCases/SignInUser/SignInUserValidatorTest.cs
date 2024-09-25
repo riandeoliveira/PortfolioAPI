@@ -19,7 +19,7 @@ public sealed class SignInUserValidatorTest(AspNetTemplateWebApplicationFactory 
     [InlineData(EMPTY_STRING, Messages_PT_BR.EmailIsRequired)]
     [InlineData(STRING_WITH_SIZE_7, Messages_PT_BR.MinimumEmailLength)]
     [InlineData(STRING_WITH_SIZE_65, Messages_PT_BR.MaximumEmailLength)]
-    [InlineData(INVALID_EMAIL, Messages_PT_BR.InvalidEmail)]
+    [InlineData(INVALID_EMAIL, Messages_PT_BR.EmailIsValid)]
     [Theory]
     public async Task Email_ValidationTest(string email, string expectedMessage) =>
         await PostAsync("/api/user/sign-in", CreateRequest(email: email), expectedMessage, false);

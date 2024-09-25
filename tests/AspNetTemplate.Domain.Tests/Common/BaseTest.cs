@@ -12,7 +12,7 @@ public abstract class BaseTest : IClassFixture<AspNetTemplateWebApplicationFacto
 {
     private readonly AspNetTemplateWebApplicationFactory _factory;
 
-    protected readonly DatabaseContext _databaseContext;
+    protected readonly ApplicationDbContext _context;
     protected readonly Faker _faker = new();
     protected readonly HttpClient _client;
     protected readonly IUnitOfWork _unitOfWork;
@@ -22,7 +22,7 @@ public abstract class BaseTest : IClassFixture<AspNetTemplateWebApplicationFacto
     {
         _factory = factory;
 
-        _databaseContext = GetService<DatabaseContext>();
+        _context = GetService<ApplicationDbContext>();
         _faker = new();
         _client = factory.CreateClient();
         _userRepository = GetService<IUserRepository>();

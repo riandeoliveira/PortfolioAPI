@@ -6,6 +6,6 @@ public abstract partial class BaseRepository<TEntity>
     {
         entity.UpdatedAt = DateTime.Now;
 
-        await Task.Run(() => databaseContext.Set<TEntity>().Update(entity), cancellationToken);
+        await Task.Run(() => context.Set<TEntity>().Update(entity), cancellationToken);
     }
 }

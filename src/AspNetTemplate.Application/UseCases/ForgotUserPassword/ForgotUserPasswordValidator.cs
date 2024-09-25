@@ -19,5 +19,5 @@ public sealed class ForgotUserPasswordValidator : AbstractValidator<ForgotUserPa
             .Message(Message.MaximumEmailLength)
 
             .EmailAddress()
-            .Message(Message.InvalidEmail);
+            .Message(Message.EmailIsValid);
 }

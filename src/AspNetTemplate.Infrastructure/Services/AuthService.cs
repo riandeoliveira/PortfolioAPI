@@ -1,6 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Security.Cryptography;
 using System.Text;
 
 using Microsoft.AspNetCore.Http;
@@ -8,107 +7,134 @@ using Microsoft.IdentityModel.Tokens;
 
 using AspNetTemplate.Domain.Constants;
 using AspNetTemplate.Domain.Dtos;
-using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Domain.Exceptions;
 using AspNetTemplate.Domain.Interfaces;
+using AspNetTemplate.Domain.Exceptions;
+using AspNetTemplate.Domain.Enums;
 
 namespace AspNetTemplate.Infrastructure.Services;
 
 public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAuthService
 {
     private readonly JwtSecurityTokenHandler _tokenHandler = new();
+    private readonly HttpRequest? _httpRequest = httpContextAccessor.HttpContext?.Request;
+    private readonly HttpResponse? _httpResponse = httpContextAccessor.HttpContext?.Response;
 
-    public async Task<string> GenerateRefreshTokenAsync(UserDto user, CancellationToken cancellationToken = default)
+    private static CookieOptions CreateCookieOptions(DateTime expires)
     {
-        return await Task.Run(() =>
+        return new CookieOptions()
         {
-            byte[] randomNumber = new byte[32];
-
-            using RandomNumberGenerator generator = RandomNumberGenerator.Create();
-
-            generator.GetBytes(randomNumber);
-
-            return Convert.ToBase64String(randomNumber);
-        }, cancellationToken);
+            HttpOnly = true,
+            Secure = true,
+            SameSite = SameSiteMode.Strict,
+            Expires = expires
+        };
     }
 
-    public async Task<TokenDto> GenerateTokenDataAsync(UserDto user, CancellationToken cancellationToken = default)
+    private TokenDto CreateTokenData(UserDto user, DateTime expiration)
     {
-        return await Task.Run(async () =>
+        Claim[] claims =
+        [
+            new("id", user.Id.ToString()),
+        ];
+
+        SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(EnvironmentVariables.JWT_SECRET));
+        SigningCredentials credentials = new(key, SecurityAlgorithms.HmacSha256Signature);
+
+        SecurityTokenDescriptor tokenDescriptor = new()
         {
-            Claim[] claims =
-            [
-                new("id", user.Id.ToString()),
-                new("email", user.Email)
-            ];
+            Issuer = EnvironmentVariables.JWT_ISSUER,
+            Audience = EnvironmentVariables.JWT_AUDIENCE,
+            Subject = new ClaimsIdentity(claims),
+            Expires = expiration,
+            SigningCredentials = credentials
+        };
 
-            SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(EnvironmentVariables.JWT_SECRET));
-            SigningCredentials credentials = new(key, SecurityAlgorithms.HmacSha256Signature);
+        SecurityToken securityToken = _tokenHandler.CreateToken(tokenDescriptor);
 
-            DateTime expires = DateTime.UtcNow.AddHours(24);
+        string token = _tokenHandler.WriteToken(securityToken);
 
-            SecurityTokenDescriptor tokenDescriptor = new()
-            {
-                Issuer = EnvironmentVariables.JWT_ISSUER,
-                Audience = EnvironmentVariables.JWT_AUDIENCE,
-                Subject = new ClaimsIdentity(claims),
-                Expires = expires,
-                SigningCredentials = credentials
-            };
-
-            SecurityToken securityToken = _tokenHandler.CreateToken(tokenDescriptor);
-
-            string accessToken = _tokenHandler.WriteToken(securityToken);
-            string refreshToken = await GenerateRefreshTokenAsync(user, cancellationToken);
-
-            return new TokenDto(
-                AccessToken: $"Bearer {accessToken}",
-                RefreshToken: refreshToken,
-                Expires: new DateTimeOffset(expires).ToUnixTimeSeconds(),
-                UserId: user.Id
-            );
-        }, cancellationToken);
+        return new TokenDto(token, expiration);
     }
 
-    private async Task<string> GetAccessTokenFromHeaderAsync(CancellationToken cancellationToken = default)
+    public void ClearJwtCookies()
     {
-        return await Task.Run(() =>
+        _httpResponse?.Cookies.Delete("access_token");
+        _httpResponse?.Cookies.Delete("refresh_token");
+    }
+
+    public JwtTokenDto CreateJwtTokenData(UserDto userDto)
+    {
+        TokenDto accessToken = CreateTokenData(userDto, DateTime.UtcNow.AddMinutes(30));
+        TokenDto refreshToken = CreateTokenData(userDto, DateTime.UtcNow.AddDays(1));
+
+        return new JwtTokenDto(userDto.Id, accessToken, refreshToken);
+    }
+
+    public Guid? FindAuthenticatedUserId()
+    {
+        (string? accessToken, _) = GetJwtCookies();
+
+        if (accessToken is not null)
         {
-            string? authorizationHeader = httpContextAccessor.HttpContext?.Request.Headers.Authorization;
-            string? accessToken = authorizationHeader?.Replace("Bearer ", "");
+            ClaimsPrincipal principal = ValidateJwtTokenOrThrow(accessToken);
 
-            return accessToken is not null
-                ? accessToken
-                : throw new BaseException(Message.AccessTokenIsRequired);
-        }, cancellationToken);
+            string userId = principal.FindFirst("id")?.Value ?? string.Empty;
+
+            if (!string.IsNullOrEmpty(userId)) return Guid.Parse(userId);
+        }
+
+        return null;
     }
 
-    public async Task<UserDto> GetCurrentUserAsync(CancellationToken cancellationToken = default)
+    public (string? AccessToken, string? RefreshToken) GetJwtCookies()
     {
-        return await Task.Run(async () =>
+        if (_httpRequest is null) return (null, null);
+
+        _httpRequest.Cookies.TryGetValue("access_token", out string? accessToken);
+        _httpRequest.Cookies.TryGetValue("refresh_token", out string? refreshToken);
+
+        return (accessToken, refreshToken);
+    }
+
+    public void SendJwtCookiesToClient(JwtTokenDto jwtTokenDto)
+    {
+        _httpResponse?.Cookies.Append(
+            "access_token",
+            jwtTokenDto.AccessToken.Value,
+            CreateCookieOptions(DateTime.UtcNow.AddMinutes(30))
+        );
+
+        _httpResponse?.Cookies.Append(
+            "refresh_token",
+            jwtTokenDto.RefreshToken.Value,
+            CreateCookieOptions(DateTime.UtcNow.AddHours(1))
+        );
+    }
+
+    public ClaimsPrincipal ValidateJwtTokenOrThrow(string? token)
+    {
+        TokenValidationParameters parameters = new()
         {
-            string accessToken = await GetAccessTokenFromHeaderAsync(cancellationToken);
+            ClockSkew = TimeSpan.Zero,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(EnvironmentVariables.JWT_SECRET)),
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ValidateIssuerSigningKey = true,
+            ValidateLifetime = true,
+            ValidAudience = EnvironmentVariables.JWT_AUDIENCE,
+            ValidIssuer = EnvironmentVariables.JWT_ISSUER,
+        };
 
-            return ParseUserFromAccessToken(accessToken);
-        }, cancellationToken);
-    }
+        try
+        {
+            ClaimsPrincipal? principal = _tokenHandler.ValidateToken(token, parameters, out _);
 
-    public async Task<UserDto> GetUserFromAccessTokenAsync(string accessToken, CancellationToken cancellationToken = default)
-    {
-        return await Task.Run(() => ParseUserFromAccessToken(accessToken), cancellationToken);
-    }
+            return principal;
+        }
+        catch
+        {
+            throw new UnauthorizedException(Message.UnauthorizedOperation);
+        }
 
-    private UserDto ParseUserFromAccessToken(string accessToken)
-    {
-        string jwtToken = accessToken.Replace("Bearer ", "");
-
-        JwtPayload payload = _tokenHandler.ReadJwtToken(jwtToken).Payload;
-
-        string userIdPayload = (payload["id"] as string)!;
-        string userEmailPayload = (payload["email"] as string)!;
-
-        _ = Guid.TryParse(userIdPayload, out Guid userId);
-
-        return new UserDto(userId, userEmailPayload);
     }
 }

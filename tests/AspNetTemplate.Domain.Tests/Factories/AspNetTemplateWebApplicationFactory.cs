@@ -25,7 +25,7 @@ public sealed class AspNetTemplateWebApplicationFactory : WebApplicationFactory<
             .UseEnvironment("Production")
             .ConfigureServices((context, services) =>
             {
-                Type descriptorType = typeof(DbContextOptions<DatabaseContext>);
+                Type descriptorType = typeof(DbContextOptions<ApplicationDbContext>);
 
                 ServiceDescriptor? descriptor = services.SingleOrDefault(
                     serviceDescriptor => serviceDescriptor.ServiceType == descriptorType
@@ -35,7 +35,7 @@ public sealed class AspNetTemplateWebApplicationFactory : WebApplicationFactory<
 
                 string connectionString = _dbContainer.GetConnectionString();
 
-                services.AddDbContext<DatabaseContext>(options =>
+                services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(connectionString).UseSnakeCaseNamingConvention()
                 );
             });
@@ -45,7 +45,7 @@ public sealed class AspNetTemplateWebApplicationFactory : WebApplicationFactory<
     {
         await StartContainer();
 
-        DatabaseContext context = Services.GetRequiredService<DatabaseContext>();
+        ApplicationDbContext context = Services.GetRequiredService<ApplicationDbContext>();
 
         await context.Database.EnsureCreatedAsync();
         await context.Database.OpenConnectionAsync();
@@ -68,7 +68,7 @@ public sealed class AspNetTemplateWebApplicationFactory : WebApplicationFactory<
         await _dbContainer.StopAsync();
     }
 
-    private static async Task PopulateDatabase(DatabaseContext databaseContext)
+    private static async Task PopulateDatabase(ApplicationDbContext context)
     {
         User user1 = DatabaseFixture.User_1;
         User user2 = DatabaseFixture.User_2;
@@ -76,9 +76,9 @@ public sealed class AspNetTemplateWebApplicationFactory : WebApplicationFactory<
         user1.Password = PasswordTool.Hash(DatabaseFixture.User_1.Password);
         user2.Password = PasswordTool.Hash(DatabaseFixture.User_2.Password);
 
-        await databaseContext.Users.AddAsync(user1);
-        await databaseContext.Users.AddAsync(user2);
+        await context.Users.AddAsync(user1);
+        await context.Users.AddAsync(user2);
 
-        await databaseContext.SaveChangesAsync();
+        await context.SaveChangesAsync();
     }
 }

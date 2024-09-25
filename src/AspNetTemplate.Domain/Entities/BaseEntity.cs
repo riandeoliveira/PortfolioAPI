@@ -22,7 +22,7 @@ public abstract class BaseEntity
     [DataType(DataType.DateTime)]
     public DateTime? UpdatedAt { get; set; } = null;
 
-    [Column("removed_at")]
+    [Column("deleted_at")]
     [DataType(DataType.DateTime)]
-    public DateTime? RemovedAt { get; set; } = null;
+    public DateTime? DeletedAt { get; set; } = null;
 }

@@ -1,14 +1,20 @@
+using System.Security.Claims;
+
 using AspNetTemplate.Domain.Dtos;
 
 namespace AspNetTemplate.Domain.Interfaces;
 
 public interface IAuthService
 {
-    Task<string> GenerateRefreshTokenAsync(UserDto user, CancellationToken cancellationToken = default);
+    void ClearJwtCookies();
 
-    Task<TokenDto> GenerateTokenDataAsync(UserDto user, CancellationToken cancellationToken = default);
+    JwtTokenDto CreateJwtTokenData(UserDto userDto);
 
-    Task<UserDto> GetCurrentUserAsync(CancellationToken cancellationToken = default);
+    Guid? FindAuthenticatedUserId();
 
-    Task<UserDto> GetUserFromAccessTokenAsync(string accessToken, CancellationToken cancellationToken = default);
+    (string? AccessToken, string? RefreshToken) GetJwtCookies();
+
+    void SendJwtCookiesToClient(JwtTokenDto jwtTokenDto);
+
+    ClaimsPrincipal ValidateJwtTokenOrThrow(string? token);
 }

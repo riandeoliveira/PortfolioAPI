@@ -16,7 +16,6 @@ internal static class ControllerExtension
         builder.Services
             .AddValidatorsFromAssemblyContaining<BaseEndpoint>()
             .AddMediatR(configuration => configuration.RegisterServicesFromAssemblyContaining<BaseEndpoint>())
-            .AddProblemDetails()
             .AddControllersWithViews()
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower);
 

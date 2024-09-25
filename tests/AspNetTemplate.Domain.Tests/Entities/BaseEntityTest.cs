@@ -16,7 +16,7 @@ public sealed class BaseEntityTest
         entity.Should().NotBeNull();
         entity.Id.Should().NotBe(Guid.Empty);
         entity.CreatedAt.Should().BeBefore(DateTime.Now);
-        entity.RemovedAt.Should().BeNull();
+        entity.DeletedAt.Should().BeNull();
         entity.UpdatedAt.Should().BeNull();
     }
 }
