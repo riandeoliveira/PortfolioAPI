@@ -10,7 +10,7 @@ public abstract partial class BaseRepository<TEntity>
     {
         IEnumerable<TEntity> entities = await context.Set<TEntity>()
             .AsNoTracking()
-            .Where(entity => entity.Id == id && !entity.DeletedAt.HasValue)
+            .Where(entity => entity.Id == id)
             .ToListAsync(cancellationToken);
 
         return entities;
@@ -20,7 +20,6 @@ public abstract partial class BaseRepository<TEntity>
     {
         IEnumerable<TEntity> entities = await context.Set<TEntity>()
             .AsNoTracking()
-            .Where(entity => !entity.DeletedAt.HasValue)
             .Where(predicate)
             .ToListAsync(cancellationToken);
 

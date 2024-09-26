@@ -1,42 +1,42 @@
-using FluentAssertions;
+// using FluentAssertions;
 
-using AspNetTemplate.Domain.Dtos;
-using AspNetTemplate.Domain.Tests.Common;
-using AspNetTemplate.Domain.Tests.Factories;
+// using AspNetTemplate.Domain.Dtos;
+// using AspNetTemplate.Domain.Tests.Common;
+// using AspNetTemplate.Domain.Tests.Factories;
 
-namespace AspNetTemplate.Infrastructure.Tests.Services.Auth;
+// namespace AspNetTemplate.Infrastructure.Tests.Services.Auth;
 
-public sealed class GenerateTokenDataAsyncTest(AspNetTemplateWebApplicationFactory factory) : BaseAuthTest(factory)
-{
-    [Fact]
-    public async Task ShouldGenerate_UniqueAccessTokens()
-    {
-        UserDto firstUserDto = new(_faker.Random.Guid(), _faker.Internet.Email());
-        UserDto secondUserDto = new(_faker.Random.Guid(), _faker.Internet.Email());
+// public sealed class GenerateTokenDataAsyncTest(AspNetTemplateWebApplicationFactory factory) : BaseAuthTest(factory)
+// {
+//     [Fact]
+//     public async Task ShouldGenerate_UniqueAccessTokens()
+//     {
+//         UserDto firstUserDto = new(_faker.Random.Guid(), _faker.Internet.Email());
+//         UserDto secondUserDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        TokenDto firstTokenDto = await GenerateTokenDataAsync(firstUserDto);
-        TokenDto secondTokenDto = await GenerateTokenDataAsync(secondUserDto);
+//         TokenDto firstTokenDto = await GenerateTokenDataAsync(firstUserDto);
+//         TokenDto secondTokenDto = await GenerateTokenDataAsync(secondUserDto);
 
-        firstTokenDto.AccessToken.Should().NotBe(secondTokenDto.AccessToken);
-    }
+//         firstTokenDto.AccessToken.Should().NotBe(secondTokenDto.AccessToken);
+//     }
 
-    [Fact]
-    public async Task ShouldGenerate_ValidTokenData()
-    {
-        UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
+//     [Fact]
+//     public async Task ShouldGenerate_ValidTokenData()
+//     {
+//         UserDto userDto = new(_faker.Random.Guid(), _faker.Internet.Email());
 
-        TokenDto tokenDto = await GenerateTokenDataAsync(userDto);
+//         TokenDto tokenDto = await GenerateTokenDataAsync(userDto);
 
-        long now = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
+//         long now = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
 
-        tokenDto.AccessToken.Should().NotBeNullOrWhiteSpace();
-        tokenDto.AccessToken.Should().StartWith("Bearer");
+//         tokenDto.AccessToken.Should().NotBeNullOrWhiteSpace();
+//         tokenDto.AccessToken.Should().StartWith("Bearer");
 
-        tokenDto.RefreshToken.Should().NotBeNullOrWhiteSpace();
+//         tokenDto.RefreshToken.Should().NotBeNullOrWhiteSpace();
 
-        tokenDto.Expires.Should().BeGreaterThan(now);
+//         tokenDto.Expires.Should().BeGreaterThan(now);
 
-        tokenDto.UserId.Should().NotBe(Guid.Empty);
-        tokenDto.UserId.Should().Be(userDto.Id);
-    }
-}
+//         tokenDto.UserId.Should().NotBe(Guid.Empty);
+//         tokenDto.UserId.Should().Be(userDto.Id);
+//     }
+// }

@@ -11,7 +11,7 @@ public abstract partial class BaseRepository<TEntity>
         TEntity? entity = await context.Set<TEntity>()
             .AsNoTracking()
             .FirstOrDefaultAsync(
-                entity => entity.Id == id && !entity.DeletedAt.HasValue,
+                entity => entity.Id == id,
                 cancellationToken
             );
 
@@ -22,7 +22,6 @@ public abstract partial class BaseRepository<TEntity>
     {
         TEntity? entity = await context.Set<TEntity>()
             .AsNoTracking()
-            .Where(entity => !entity.DeletedAt.HasValue)
             .FirstOrDefaultAsync(predicate, cancellationToken);
 
         return entity;

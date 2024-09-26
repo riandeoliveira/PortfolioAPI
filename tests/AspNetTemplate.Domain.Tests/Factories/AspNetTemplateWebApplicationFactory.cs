@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 using AspNetTemplate.Domain.Entities;
-using AspNetTemplate.Domain.Tests.Fixtures;
 using AspNetTemplate.Infrastructure.Contexts;
 using AspNetTemplate.Infrastructure.Tools;
 
@@ -49,8 +48,6 @@ public sealed class AspNetTemplateWebApplicationFactory : WebApplicationFactory<
 
         await context.Database.EnsureCreatedAsync();
         await context.Database.OpenConnectionAsync();
-
-        await PopulateDatabase(context);
     }
 
     public new async Task DisposeAsync()
@@ -66,19 +63,5 @@ public sealed class AspNetTemplateWebApplicationFactory : WebApplicationFactory<
     private async Task StopContainer()
     {
         await _dbContainer.StopAsync();
-    }
-
-    private static async Task PopulateDatabase(ApplicationDbContext context)
-    {
-        User user1 = DatabaseFixture.User_1;
-        User user2 = DatabaseFixture.User_2;
-
-        user1.Password = PasswordTool.Hash(DatabaseFixture.User_1.Password);
-        user2.Password = PasswordTool.Hash(DatabaseFixture.User_2.Password);
-
-        await context.Users.AddAsync(user1);
-        await context.Users.AddAsync(user2);
-
-        await context.SaveChangesAsync();
     }
 }

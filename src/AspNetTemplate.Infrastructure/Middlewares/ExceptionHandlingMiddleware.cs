@@ -15,6 +15,8 @@ public class ExceptionHandlingMiddleware(RequestDelegate next)
 
     public async Task InvokeAsync(HttpContext context)
     {
+        bool hasException = false;
+
         try
         {
             await _next(context);
@@ -22,6 +24,24 @@ public class ExceptionHandlingMiddleware(RequestDelegate next)
         catch (Exception exception)
         {
             await HandleExceptionAsync(context, exception);
+
+            hasException = true;
+        }
+
+        if (!hasException) await HandleErrorResponseAsync(context);
+    }
+
+    private static async Task HandleErrorResponseAsync(HttpContext context)
+    {
+        if (context.Response.StatusCode >= StatusCodes.Status400BadRequest)
+        {
+            ProblemDetailsDto response = new(
+                LocalizationService.GetMessage(Message.UnauthorizedOperation) ?? "",
+                context.Response.StatusCode,
+                context.Request.Path
+            );
+
+            await context.Response.WriteAsJsonAsync(response);
         }
     }
 
