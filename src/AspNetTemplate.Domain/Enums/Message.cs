@@ -39,6 +39,6 @@ public enum Message
     StrongPassword,
 
     UnauthorizedOperation,
-    UnexpectedError,
+    UnexpectedRequestError,
     UserNotFound,
 }

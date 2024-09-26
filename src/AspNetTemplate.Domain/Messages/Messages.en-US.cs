@@ -39,6 +39,6 @@ public abstract class Messages_EN_US
     public const string StrongPassword = "The 'password' must have at least: one capital letter and one number.";
 
     public const string UnauthorizedOperation = "You do not have permission to perform this action.";
-    public const string UnexpectedError = "An error occurred while processing your request.";
+    public const string UnexpectedRequestError = "An error occurred while processing your request.";
     public const string UserNotFound = "No 'user' found.";
 }

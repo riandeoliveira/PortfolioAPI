@@ -15,8 +15,6 @@ public class ExceptionHandlingMiddleware(RequestDelegate next)
 
     public async Task InvokeAsync(HttpContext context)
     {
-        bool hasException = false;
-
         try
         {
             await _next(context);
@@ -24,34 +22,22 @@ public class ExceptionHandlingMiddleware(RequestDelegate next)
         catch (Exception exception)
         {
             await HandleExceptionAsync(context, exception);
-
-            hasException = true;
-        }
-
-        if (!hasException) await HandleErrorResponseAsync(context);
-    }
-
-    private static async Task HandleErrorResponseAsync(HttpContext context)
-    {
-        if (context.Response.StatusCode >= StatusCodes.Status400BadRequest)
-        {
-            ProblemDetailsDto response = new(
-                LocalizationService.GetMessage(Message.UnexpectedError) ?? "",
-                context.Response.StatusCode,
-                context.Request.Path
-            );
-
-            await context.Response.WriteAsJsonAsync(response);
         }
     }
 
     private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        string exceptionMessage = exception.Message;
         string instancePath = context.Request.Path;
+
+        string exceptionMessage = exception.Message switch
+        {
+            "Value cannot be null. (Parameter 'request')" => LocalizationService.GetMessage(Message.UnexpectedRequestError) ?? "",
+            _ => exception.Message
+        };
 
         ProblemDetailsDto response = exception switch
         {
+            ArgumentNullException => new ProblemDetailsDto(exceptionMessage, StatusCodes.Status400BadRequest, instancePath),
             BadRequestException => new ProblemDetailsDto(exceptionMessage, StatusCodes.Status400BadRequest, instancePath),
             ConflictException => new ProblemDetailsDto(exceptionMessage, StatusCodes.Status409Conflict, instancePath),
             NotFoundException => new ProblemDetailsDto(exceptionMessage, StatusCodes.Status404NotFound, instancePath),

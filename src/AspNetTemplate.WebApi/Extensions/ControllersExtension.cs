@@ -17,6 +17,7 @@ internal static class ControllerExtension
             .AddValidatorsFromAssemblyContaining<BaseEndpoint>()
             .AddMediatR(configuration => configuration.RegisterServicesFromAssemblyContaining<BaseEndpoint>())
             .AddControllersWithViews()
+            .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true)
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower);
 
         builder.Services.AddHealthChecks().AddNpgSql(Database.CONNECTION_STRING);
