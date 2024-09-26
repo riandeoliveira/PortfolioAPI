@@ -16,4 +16,9 @@ public static class HttpResponseExtension
 
         return body ?? Activator.CreateInstance<TBody>();
     }
+
+    public static IEnumerable<string> GetCookies(this HttpResponseMessage response)
+    {
+        return response.Headers.GetValues("Set-Cookie");
+    }
 }

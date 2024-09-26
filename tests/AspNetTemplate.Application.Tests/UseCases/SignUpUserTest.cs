@@ -1,35 +1,23 @@
 using System.Net;
-using System.Text.RegularExpressions;
 
 using AspNetTemplate.Application.UseCases.SignUpUser;
+using AspNetTemplate.Domain.Dtos;
+using AspNetTemplate.Domain.Entities;
+using AspNetTemplate.Domain.Messages;
 using AspNetTemplate.Domain.Tests.Common;
 using AspNetTemplate.Domain.Tests.Extensions;
 using AspNetTemplate.Domain.Tests.Factories;
 using AspNetTemplate.Infrastructure.Extensions;
-using AspNetTemplate.Application.Tests.Extensions;
 
 using FluentAssertions;
+
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace AspNetTemplate.Application.Tests.UseCases;
 
 public sealed class SignUpUserTest(AspNetTemplateWebApplicationFactory factory) : BaseAuthTest(factory)
 {
-    private void GetJwtTokenFromCookies(string cookie)
-    {
-        string pattern = @"access_token=([^;]+)";
-
-        Match? match = Regex.Match(cookie, pattern);
-
-        if (match.Success)
-        {
-            string accessToken = match.Groups[1].Value;
-            Console.WriteLine("Access Token: " + accessToken);
-        }
-        else
-        {
-            Console.WriteLine("Token not found.");
-        }
-    }
+    private readonly string _requestUri = "/api/user/sign-up";
 
     [Fact]
     public async Task Should_SignUpUser()
@@ -41,11 +29,37 @@ public sealed class SignUpUserTest(AspNetTemplateWebApplicationFactory factory) 
 
         HttpResponseMessage response = await _client.SendPostAsync("/api/user/sign-up", request);
 
-        response.Should().HaveStatusCode(HttpStatusCode.Created);
-        response.ShouldHaveJwtCookies();
+        IEnumerable<string> cookies = response.GetCookies();
 
-        // TODO: Verificar se o usuário foi criado no banco
-        // TODO: Verificar se os cookies foram criados corretamente
-        // TODO: Verificar se os cookies são jwt válidos
+        User? user = await _userRepository.FindOneAsync(x => x.Email == request.Email);
+
+        response.Should().HaveStatusCode(HttpStatusCode.Created);
+
+        ShouldHaveValidJwtCookies(cookies);
+
+        user.Should().NotBeNull();
+        user?.Email.Should().Be(request.Email);
+    }
+
+    [Fact]
+    public async Task ShouldNot_SignUpUser_WithAlreadyRegisteredEmail()
+    {
+        (string email, string password) = await AuthenticateAsync();
+
+        SignUpUserRequest request = new(email, password);
+
+        HttpResponseMessage response = await _client.SendPostAsync(_requestUri, request);
+        ProblemDetailsDto body = await response.GetBodyAsync<ProblemDetailsDto>();
+
+        HttpStatusCode statusCode = HttpStatusCode.Conflict;
+        int status = (int) statusCode;
+
+        response.Should().HaveStatusCode(statusCode);
+
+        body.Type.Should().Be($"https://httpstatuses.com/{status}");
+        body.Title.Should().Be(Messages_PT_BR.EmailAlreadyExists);
+        body.Status.Should().Be(status);
+        body.Detail.Should().Be(ReasonPhrases.GetReasonPhrase(status));
+        body.Instance.Should().Be(_requestUri);
     }
 }

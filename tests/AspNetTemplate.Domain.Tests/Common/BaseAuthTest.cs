@@ -30,7 +30,7 @@ public abstract class BaseAuthTest(AspNetTemplateWebApplicationFactory factory) 
         }
     }
 
-    protected async Task AuthenticateAsync()
+    protected async Task<(string email, string password)> AuthenticateAsync()
     {
         string email = _faker.Internet.Email();
         string password = _faker.Internet.StrongPassword();
@@ -38,5 +38,7 @@ public abstract class BaseAuthTest(AspNetTemplateWebApplicationFactory factory) 
         SignUpUserRequest request = new(email, password);
 
         await _client.SendPostAsync("/api/user/sign-up", request);
+
+        return (email, password);
     }
 }
