@@ -8,6 +8,7 @@ using AspNetTemplate.Infrastructure.Contexts;
 using System.Text.RegularExpressions;
 using FluentAssertions;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace AspNetTemplate.Domain.Tests.Common;
 
@@ -19,6 +20,7 @@ public abstract class BaseTest : IClassFixture<AspNetTemplateWebApplicationFacto
     protected readonly Faker _faker = new();
     protected readonly HttpClient _client;
     protected readonly IAuthService _authService;
+    protected readonly IHttpContextAccessor _httpContextAccessor;
     protected readonly IUnitOfWork _unitOfWork;
     protected readonly IUserRepository _userRepository;
 
@@ -30,6 +32,7 @@ public abstract class BaseTest : IClassFixture<AspNetTemplateWebApplicationFacto
         _faker = new();
         _client = factory.CreateClient();
         _authService = GetService<IAuthService>();
+        _httpContextAccessor = GetService<IHttpContextAccessor>();
         _userRepository = GetService<IUserRepository>();
         _unitOfWork = GetService<IUnitOfWork>();
     }

@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-using AspNetTemplate.Domain.Entities;
 using AspNetTemplate.Infrastructure.Contexts;
-using AspNetTemplate.Infrastructure.Tools;
 
 using Testcontainers.PostgreSql;
 
