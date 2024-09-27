@@ -37,7 +37,7 @@ public sealed class RenewUserRefreshTokenHandler(
 
         await personalRefreshTokenRepository.UpdateAsync(currentPersonalRefreshToken, cancellationToken);
 
-        JwtTokenDto jwtTokenDto = authService.CreateJwtTokenData(user.Adapt<UserDto>());
+        JwtTokenDto jwtTokenDto = authService.CreateJwtTokenData(user.Id);
 
         PersonalRefreshToken personalRefreshToken = new()
         {

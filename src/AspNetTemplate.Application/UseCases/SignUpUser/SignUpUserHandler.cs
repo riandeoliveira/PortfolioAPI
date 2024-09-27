@@ -36,7 +36,7 @@ public sealed class SignUpUserHandler(
 
         User createdUser = await userRepository.CreateAsync(user, cancellationToken);
 
-        JwtTokenDto jwtTokenDto = authService.CreateJwtTokenData(createdUser.Adapt<UserDto>());
+        JwtTokenDto jwtTokenDto = authService.CreateJwtTokenData(user.Id);
 
         PersonalRefreshToken personalRefreshToken = new()
         {

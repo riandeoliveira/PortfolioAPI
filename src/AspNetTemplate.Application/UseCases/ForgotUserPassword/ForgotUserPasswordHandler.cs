@@ -21,7 +21,7 @@ public sealed class ForgotUserPasswordHandler(
             cancellationToken
         );
 
-        JwtTokenDto jwtTokenDto = authService.CreateJwtTokenData(user.Adapt<UserDto>());
+        JwtTokenDto jwtTokenDto = authService.CreateJwtTokenData(user.Id);
 
         ForgotUserPasswordViewModel viewModel = new(
             user.Email,

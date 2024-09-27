@@ -30,11 +30,11 @@ public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAut
         };
     }
 
-    private TokenDto CreateTokenData(UserDto user, DateTime expiration)
+    private TokenDto CreateTokenData(Guid userId, DateTime expiration)
     {
         Claim[] claims =
         [
-            new("id", user.Id.ToString()),
+            new("id", userId.ToString()),
         ];
 
         SymmetricSecurityKey key = new(Encoding.UTF8.GetBytes(EnvironmentVariables.JWT_SECRET));
@@ -62,12 +62,12 @@ public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAut
         _httpResponse?.Cookies.Delete("refresh_token");
     }
 
-    public JwtTokenDto CreateJwtTokenData(UserDto userDto)
+    public JwtTokenDto CreateJwtTokenData(Guid userId)
     {
-        TokenDto accessToken = CreateTokenData(userDto, DateTime.UtcNow.AddMinutes(30));
-        TokenDto refreshToken = CreateTokenData(userDto, DateTime.UtcNow.AddDays(1));
+        TokenDto accessToken = CreateTokenData(userId, DateTime.UtcNow.AddMinutes(30));
+        TokenDto refreshToken = CreateTokenData(userId, DateTime.UtcNow.AddDays(1));
 
-        return new JwtTokenDto(userDto.Id, accessToken, refreshToken);
+        return new JwtTokenDto(accessToken, refreshToken);
     }
 
     public Guid? FindAuthenticatedUserId()

@@ -8,7 +8,7 @@ public interface IAuthService
 {
     void ClearJwtCookies();
 
-    JwtTokenDto CreateJwtTokenData(UserDto userDto);
+    JwtTokenDto CreateJwtTokenData(Guid userId);
 
     Guid? FindAuthenticatedUserId();
 

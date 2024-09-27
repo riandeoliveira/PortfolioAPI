@@ -17,7 +17,7 @@ public abstract class BaseTest : IClassFixture<AspNetTemplateWebApplicationFacto
     private readonly AspNetTemplateWebApplicationFactory _factory;
 
     protected readonly ApplicationDbContext _context;
-    protected readonly Faker _faker = new();
+    protected readonly Faker _faker;
     protected readonly HttpClient _client;
     protected readonly IAuthService _authService;
     protected readonly IHttpContextAccessor _httpContextAccessor;
