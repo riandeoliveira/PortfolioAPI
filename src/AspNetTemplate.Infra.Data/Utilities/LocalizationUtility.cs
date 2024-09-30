@@ -28,5 +28,4 @@ public class LocalizationUtility
             _ => null,
         };
     }
-
 }
