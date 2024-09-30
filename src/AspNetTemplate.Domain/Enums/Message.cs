@@ -38,6 +38,8 @@ public enum Message
 
     StrongPassword,
 
+    TooManyRequests,
+
     UnauthorizedOperation,
     UnexpectedRequestError,
     UserNotFound,

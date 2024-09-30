@@ -1,10 +1,9 @@
-using Mapster;
-
+using AspNetTemplate.Application.Interfaces;
 using AspNetTemplate.Domain.Constants;
-using AspNetTemplate.Domain.Dtos;
 using AspNetTemplate.Domain.Entities;
 using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Domain.Interfaces;
+using AspNetTemplate.Infra.Data.Dtos;
+using AspNetTemplate.Infra.Data.Interfaces;
 
 namespace AspNetTemplate.Application.UseCases.ForgotUserPassword;
 
@@ -17,7 +16,7 @@ public sealed class ForgotUserPasswordHandler(
     public async Task Handle(ForgotUserPasswordRequest request, CancellationToken cancellationToken = default)
     {
         User user = await userRepository.FindOneOrThrowAsync(
-            user => user.Email == request.Email,
+            x => x.Email == request.Email,
             cancellationToken
         );
 
@@ -29,11 +28,12 @@ public sealed class ForgotUserPasswordHandler(
             EnvironmentVariables.CLIENT_URL
         );
 
+        ViewDto viewDto = new("ForgotUserPassword", viewModel);
+
         MailSenderDto mailSenderDto = new(
             Recipient: user.Email,
             Subject: Message.PasswordResetRequest,
-            ViewName: "ForgotUserPassword",
-            ViewModel: viewModel
+            viewDto
         );
 
         await mailService.SendMailAsync(mailSenderDto, cancellationToken);

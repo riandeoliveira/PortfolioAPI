@@ -1,8 +1,9 @@
+using AspNetTemplate.Application.Interfaces;
 using AspNetTemplate.Domain.Entities;
 using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Domain.Exceptions;
-using AspNetTemplate.Domain.Interfaces;
-using AspNetTemplate.Infrastructure.Tools;
+using AspNetTemplate.Infra.Data.Exceptions;
+using AspNetTemplate.Infra.Data.Interfaces;
+using AspNetTemplate.Infra.Data.Utilities;
 
 namespace AspNetTemplate.Application.UseCases.UpdateUser;
 
@@ -23,7 +24,7 @@ public sealed class UpdateUserHandler(
 
         if (emailAlreadyExists) throw new ConflictException(Message.EmailAlreadyExists);
 
-        string hashedPassword = PasswordTool.Hash(request.Password);
+        string hashedPassword = PasswordUtility.Hash(request.Password);
 
         user.Email = request.Email;
         user.Password = hashedPassword;

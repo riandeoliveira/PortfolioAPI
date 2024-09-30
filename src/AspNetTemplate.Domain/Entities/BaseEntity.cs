@@ -16,7 +16,7 @@ public abstract class BaseEntity
     [DataType(DataType.DateTime)]
     [NotNull]
     [Required]
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     [Column("updated_at")]
     [DataType(DataType.DateTime)]

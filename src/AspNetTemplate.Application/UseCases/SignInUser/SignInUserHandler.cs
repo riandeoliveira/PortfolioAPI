@@ -1,11 +1,10 @@
-using Mapster;
-
-using AspNetTemplate.Domain.Dtos;
+using AspNetTemplate.Application.Interfaces;
 using AspNetTemplate.Domain.Entities;
 using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Domain.Exceptions;
-using AspNetTemplate.Domain.Interfaces;
-using AspNetTemplate.Infrastructure.Tools;
+using AspNetTemplate.Infra.Data.Dtos;
+using AspNetTemplate.Infra.Data.Exceptions;
+using AspNetTemplate.Infra.Data.Interfaces;
+using AspNetTemplate.Infra.Data.Utilities;
 
 namespace AspNetTemplate.Application.UseCases.SignInUser;
 
@@ -25,7 +24,7 @@ public sealed class SignInUserHandler(
 
         if (user is null) throw new UnauthorizedException(Message.InvalidCredentials);
 
-        bool isPasswordValid = PasswordTool.Verify(request.Password, user.Password);
+        bool isPasswordValid = PasswordUtility.Verify(request.Password, user.Password);
 
         if (!isPasswordValid) throw new UnauthorizedException(Message.InvalidCredentials);
 

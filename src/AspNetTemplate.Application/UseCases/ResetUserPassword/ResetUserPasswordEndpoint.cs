@@ -1,17 +1,21 @@
+using AspNetTemplate.Infra.Data.Dtos;
+
 using MediatR;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-using AspNetTemplate.Application.Endpoints;
+using Microsoft.AspNetCore.RateLimiting;
 
 using Swashbuckle.AspNetCore.Annotations;
-using AspNetTemplate.Domain.Dtos;
 
 namespace AspNetTemplate.Application.UseCases.ResetUserPassword;
 
-public sealed class ResetUserEndpoint(IMediator mediator) : UserEndpoint
+[ApiController]
+[EnableRateLimiting("Fixed")]
+[Produces("application/json", "application/problem+json")]
+[Route("api/user")]
+public sealed class ResetUserEndpoint(IMediator mediator) : Controller
 {
     [Authorize]
     [HttpPost("reset-password")]
@@ -19,6 +23,7 @@ public sealed class ResetUserEndpoint(IMediator mediator) : UserEndpoint
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetailsDto))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetailsDto))]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetailsDto))]
+    [ProducesResponseType(StatusCodes.Status429TooManyRequests, Type = typeof(ProblemDetailsDto))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetailsDto))]
     [SwaggerOperation(
         Description = "",

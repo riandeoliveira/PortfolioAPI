@@ -7,12 +7,12 @@
 // using AspNetTemplate.Domain.Tests.Extensions;
 // using AspNetTemplate.Domain.Tests.Factories;
 
-// namespace AspNetTemplate.Application.Tests.UseCases.VerifyAuthenticatedUser;
+// namespace AspNetTemplate.Application.Tests.UseCases.VerifyUser;
 
-// public sealed class VerifyAuthenticatedUserBusinessTest(AspNetTemplateWebApplicationFactory factory) : BaseAuthTest(factory)
+// public sealed class VerifyUserBusinessTest(AspNetTemplateWebApplicationFactory factory) : BaseAuthTest(factory)
 // {
 //     [Fact]
-//     public async Task Should_VerifyAuthenticatedUser()
+//     public async Task Should_VerifyUser()
 //     {
 //         await AuthenticateAsync();
 
@@ -34,7 +34,7 @@
 //     }
 
 //     [Fact]
-//     public async Task ShouldNot_VerifyAuthenticatedUser_WithoutAuthentication()
+//     public async Task ShouldNot_VerifyUser_WithoutAuthentication()
 //     {
 //         HttpResponseMessage response = await _client.GetAsync("/api/user");
 

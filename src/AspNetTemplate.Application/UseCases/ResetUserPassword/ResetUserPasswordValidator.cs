@@ -1,7 +1,7 @@
-using FluentValidation;
-
 using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Infrastructure.Extensions;
+using AspNetTemplate.Infra.Common.Extensions;
+
+using FluentValidation;
 
 namespace AspNetTemplate.Application.UseCases.ResetUserPassword;
 
@@ -9,11 +9,11 @@ public sealed class ResetUserPasswordValidator : AbstractValidator<ResetUserPass
 {
     public ResetUserPasswordValidator()
     {
-        RuleFor(request => request)
-            .Must(request => request.Password == request.PasswordConfirmation)
+        RuleFor(x => x)
+            .Must(x => x.Password == x.PasswordConfirmation)
             .Message(Message.EquivalentPasswords);
 
-        RuleFor(request => request.Password)
+        RuleFor(x => x.Password)
             .NotEmpty()
             .Message(Message.PasswordIsRequired)
 
@@ -26,7 +26,7 @@ public sealed class ResetUserPasswordValidator : AbstractValidator<ResetUserPass
             .StrongPassword()
             .Message(Message.StrongPassword);
 
-        RuleFor(request => request.PasswordConfirmation)
+        RuleFor(x => x.PasswordConfirmation)
             .NotEmpty()
             .Message(Message.PasswordIsRequired)
 

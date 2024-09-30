@@ -2,25 +2,23 @@ namespace AspNetTemplate.Domain.Constants;
 
 public static class EnvironmentVariables
 {
-    // Client
-    public static string CLIENT_URL => Environment.GetEnvironmentVariable("CLIENT_URL") ?? "";
+    public static string CLIENT_URL => GetVariable("CLIENT_URL");
 
-    // Database
-    public static string DATABASE_HOST => Environment.GetEnvironmentVariable("DATABASE_HOST") ?? "";
-    public static string DATABASE_NAME => Environment.GetEnvironmentVariable("DATABASE_NAME") ?? "";
-    public static string DATABASE_PASSWORD => Environment.GetEnvironmentVariable("DATABASE_PASSWORD") ?? "";
-    public static string DATABASE_PORT => Environment.GetEnvironmentVariable("DATABASE_PORT") ?? "";
-    public static string DATABASE_USER => Environment.GetEnvironmentVariable("DATABASE_USER") ?? "";
+    public static string DATABASE_HOST => GetVariable("DATABASE_HOST");
+    public static string DATABASE_NAME => GetVariable("DATABASE_NAME");
+    public static string DATABASE_PASSWORD => GetVariable("DATABASE_PASSWORD");
+    public static string DATABASE_PORT => GetVariable("DATABASE_PORT");
+    public static string DATABASE_USER => GetVariable("DATABASE_USER");
 
-    // Mail
-    public static string MAIL_HOST => Environment.GetEnvironmentVariable("MAIL_HOST") ?? "";
-    public static string MAIL_PASSWORD => Environment.GetEnvironmentVariable("MAIL_PASSWORD") ?? "";
-    public static string MAIL_PORT => Environment.GetEnvironmentVariable("MAIL_PORT") ?? "";
-    public static string MAIL_SENDER => Environment.GetEnvironmentVariable("MAIL_SENDER") ?? "";
-    public static string MAIL_USERNAME => Environment.GetEnvironmentVariable("MAIL_USERNAME") ?? "";
+    public static string MAIL_HOST => GetVariable("MAIL_HOST");
+    public static string MAIL_PASSWORD => GetVariable("MAIL_PASSWORD");
+    public static string MAIL_PORT => GetVariable("MAIL_PORT");
+    public static string MAIL_SENDER => GetVariable("MAIL_SENDER");
+    public static string MAIL_USERNAME => GetVariable("MAIL_USERNAME");
 
-    // JWT
-    public static string JWT_AUDIENCE => Environment.GetEnvironmentVariable("JWT_AUDIENCE") ?? "";
-    public static string JWT_ISSUER => Environment.GetEnvironmentVariable("JWT_ISSUER") ?? "";
-    public static string JWT_SECRET => Environment.GetEnvironmentVariable("JWT_SECRET") ?? "";
+    public static string JWT_AUDIENCE => GetVariable("JWT_AUDIENCE");
+    public static string JWT_ISSUER => GetVariable("JWT_ISSUER");
+    public static string JWT_SECRET => GetVariable("JWT_SECRET");
+
+    private static string GetVariable(string name) => Environment.GetEnvironmentVariable(name) ?? "";
 }

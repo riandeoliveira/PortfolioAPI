@@ -1,7 +1,7 @@
-using FluentValidation;
-
 using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Infrastructure.Extensions;
+using AspNetTemplate.Infra.Common.Extensions;
+
+using FluentValidation;
 
 namespace AspNetTemplate.Application.UseCases.SignInUser;
 
@@ -9,7 +9,7 @@ public sealed class SignInUserValidator : AbstractValidator<SignInUserRequest>
 {
     public SignInUserValidator()
     {
-        RuleFor(request => request.Email)
+        RuleFor(x => x.Email)
             .NotEmpty()
             .Message(Message.EmailIsRequired)
 
@@ -22,7 +22,7 @@ public sealed class SignInUserValidator : AbstractValidator<SignInUserRequest>
             .EmailAddress()
             .Message(Message.EmailIsValid);
 
-        RuleFor(request => request.Password)
+        RuleFor(x => x.Password)
             .NotEmpty()
             .Message(Message.PasswordIsRequired)
 

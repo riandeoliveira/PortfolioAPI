@@ -1,7 +1,8 @@
+using AspNetTemplate.Application.Interfaces;
 using AspNetTemplate.Domain.Entities;
-using AspNetTemplate.Domain.Interfaces;
-using AspNetTemplate.Domain.Exceptions;
 using AspNetTemplate.Domain.Enums;
+using AspNetTemplate.Infra.Data.Exceptions;
+using AspNetTemplate.Infra.Data.Interfaces;
 
 namespace AspNetTemplate.Application.UseCases.SignOutUser;
 

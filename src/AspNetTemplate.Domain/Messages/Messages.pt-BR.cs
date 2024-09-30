@@ -38,6 +38,8 @@ public abstract class Messages_PT_BR
 
     public const string StrongPassword = "A 'senha' deve possuir pelo menos: uma letra maiúscula e um número.";
 
+    public const string TooManyRequests = "Muitas solicitações. Tente novamente mais tarde.";
+
     public const string UnauthorizedOperation = "Você não possui permissão para realizar esta ação.";
     public const string UnexpectedRequestError = "Um erro ocorreu ao processar sua solicitação.";
     public const string UserNotFound = "Nenhum 'usuário' encontrado.";

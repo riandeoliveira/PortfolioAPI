@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\src\AspNetTemplate.WebApi\AspNetTemplate.WebApi.csproj" />
+        <ProjectReference Include="..\..\src\AspNetTemplate.Api\AspNetTemplate.Api.csproj" />
     </ItemGroup>
 
 </Project>

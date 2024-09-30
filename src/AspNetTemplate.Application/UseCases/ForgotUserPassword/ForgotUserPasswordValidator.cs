@@ -1,14 +1,14 @@
-using FluentValidation;
-
 using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Infrastructure.Extensions;
+using AspNetTemplate.Infra.Common.Extensions;
+
+using FluentValidation;
 
 namespace AspNetTemplate.Application.UseCases.ForgotUserPassword;
 
 public sealed class ForgotUserPasswordValidator : AbstractValidator<ForgotUserPasswordRequest>
 {
     public ForgotUserPasswordValidator()
-        => RuleFor(request => request.Email)
+        => RuleFor(x => x.Email)
             .NotEmpty()
             .Message(Message.EmailIsRequired)
 

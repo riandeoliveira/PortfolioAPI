@@ -1,5 +1,6 @@
+using AspNetTemplate.Application.Interfaces;
 using AspNetTemplate.Domain.Entities;
-using AspNetTemplate.Domain.Interfaces;
+using AspNetTemplate.Infra.Data.Interfaces;
 
 namespace AspNetTemplate.Application.UseCases.DeleteUser;
 

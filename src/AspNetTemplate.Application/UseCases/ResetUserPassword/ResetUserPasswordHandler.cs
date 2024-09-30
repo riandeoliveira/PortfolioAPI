@@ -1,11 +1,10 @@
-using AspNetTemplate.Domain.Dtos;
+using AspNetTemplate.Application.Interfaces;
 using AspNetTemplate.Domain.Entities;
 using AspNetTemplate.Domain.Enums;
-using AspNetTemplate.Domain.Exceptions;
-using AspNetTemplate.Domain.Interfaces;
-using AspNetTemplate.Infrastructure.Tools;
-
-using Mapster;
+using AspNetTemplate.Infra.Data.Dtos;
+using AspNetTemplate.Infra.Data.Exceptions;
+using AspNetTemplate.Infra.Data.Interfaces;
+using AspNetTemplate.Infra.Data.Utilities;
 
 namespace AspNetTemplate.Application.UseCases.ResetUserPassword;
 
@@ -20,7 +19,7 @@ public sealed class ResetUserPasswordHandler(
     {
         User user = await userRepository.FindAuthenticatedOrThrowAsync(cancellationToken);
 
-        string hashedPassword = PasswordTool.Hash(request.Password);
+        string hashedPassword = PasswordUtility.Hash(request.Password);
 
         user.Password = hashedPassword;
 

@@ -27,7 +27,7 @@
 
 //         TokenDto tokenDto = await GenerateTokenDataAsync(userDto);
 
-//         long now = new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds();
+//         long now = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
 
 //         tokenDto.AccessToken.Should().NotBeNullOrWhiteSpace();
 //         tokenDto.AccessToken.Should().StartWith("Bearer");

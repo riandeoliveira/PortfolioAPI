@@ -1,4 +1,4 @@
-using AspNetTemplate.Infrastructure.Extensions;
+using AspNetTemplate.Infra.Common.Extensions;
 
 using Bogus;
 

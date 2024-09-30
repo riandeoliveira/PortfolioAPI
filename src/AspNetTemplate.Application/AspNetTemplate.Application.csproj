@@ -8,13 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspNetTemplate.Infrastructure\AspNetTemplate.Infrastructure.csproj" />
+    <ProjectReference
+      Include="..\AspNetTemplate.Infra.Common\AspNetTemplate.Infra.Common.csproj" />
   </ItemGroup>
 
 </Project>

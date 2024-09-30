@@ -1,11 +1,10 @@
-using Mapster;
-
-using AspNetTemplate.Domain.Dtos;
+using AspNetTemplate.Application.Interfaces;
 using AspNetTemplate.Domain.Entities;
-using AspNetTemplate.Domain.Interfaces;
-using AspNetTemplate.Infrastructure.Tools;
-using AspNetTemplate.Domain.Exceptions;
 using AspNetTemplate.Domain.Enums;
+using AspNetTemplate.Infra.Data.Dtos;
+using AspNetTemplate.Infra.Data.Exceptions;
+using AspNetTemplate.Infra.Data.Interfaces;
+using AspNetTemplate.Infra.Data.Utilities;
 
 namespace AspNetTemplate.Application.UseCases.SignUpUser;
 
@@ -26,7 +25,7 @@ public sealed class SignUpUserHandler(
 
         if (userAlreadyExists) throw new ConflictException(Message.EmailAlreadyExists);
 
-        string hashedPassword = PasswordTool.Hash(request.Password);
+        string hashedPassword = PasswordUtility.Hash(request.Password);
 
         User user = new()
         {

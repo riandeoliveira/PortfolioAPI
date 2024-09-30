@@ -1,4 +1,4 @@
-using AspNetTemplate.Domain.Interfaces;
+using AspNetTemplate.Application.Interfaces;
 
 namespace AspNetTemplate.Application.UseCases.SignUpUser;
 

@@ -1,0 +1,8 @@
+using AspNetTemplate.Domain.Enums;
+using AspNetTemplate.Infra.Data.Utilities;
+
+namespace AspNetTemplate.Infra.Data.Exceptions;
+
+public sealed class BadRequestException(Message key) : Exception(LocalizationUtility.GetMessage(key))
+{
+}

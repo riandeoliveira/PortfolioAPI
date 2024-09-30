@@ -1,23 +1,27 @@
+using AspNetTemplate.Infra.Data.Dtos;
+
 using MediatR;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
-using AspNetTemplate.Application.Endpoints;
+using Microsoft.AspNetCore.RateLimiting;
 
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
-using AspNetTemplate.Domain.Dtos;
 
 namespace AspNetTemplate.Application.UseCases.SignInUser;
 
-public sealed class SignInUserEndpoint(IMediator mediator) : UserEndpoint
+[ApiController]
+[EnableRateLimiting("Fixed")]
+[Produces("application/json", "application/problem+json")]
+[Route("api/user")]
+public sealed class SignInUserEndpoint(IMediator mediator) : Controller
 {
     [HttpPost("sign-in")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetailsDto))]
     [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(ProblemDetailsDto))]
-    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetailsDto))]
+    [ProducesResponseType(StatusCodes.Status429TooManyRequests, Type = typeof(ProblemDetailsDto))]
     [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetailsDto))]
     [SwaggerOperation(
         Description = "",

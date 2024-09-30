@@ -1,9 +1,9 @@
-using AspNetTemplate.Domain.Dtos;
-using AspNetTemplate.Domain.Interfaces;
+using AspNetTemplate.Application.Interfaces;
 using AspNetTemplate.Domain.Entities;
-using AspNetTemplate.Domain.Exceptions;
 using AspNetTemplate.Domain.Enums;
-using Mapster;
+using AspNetTemplate.Infra.Data.Dtos;
+using AspNetTemplate.Infra.Data.Exceptions;
+using AspNetTemplate.Infra.Data.Interfaces;
 
 namespace AspNetTemplate.Application.UseCases.RenewUserRefreshToken;
 
