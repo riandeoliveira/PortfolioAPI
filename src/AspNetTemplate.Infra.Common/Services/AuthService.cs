@@ -77,7 +77,9 @@ public sealed class AuthService(IHttpContextAccessor httpContextAccessor) : IAut
 
             string userId = principal.FindFirst("id")?.Value ?? string.Empty;
 
-            if (!string.IsNullOrEmpty(userId)) return Guid.Parse(userId);
+            bool hasUserId = !string.IsNullOrEmpty(userId);
+
+            if (hasUserId) return Guid.Parse(userId);
         }
 
         return null;

@@ -18,8 +18,7 @@ public sealed class SignUpUserHandler(
     public async Task Handle(SignUpUserRequest request, CancellationToken cancellationToken = default)
     {
         bool userAlreadyExists = await userRepository.ExistAsync(
-            x => x.Email == request.Email &&
-            !x.DeletedAt.HasValue,
+            x => x.Email == request.Email,
             cancellationToken
         );
 
