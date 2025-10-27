@@ -36,12 +36,23 @@ csproj_file="src/$pascal_case/$pascal_case.csproj"
 
 script_name="$(basename "$0")"
 
+api_doc_file="src/$pascal_case/Extensions/ApiDocExtensions.cs"
+
 sed -i "s/$old_uuid/$new_uuid/g" "$sln_file"
 sed -i 's#<Version>.*</Version>#<Version>0.1.0</Version>#g' "$csproj_file"
 sed -i '/^bootstrap:/,+2d' "Makefile"
 
+if echo "$project_name" | grep -iq "api"; then
+    api_doc_title="$project_name"
+else
+    api_doc_title="$project_name API"
+fi
+
+sed -i "s/\"ASP.NET Template API\"/\"$api_doc_title\"/g" "$api_doc_file"
+
 rm -rf .git
-rm -f "$script_name"
+
+trap "rm -f '$0'" EXIT
 
 echo
 echo "✅ Project ready to start! Have a nice coding ;)"
