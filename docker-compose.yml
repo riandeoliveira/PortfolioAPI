@@ -1,29 +1,27 @@
 services:
-  database:
-    image: postgres:16
-    container_name: ${DATABASE_NAME}
-    environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-    ports:
-      - "${DATABASE_PORT}:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    aspnet-template-db:
+        image: postgres:16
+        container_name: aspnet-template-db
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: ${DATABASE_USER}
+            POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+            POSTGRES_DB: ${DATABASE_NAME}
+        ports:
+            - "${DATABASE_PORT}:5432"
+        volumes:
+            - pgdata:/var/lib/postgresql/data
 
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: pgadmin
-    environment:
-      PGADMIN_DEFAULT_EMAIL: root@root.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    ports:
-      - "5050:80"
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
+    aspnet-template-api:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: aspnet-template-api
+        restart: unless-stopped
+        depends_on:
+            - aspnet-template-db
+        ports:
+            - "${APP_PORT}:8080"
 
 volumes:
-  postgres_data:
-    driver: local
-  pgadmin_data:
-    driver: local
+    pgdata:

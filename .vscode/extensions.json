@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "csharpier.csharpier-vscode",
+        "eamodio.gitlens",
+        "ms-dotnettools.csharp",
+        "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+        "streetsidesoftware.code-spell-checker",
+        "visualstudioexptteam.vscodeintellicode",
+    ]
+}
