@@ -34,8 +34,14 @@ sln_file=$(ls "$pascal_case.sln" 2>/dev/null)
 
 csproj_file="src/$pascal_case/$pascal_case.csproj"
 
+script_name="$(basename "$0")"
+
 sed -i "s/$old_uuid/$new_uuid/g" "$sln_file"
 sed -i 's#<Version>.*</Version>#<Version>0.1.0</Version>#g' "$csproj_file"
+sed -i '/^bootstrap:/,+2d' "Makefile"
+
+rm -rf .git
+rm -f "$script_name"
 
 echo
 echo "✅ Project ready to start! Have a nice coding ;)"
